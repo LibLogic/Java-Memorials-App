@@ -40,16 +40,20 @@ class Counter extends Component {
   }
 
   reset() {
-    this.setState({
-      counter: 0,
+    this.setState(() => {
+      return { counter: 0 };
     });
   }
 
   decrement(by) {
-    this.setState({ counter: this.state.counter - by });
+    this.setState((prevState) => {
+      return { counter: prevState.counter - by };
+    });
   }
   increment(by) {
-    this.setState({ counter: this.state.counter + by });
+    this.setState((prevState) => {
+      return { counter: prevState.counter + by };
+    });
   }
 }
 
