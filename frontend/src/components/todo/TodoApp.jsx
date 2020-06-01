@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import AuthenticatedRoute from "./AuthenticatedRoute";
 import Header from "./Header";
 import Welcome from "./Welcome";
 import ListTodos from "./ListTodos";
@@ -15,11 +16,12 @@ class TodoApp extends Component {
         <Router>
           <Header />
           <Switch>
-            <Route path="/welcome" exact component={Welcome} />
-            <Route path="/welcome/:name" component={Welcome} />
-            <Route path="/todos" exact component={ListTodos} />
+            <Route path="/" exact component={Login} />
+            <AuthenticatedRoute path="/welcome" exact component={Welcome} />
+            <AuthenticatedRoute path="/welcome/:name" component={Welcome} />
+            <AuthenticatedRoute path="/todos" exact component={ListTodos} />
             <Route path="/login" exact component={Login} />
-            <Route path="/logout" exact component={Logout} />
+            <AuthenticatedRoute path="/logout" exact component={Logout} />
             <Route component={Error} />
           </Switch>
           <Footer />

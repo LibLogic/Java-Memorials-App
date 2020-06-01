@@ -26,9 +26,11 @@ class ListTodos extends Component {
       ],
     };
   }
+
   render() {
     return (
       <div className="listTodos">
+        <h1>List Todos</h1>
         <table className="table">
           <thead>
             <tr>
