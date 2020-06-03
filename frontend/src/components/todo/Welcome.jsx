@@ -7,8 +7,8 @@ class Welcome extends Component {
       <>
         <h1>Welcome!</h1>
         <p>
-          Welcome {this.props.match.params.name}. You can manage your todos{" "}
-          <Link to="/todos">here</Link>
+          Welcome {sessionStorage.getItem("authenticatedUser")}. You can manage
+          your todos <Link to="/todos">here</Link>
         </p>
       </>
     );

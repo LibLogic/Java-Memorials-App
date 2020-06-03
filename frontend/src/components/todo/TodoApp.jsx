@@ -10,24 +10,53 @@ import Footer from "./Footer";
 import Error from "./Error";
 
 class TodoApp extends Component {
+  constructor() {
+    super();
+    this.state = {
+      loggedIn: false,
+    };
+
+    this.setLoggedIn = this.setLoggedIn.bind(this);
+  }
+
   render() {
     return (
       <div className="todoApp">
         <Router>
-          <Header />
+          <Header loggedInStatus={this.state.loggedIn} />
           <Switch>
-            <Route path="/" exact component={Login} />
+            <AuthenticatedRoute path="/" exact component={Login} />
             <AuthenticatedRoute path="/welcome" exact component={Welcome} />
             <AuthenticatedRoute path="/welcome/:name" component={Welcome} />
             <AuthenticatedRoute path="/todos" exact component={ListTodos} />
-            <Route path="/login" exact component={Login} />
-            <AuthenticatedRoute path="/logout" exact component={Logout} />
+
+            <Route
+              path="/login"
+              exact
+              render={(props) => (
+                <Login {...props} setLoggedInStatus={this.setLoggedIn} />
+              )}
+            />
+
+            <AuthenticatedRoute
+              path="/logout"
+              exact
+              render={(props) => (
+                <Logout {...props} setLoggedInStatus={this.setLoggedIn} />
+              )}
+            />
+
             <Route component={Error} />
           </Switch>
           <Footer />
         </Router>
       </div>
     );
+  }
+
+  setLoggedIn(childData) {
+    this.setState({ loggedIn: childData });
+    console.log("ran setLoggedIn");
   }
 }
 

@@ -1,7 +1,13 @@
 import React, { Component } from "react";
+import AuthenticationService from "./AuthenticationService";
 
 class Logout extends Component {
-  render() {
+  constructor(props) {
+    super(props);
+    this.props.setLoggedInStatus(false);
+    AuthenticationService.logout();
+  }
+  render(props) {
     return (
       <div>
         <h1>You are logged out.</h1>
