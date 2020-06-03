@@ -9,7 +9,6 @@ class Login extends Component {
       password: "",
       validLogin: -1,
     };
-
     this.handleChange = this.handleChange.bind(this);
     this.loginClicked = this.loginClicked.bind(this);
   }
@@ -58,6 +57,7 @@ class Login extends Component {
         this.state.password
       );
       this.props.setLoggedInStatus(true);
+
       this.setState({ validLogin: true });
       this.props.history.push("/welcome");
     } else {
