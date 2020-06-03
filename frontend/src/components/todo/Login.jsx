@@ -7,30 +7,27 @@ class Login extends Component {
     this.state = {
       username: "",
       password: "",
-      isLoggedIn: -1,
     };
 
     this.handleChange = this.handleChange.bind(this);
     this.loginClicked = this.loginClicked.bind(this);
   }
 
-  render() {
+  render(props) {
     return (
       <div className="container">
         <h1>Login</h1>
-        {!this.state.isLoggedIn && (
-          <div className="alert alert-warning">Invalid Credentials</div>
-        )}
         <form className="form-inline" style={{ display: "block" }}>
-          User Name:
+          {" "}
+          User Name:{" "}
           <input
             className="form-control"
             type="text"
             name="username"
             value={this.state.username}
             onChange={this.handleChange}
-          />
-          Password:
+          />{" "}
+          Password:{" "}
           <input
             className="form-control"
             type="password"
@@ -38,7 +35,11 @@ class Login extends Component {
             value={this.state.password}
             onChange={this.handleChange}
           />
-          <button className="btn btn-success" onClick={this.loginClicked}>
+          <button
+            type="button"
+            className="btn btn-success"
+            onClick={this.loginClicked}
+          >
             Login
           </button>
         </form>
@@ -47,20 +48,19 @@ class Login extends Component {
   }
 
   loginClicked() {
-    if (this.state.username === "Tom" && this.state.password === "dummy") {
+    if (this.state.username === "Tom" && this.state.password === "pass") {
       AuthenticationService.registerUser(
         this.state.username,
         this.state.password
       );
-      this.props.history.push(`/welcome/${this.state.username}`);
-      this.setState({ isLoggedIn: true });
+      this.props.setLoggedInStatus(true);
+      this.props.history.push("/welcome");
     } else {
-      this.setState({ isLoggedIn: false });
+      this.props.setLoggedInStatus(false);
     }
   }
 
   handleChange(e) {
-    //register user
     this.setState({ [e.target.name]: e.target.value });
   }
 }
