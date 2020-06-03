@@ -7,7 +7,10 @@ class Login extends Component {
     this.state = {
       username: "",
       password: "",
+<<<<<<< HEAD
       validLogin: -1,
+=======
+>>>>>>> 3a5c27e196160191ccf4fca4b5b7809ec71d8ff1
     };
 
     this.handleChange = this.handleChange.bind(this);
@@ -18,9 +21,12 @@ class Login extends Component {
     return (
       <div className="container">
         <h1>Login</h1>
+<<<<<<< HEAD
         {!this.state.validLogin && (
           <div className="alert alert-warning">Invalid Credentials</div>
         )}
+=======
+>>>>>>> 3a5c27e196160191ccf4fca4b5b7809ec71d8ff1
         <form className="form-inline" style={{ display: "block" }}>
           {" "}
           User Name:{" "}
@@ -58,10 +64,15 @@ class Login extends Component {
         this.state.password
       );
       this.props.setLoggedInStatus(true);
+<<<<<<< HEAD
       this.setState({ validLogin: true });
       this.props.history.push("/welcome");
     } else {
       this.setState({ validLogin: false });
+=======
+      this.props.history.push("/welcome");
+    } else {
+>>>>>>> 3a5c27e196160191ccf4fca4b5b7809ec71d8ff1
       this.props.setLoggedInStatus(false);
     }
   }
