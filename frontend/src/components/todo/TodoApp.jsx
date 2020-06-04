@@ -56,7 +56,6 @@ class TodoApp extends Component {
 
   setLoggedIn(childData) {
     this.setState({ loggedIn: childData });
-    console.log("ran setLoggedIn");
   }
 }
 
