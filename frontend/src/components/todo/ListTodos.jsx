@@ -1,30 +1,25 @@
 import React, { Component } from "react";
+import TodoDataService from "../../api/todo/TodoDataService";
+import AuthenticationService from "./AuthenticationService";
 
 class ListTodos extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      todos: [
-        {
-          id: 1,
-          description: "Learn React",
-          isCompleted: false,
-          date: new Date(),
-        },
-        {
-          id: 2,
-          description: "Become an Expert",
-          isCompleted: false,
-          date: new Date(),
-        },
-        {
-          id: 3,
-          description: "Learn to Dance",
-          isCompleted: false,
-          date: new Date(),
-        },
-      ],
+      todos: [],
     };
+
+    this.onDelete = this.onDelete.bind(this);
+  }
+
+  componentDidMount() {
+    TodoDataService.retrieveAllTodos(
+      AuthenticationService.getLoggedInUser()
+    ).then((response) => {
+      this.setState({
+        todos: response.data,
+      });
+    });
   }
 
   render() {
@@ -37,20 +32,40 @@ class ListTodos extends Component {
               <th>Description</th>
               <th>Is Completed?</th>
               <th>Target Date</th>
+              <th>Edit</th>
+              <th>Delete</th>
             </tr>
           </thead>
           <tbody>
             {this.state.todos.map((todo) => (
               <tr key={todo.id}>
                 <td>{todo.description}</td>
-                <td>{todo.isCompleted.toString()}</td>
-                <td>{todo.date.toString()}</td>
+                <td>{todo.done.toString()}</td>
+                <td>{todo.targetDate.toString()}</td>
+                <td>
+                  <button className="btn btn-warning">Edit</button>
+                </td>
+                <td>
+                  <button
+                    className="btn btn-danger"
+                    onClick={() => this.onDelete(todo.id)}
+                  >
+                    Delete
+                  </button>
+                </td>
               </tr>
             ))}
           </tbody>
         </table>
       </div>
     );
+  }
+
+  onDelete(id) {
+    TodoDataService.deleteTodo(
+      AuthenticationService.getLoggedInUser(),
+      id
+    ).then((response) => console.log(response));
   }
 }
 

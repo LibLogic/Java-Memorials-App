@@ -1,4 +1,4 @@
-package com.liblogic.restfulbackend;
+package com.liblogic.restfulbackend.helloworld;
 
 public class HelloWorldBean {
 

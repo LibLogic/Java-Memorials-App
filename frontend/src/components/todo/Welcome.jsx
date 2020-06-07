@@ -3,7 +3,13 @@ import { Link } from "react-router-dom";
 import HelloWorldService from "../../api/todo/HelloWorldService";
 
 class Welcome extends Component {
-  construction(props) {
+  constructor(props) {
+    super();
+
+    this.state = {
+      message: "",
+    };
+
     this.retrieveWelcomeMessage = this.retrieveWelcomeMessage.bind(this);
   }
   render() {
@@ -21,14 +27,22 @@ class Welcome extends Component {
         >
           Get Welcome Message
         </button>
+        <p></p>
+        <p>{this.state.message}</p>
       </>
     );
   }
+
   retrieveWelcomeMessage() {
-    HelloWorldService.executeHelloWorldService().then((response) =>
-      console.log(response)
-    );
-    // .catch();
+    HelloWorldService.executeHelloWorldPathService(
+      sessionStorage.getItem("authenticatedUser")
+    )
+      .then((response) =>
+        this.setState({
+          message: response.data.message,
+        })
+      )
+      .catch((error) => console.log("There was a problem"));
   }
 }
 

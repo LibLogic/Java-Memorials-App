@@ -59,7 +59,8 @@ class Login extends Component {
       this.props.setLoggedInStatus(true);
 
       this.setState({ validLogin: true });
-      this.props.history.push("/welcome");
+      let name = sessionStorage.getItem("authenticatedUser");
+      this.props.history.push(`/welcome/${name}`);
     } else {
       this.setState({ validLogin: false });
       this.props.setLoggedInStatus(false);
