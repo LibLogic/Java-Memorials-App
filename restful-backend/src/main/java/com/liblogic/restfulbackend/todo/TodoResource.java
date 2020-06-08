@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
@@ -22,9 +23,14 @@ public class TodoResource {
 	}
 	
 	@GetMapping(path = "/users/{username}/todos/{id}")
-	public Todo getById(@PathVariable long id) {
+	public Todo getById(@PathVariable String username, @PathVariable long id) {
 		return todoService.findById(id);
 	}
+	
+//	@PutMapping(path = "/users/{username}/todos/{id}")
+//	public Todo updateById(@PathVariable long id) {
+//		return todoService.updateById(id);
+//	}
 	
 	@DeleteMapping(path = "/users/{username}/todos/{id}")
 	public ResponseEntity<Void> deleteTodo(@PathVariable String username, @PathVariable long id) {

@@ -30,6 +30,12 @@ public class TodoHardcodedService {
 		return null;
 	}
 	
+	public Todo updateById(String username, long id) {
+	Todo todo = findById(id);
+	todos.remove(todo);
+	return todo;
+	}
+	
 	public Todo deleteById(long id) {
 		Todo todo = findById(id);
 		

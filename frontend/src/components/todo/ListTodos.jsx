@@ -10,6 +10,7 @@ class ListTodos extends Component {
     };
 
     this.onDelete = this.onDelete.bind(this);
+    this.onUpdate = this.onUpdate.bind(this);
   }
 
   componentDidMount() {
@@ -43,7 +44,12 @@ class ListTodos extends Component {
                 <td>{todo.done.toString()}</td>
                 <td>{todo.targetDate.toString()}</td>
                 <td>
-                  <button className="btn btn-warning">Edit</button>
+                  <button
+                    className="btn btn-warning"
+                    onClick={() => this.onUpdate(todo.id)}
+                  >
+                    Edit
+                  </button>
                 </td>
                 <td>
                   <button
@@ -66,6 +72,14 @@ class ListTodos extends Component {
       AuthenticationService.getLoggedInUser(),
       id
     ).then((response) => console.log(response));
+  }
+
+  onUpdate(id) {
+    this.props.history.push(`/todo/${id}`);
+    // TodoDataService.updateTodo(
+    //   AuthenticationService.getLoggedInUser(),
+    //   id
+    // ).then((response) => console.log(response));
   }
 }
 

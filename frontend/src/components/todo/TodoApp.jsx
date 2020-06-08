@@ -4,6 +4,7 @@ import AuthenticatedRoute from "./AuthenticatedRoute";
 import Header from "./Header";
 import Welcome from "./Welcome";
 import ListTodos from "./ListTodos";
+import Todo from "./Todo";
 import Login from "./Login";
 import Logout from "./Logout";
 import Footer from "./Footer";
@@ -27,6 +28,7 @@ class TodoApp extends Component {
           <Switch>
             <AuthenticatedRoute path="/" exact component={Login} />
             <AuthenticatedRoute path="/welcome" exact component={Welcome} />
+            <AuthenticatedRoute path="/todo/:id" exact component={Todo} />
             <AuthenticatedRoute path="/welcome/:name" component={Welcome} />
             <AuthenticatedRoute path="/todos" exact component={ListTodos} />
 
