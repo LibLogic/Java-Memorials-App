@@ -51,20 +51,22 @@ class Login extends Component {
   }
 
   loginClicked() {
-    if (this.state.username === "Tom" && this.state.password === "pass") {
-      AuthenticationService.registerUser(
-        this.state.username,
-        this.state.password
-      );
-      this.props.setLoggedInStatus(true);
-
-      this.setState({ validLogin: true });
-      let name = sessionStorage.getItem("authenticatedUser");
-      this.props.history.push(`/welcome/${name}`);
-    } else {
-      this.setState({ validLogin: false });
-      this.props.setLoggedInStatus(false);
-    }
+    AuthenticationService.executeBasicAuthenticationService(
+      this.state.username,
+      this.state.password
+    )
+      .then(() => {
+        AuthenticationService.registerUser(
+          this.state.username,
+          this.state.password
+        );
+        this.props.setLoggedInStatus(true);
+        this.props.history.push(`/welcome/${this.state.username}`);
+      })
+      .catch(() => {
+        this.setState({ validLogin: false });
+        this.props.setLoggedInStatus(false);
+      });
   }
 
   handleChange(e) {

@@ -8,6 +8,7 @@ class Welcome extends Component {
 
     this.state = {
       message: "",
+      error: "",
     };
 
     this.retrieveWelcomeMessage = this.retrieveWelcomeMessage.bind(this);
@@ -42,7 +43,18 @@ class Welcome extends Component {
           message: response.data.message,
         })
       )
-      .catch((error) => console.log("There was a problem"));
+      .catch((error) => {
+        let errorMessage = "";
+        if (error.message) {
+          errorMessage += error.message;
+        }
+        if (error.response) {
+          errorMessage += error.response.data.message;
+        }
+        this.setState({
+          message: errorMessage,
+        });
+      });
   }
 }
 

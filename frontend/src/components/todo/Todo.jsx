@@ -1,4 +1,6 @@
 import React, { Component } from "react";
+import AuthenticationService from "./AuthenticationService";
+import TodoDataService from "../../api/todo/TodoDataService";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import moment from "moment";
 
@@ -7,12 +9,24 @@ class Todo extends Component {
     super(props);
     this.state = {
       id: this.props.match.params.id,
-      description: "Learn Something",
+      description: "",
       targetDate: moment(new Date()).format("YYYY-MM-DD"),
     };
 
     this.onSubmit = this.onSubmit.bind(this);
     this.validate = this.validate.bind(this);
+  }
+
+  componentDidMount() {
+    TodoDataService.retrieveTodo(
+      AuthenticationService.getLoggedInUser(),
+      this.state.id
+    ).then((response) => {
+      this.setState({
+        description: response.data.description,
+        targetDate: moment(response.data.targetDate).format("YYYY-MM-DD"),
+      });
+    });
   }
 
   render() {
@@ -27,6 +41,7 @@ class Todo extends Component {
             validateOnChange={false}
             validateOnBlur={false}
             validate={this.validate}
+            enableReinitialize={true}
           >
             {(props) => (
               <Form>
@@ -41,7 +56,7 @@ class Todo extends Component {
                   className="alert alert-warning"
                 />
                 <fieldset className="form-group">
-                  <label>Description</label>
+                  <label htmlFor="description">Description</label>
                   <Field
                     className="form-control"
                     type="text"
@@ -49,7 +64,7 @@ class Todo extends Component {
                   />
                 </fieldset>
                 <fieldset className="form-group">
-                  <label>Target Date</label>
+                  <label htmlFor="targetDate">Target Date</label>
                   <Field
                     className="form-control"
                     type="date"
@@ -68,7 +83,16 @@ class Todo extends Component {
   }
 
   onSubmit(values) {
-    console.log(values);
+    let username = AuthenticationService.getLoggedInUser();
+    let id = this.props.match.params.id;
+    TodoDataService.updateTodo(username, id, {
+      id: id,
+      username: username,
+      description: values.description,
+      targetDate: moment(values.targetDate).format("YYYY-MM-DD"),
+    })
+      .then(() => this.props.history.push("/todos"))
+      .catch((error) => console.log(error.message));
   }
 
   validate(values) {

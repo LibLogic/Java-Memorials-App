@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import TodoDataService from "../../api/todo/TodoDataService";
 import AuthenticationService from "./AuthenticationService";
+import moment from "moment";
 
 class ListTodos extends Component {
   constructor(props) {
@@ -8,21 +9,15 @@ class ListTodos extends Component {
     this.state = {
       todos: [],
     };
-
+    this.addNewTodo = this.addNewTodo.bind(this);
     this.onDelete = this.onDelete.bind(this);
     this.onUpdate = this.onUpdate.bind(this);
+    this.getAllTodos = this.getAllTodos.bind(this);
   }
 
   componentDidMount() {
-    TodoDataService.retrieveAllTodos(
-      AuthenticationService.getLoggedInUser()
-    ).then((response) => {
-      this.setState({
-        todos: response.data,
-      });
-    });
+    this.getAllTodos();
   }
-
   render() {
     return (
       <div className="listTodos">
@@ -33,7 +28,7 @@ class ListTodos extends Component {
               <th>Description</th>
               <th>Is Completed?</th>
               <th>Target Date</th>
-              <th>Edit</th>
+              <th>Update</th>
               <th>Delete</th>
             </tr>
           </thead>
@@ -42,18 +37,18 @@ class ListTodos extends Component {
               <tr key={todo.id}>
                 <td>{todo.description}</td>
                 <td>{todo.done.toString()}</td>
-                <td>{todo.targetDate.toString()}</td>
+                <td>{moment(todo.targetDate).format("YYYY-MM-DD")}</td>
                 <td>
                   <button
-                    className="btn btn-warning"
+                    className="btn btn-success"
                     onClick={() => this.onUpdate(todo.id)}
                   >
-                    Edit
+                    Update
                   </button>
                 </td>
                 <td>
                   <button
-                    className="btn btn-danger"
+                    className="btn btn-warning"
                     onClick={() => this.onDelete(todo.id)}
                   >
                     Delete
@@ -63,23 +58,36 @@ class ListTodos extends Component {
             ))}
           </tbody>
         </table>
+        <button className="btn btn-success" onClick={this.addNewTodo}>
+          Add New Todo
+        </button>
       </div>
     );
+  }
+
+  addNewTodo() {
+    this.props.history.push(`/todo/${-1}`);
+  }
+
+  getAllTodos() {
+    TodoDataService.retrieveAllTodos(AuthenticationService.getLoggedInUser())
+      .then((response) => {
+        this.setState({
+          todos: response.data,
+        });
+      })
+      .catch((error) => console.log(error.message));
   }
 
   onDelete(id) {
     TodoDataService.deleteTodo(
       AuthenticationService.getLoggedInUser(),
       id
-    ).then((response) => console.log(response));
+    ).then(this.getAllTodos());
   }
 
   onUpdate(id) {
     this.props.history.push(`/todo/${id}`);
-    // TodoDataService.updateTodo(
-    //   AuthenticationService.getLoggedInUser(),
-    //   id
-    // ).then((response) => console.log(response));
   }
 }
 
