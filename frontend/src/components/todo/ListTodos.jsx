@@ -37,7 +37,7 @@ class ListTodos extends Component {
               <tr key={todo.id}>
                 <td>{todo.description}</td>
                 <td>{todo.done.toString()}</td>
-                <td>{moment(todo.targetDate).format("YYYY-MM-DD")}</td>
+                <td>{moment(todo.targetDate).utc().format("MM-DD-YYYY")}</td>
                 <td>
                   <button
                     className="btn btn-success"
