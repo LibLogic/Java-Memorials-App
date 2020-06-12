@@ -15,16 +15,21 @@ class AuthenticationService {
   }
 
   registerUser(username, password) {
-    sessionStorage.setItem("authenticatedUser", username);
-    this.setupAxiosInterceptors(this.createBasicAuthToken(username, password));
+    sessionStorage.setItem("authenticatedUserName", username);
+    sessionStorage.setItem(
+      "authToken",
+      this.createBasicAuthToken(username, password)
+    );
+    this.setupAxiosInterceptors();
   }
 
   logout() {
-    sessionStorage.removeItem("authenticatedUser");
+    sessionStorage.removeItem("authenticatedUserName");
+    sessionStorage.removeItem("authToken");
   }
 
   isUserLoggedIn() {
-    let user = sessionStorage.getItem("authenticatedUser");
+    let user = sessionStorage.getItem("authToken");
     if (user === null) {
       return false;
     } else {
@@ -32,8 +37,8 @@ class AuthenticationService {
     }
   }
 
-  getLoggedInUser() {
-    let user = sessionStorage.getItem("authenticatedUser");
+  getLoggedInUserName() {
+    let user = sessionStorage.getItem("authenticatedUserName");
     if (user === null) {
       return false;
     } else {
@@ -41,10 +46,10 @@ class AuthenticationService {
     }
   }
 
-  setupAxiosInterceptors(basicAuthHeader) {
+  setupAxiosInterceptors() {
     axios.interceptors.request.use((config) => {
       if (this.isUserLoggedIn()) {
-        config.headers.authorization = basicAuthHeader;
+        config.headers.authorization = sessionStorage.getItem("authToken");
       }
       return config;
     });

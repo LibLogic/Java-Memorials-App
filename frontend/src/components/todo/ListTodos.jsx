@@ -70,7 +70,10 @@ class ListTodos extends Component {
   }
 
   getAllTodos() {
-    TodoDataService.retrieveAllTodos(AuthenticationService.getLoggedInUser())
+    AuthenticationService.setupAxiosInterceptors();
+    TodoDataService.retrieveAllTodos(
+      AuthenticationService.getLoggedInUserName()
+    )
       .then((response) => {
         this.setState({
           todos: response.data,
@@ -80,10 +83,10 @@ class ListTodos extends Component {
   }
 
   onDelete(id) {
-    TodoDataService.deleteTodo(
-      AuthenticationService.getLoggedInUser(),
-      id
-    ).then(this.getAllTodos());
+    console.log(id);
+    TodoDataService.deleteTodo(AuthenticationService.getLoggedInUserName(), id)
+      .then(() => this.getAllTodos())
+      .catch((error) => console.log(error.message));
   }
 
   onUpdate(id) {

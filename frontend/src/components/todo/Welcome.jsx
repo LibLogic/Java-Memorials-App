@@ -18,8 +18,8 @@ class Welcome extends Component {
       <>
         <h1>Welcome!</h1>
         <p>
-          Welcome {sessionStorage.getItem("authenticatedUser")}. You can manage
-          your todos <Link to="/todos">here</Link>
+          Welcome {sessionStorage.getItem("authenticatedUserName")}. You can
+          manage your todos <Link to="/todos">here</Link>
         </p>
         <p>Click here to get a customized welcome message.</p>
         <button
@@ -36,7 +36,7 @@ class Welcome extends Component {
 
   retrieveWelcomeMessage() {
     HelloWorldService.executeHelloWorldPathService(
-      sessionStorage.getItem("authenticatedUser")
+      sessionStorage.getItem("authenticatedUserName")
     )
       .then((response) =>
         this.setState({

@@ -19,7 +19,7 @@ class Todo extends Component {
 
   componentDidMount() {
     TodoDataService.retrieveTodo(
-      AuthenticationService.getLoggedInUser(),
+      AuthenticationService.getLoggedInUserName(),
       this.state.id
     ).then((response) => {
       this.setState({
@@ -83,7 +83,7 @@ class Todo extends Component {
   }
 
   onSubmit(values) {
-    let username = AuthenticationService.getLoggedInUser();
+    let username = AuthenticationService.getLoggedInUserName();
     let id = this.props.match.params.id;
     TodoDataService.updateTodo(username, id, {
       id: id,
