@@ -1,4 +1,4 @@
-package com.liblogic.restfulbackend.basic.auth;
+package com.basic.auth;
 
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.CrossOrigin;

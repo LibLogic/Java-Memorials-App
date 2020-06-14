@@ -51,15 +51,12 @@ class Login extends Component {
   }
 
   loginClicked() {
-    AuthenticationService.executeBasicAuthenticationService(
+    AuthenticationService.executeJwtAuthenticationService(
       this.state.username,
       this.state.password
     )
-      .then(() => {
-        AuthenticationService.registerUser(
-          this.state.username,
-          this.state.password
-        );
+      .then((response) => {
+        AuthenticationService.registerUser(response.data.token);
         this.props.setLoggedInStatus(true);
         this.props.history.push(`/welcome/${this.state.username}`);
       })

@@ -83,7 +83,6 @@ class ListTodos extends Component {
   }
 
   onDelete(id) {
-    console.log(id);
     TodoDataService.deleteTodo(AuthenticationService.getLoggedInUserName(), id)
       .then(() => this.getAllTodos())
       .catch((error) => console.log(error.message));

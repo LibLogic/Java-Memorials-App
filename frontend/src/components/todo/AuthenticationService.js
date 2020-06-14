@@ -1,26 +1,26 @@
 import axios from "axios";
+import { API_URL_ROOT } from "./Constants";
 
 class AuthenticationService {
-  createBasicAuthToken(username, password) {
-    let basicAuthHeader = "Basic " + window.btoa(username + ":" + password);
-    return basicAuthHeader;
-  }
+  // createJwtToken(username, password) {
+  //   let basicAuthHeader = "Basic " + window.btoa(username + ":" + password);
+  //   return basicAuthHeader;
+  // }
 
-  executeBasicAuthenticationService(username, password) {
-    return axios.get("http://localhost:8080/basicauth", {
-      headers: {
-        authorization: this.createBasicAuthToken(username, password),
-      },
+  executeJwtAuthenticationService(username, password) {
+    return axios.post(`${API_URL_ROOT}/authenticate`, {
+      username,
+      password,
     });
   }
 
-  registerUser(username, password) {
+  registerUser(username, password, jwtToken) {
     sessionStorage.setItem("authenticatedUserName", username);
     sessionStorage.setItem(
       "authToken",
       this.createBasicAuthToken(username, password)
     );
-    this.setupAxiosInterceptors();
+    this.setupAxiosInterceptors(jwtToken);
   }
 
   logout() {
@@ -46,10 +46,13 @@ class AuthenticationService {
     }
   }
 
-  setupAxiosInterceptors() {
+  setupAxiosInterceptors(jwtToken) {
     axios.interceptors.request.use((config) => {
       if (this.isUserLoggedIn()) {
-        config.headers.authorization = sessionStorage.getItem("authToken");
+        config.headers.Authorization = `Bearer ${jwtToken}`;
+        config.headers.Origin = "http://localhost:4200";
+        // config.headers.Content-Type = 'application/json';
+        // sessionStorage.getItem("authToken");
       }
       return config;
     });

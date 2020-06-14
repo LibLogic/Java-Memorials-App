@@ -1,4 +1,4 @@
-package com.liblogic.restfulbackend.basic.auth;
+package com.basic.auth;
 
 public class AuthenticationBean {
 
