@@ -14,7 +14,7 @@ class TodoApp extends Component {
   constructor() {
     super();
     this.state = {
-      loggedIn: sessionStorage.getItem("authToken") ? true : false,
+      loggedIn: sessionStorage.getItem("authenticateUserName") ? true : false,
     };
 
     this.setLoggedIn = this.setLoggedIn.bind(this);

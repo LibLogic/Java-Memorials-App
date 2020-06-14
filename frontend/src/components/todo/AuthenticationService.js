@@ -1,35 +1,25 @@
 import axios from "axios";
-import { API_URL_ROOT } from "./Constants";
+import { API_URL_ROOT, AUTH_USER_NAME } from "./Constants";
 
 class AuthenticationService {
-  // createJwtToken(username, password) {
-  //   let basicAuthHeader = "Basic " + window.btoa(username + ":" + password);
-  //   return basicAuthHeader;
-  // }
-
-  executeJwtAuthenticationService(username, password) {
+  getJwtToken(username, password) {
     return axios.post(`${API_URL_ROOT}/authenticate`, {
       username,
       password,
     });
   }
 
-  registerUser(username, password, jwtToken) {
-    sessionStorage.setItem("authenticatedUserName", username);
-    sessionStorage.setItem(
-      "authToken",
-      this.createBasicAuthToken(username, password)
-    );
+  registerUser(username, jwtToken) {
+    sessionStorage.setItem(AUTH_USER_NAME, username);
     this.setupAxiosInterceptors(jwtToken);
   }
 
   logout() {
-    sessionStorage.removeItem("authenticatedUserName");
-    sessionStorage.removeItem("authToken");
+    sessionStorage.removeItem(AUTH_USER_NAME);
   }
 
   isUserLoggedIn() {
-    let user = sessionStorage.getItem("authToken");
+    let user = sessionStorage.getItem(AUTH_USER_NAME);
     if (user === null) {
       return false;
     } else {
@@ -38,7 +28,7 @@ class AuthenticationService {
   }
 
   getLoggedInUserName() {
-    let user = sessionStorage.getItem("authenticatedUserName");
+    let user = sessionStorage.getItem(AUTH_USER_NAME);
     if (user === null) {
       return false;
     } else {
@@ -49,10 +39,7 @@ class AuthenticationService {
   setupAxiosInterceptors(jwtToken) {
     axios.interceptors.request.use((config) => {
       if (this.isUserLoggedIn()) {
-        config.headers.Authorization = `Bearer ${jwtToken}`;
-        config.headers.Origin = "http://localhost:4200";
-        // config.headers.Content-Type = 'application/json';
-        // sessionStorage.getItem("authToken");
+        config.headers.authorization = `Bearer ${jwtToken}`;
       }
       return config;
     });

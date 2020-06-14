@@ -70,7 +70,6 @@ class ListTodos extends Component {
   }
 
   getAllTodos() {
-    AuthenticationService.setupAxiosInterceptors();
     TodoDataService.retrieveAllTodos(
       AuthenticationService.getLoggedInUserName()
     )

@@ -3,7 +3,7 @@ import { API_URL_ROOT } from "../../components/todo/Constants";
 
 class TodoDataService {
   retrieveAllTodos(name) {
-    return axios.get(`${API_URL_ROOT}/${name}/todos`);
+    return axios.get(`${API_URL_ROOT}/users/${name}/todos`);
   }
 
   retrieveTodo(name, id) {
