@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import AuthenticationService from "./AuthenticationService.js";
+import AuthenticationService from "../../AuthenticationService.js";
 
 class Login extends Component {
   constructor(props) {
@@ -58,7 +58,7 @@ class Login extends Component {
           response.data.token
         );
         this.props.setLoggedInStatus(true);
-        this.props.history.push(`/welcome/${this.state.username}`);
+        this.props.history.push(`/search`);
       })
       .catch(() => {
         this.setState({ validLogin: false });

@@ -7,24 +7,32 @@ class Header extends Component {
       <header>
         <nav className=" navbar navbar-expand-md navbar-dark bg-dark">
           <h2 className="navbar-brand">
-            <Link to="/welcome">LibLogic</Link>
+            <Link to="/search">AngelCloud</Link>
           </h2>
           <ul className="navbar-nav">
             {this.props.loggedInStatus && (
               <li>
-                <Link className="nav-link" to="/welcome">
-                  Home
+                <Link className="nav-link" to="/search">
+                  Search
                 </Link>
               </li>
             )}
 
-            {this.props.loggedInStatus && (
+            {/* {this.props.loggedInStatus && (
               <li>
                 <Link className="nav-link" to="/todos">
                   Todos
                 </Link>
               </li>
-            )}
+            )} */}
+
+            {/* {this.props.loggedInStatus && (
+              <li>
+                <Link className="nav-link" to="/search">
+                  Search
+                </Link>
+              </li>
+            )} */}
           </ul>
           <ul className="navbar-nav navbar-collapse justify-content-end">
             {!this.props.loggedInStatus && (
@@ -37,11 +45,7 @@ class Header extends Component {
 
             {this.props.loggedInStatus && (
               <li>
-                <Link
-                  className="nav-link"
-                  //        onClick={AuthenticationService.logout}
-                  to="/logout"
-                >
+                <Link className="nav-link" to="/logout">
                   Logout
                 </Link>
               </li>

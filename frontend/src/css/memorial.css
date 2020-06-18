@@ -1,0 +1,72 @@
+@import url(https://unpkg.com/bootstrap@4.1.1/dist/css/bootstrap.min.css);
+
+.arrow {
+  width: 50px;
+  height: 25px;
+  color: white;
+  background-color: green;
+}
+
+.left-arrow {
+  display: inline-block;
+}
+
+.right-arrow {
+  display: inline-block;
+  transform: rotate(180deg);
+}
+
+.up-arrow {
+  margin: auto;
+  transform: rotate(90deg);
+}
+
+.down-arrow {
+  margin: auto;
+  transform: rotate(270deg);
+}
+
+.full-window {
+  position: relative;
+  display: inline-block;
+  padding-top: 18%;
+  background-color: rgb(230, 172, 172);
+  height: 500px;
+  width: 250px;
+  vertical-align: middle;
+  z-index: 1;
+}
+
+.half-window {
+  position: relative;
+  border-top: 1px solid black;
+  padding-top: 8%;
+  background-color: rgb(230, 172, 172);
+  height: 250px;
+  width: 250px;
+  margin: auto;
+  vertical-align: middle;
+  z-index: 1;
+}
+
+.details {
+  position: absolute;
+  bottom: 30%;
+  left: -60%;
+  transform: rotate(270deg);
+  color: white;
+  background-color: blue;
+  height: 25px;
+  width: 130%;
+}
+
+.half-window .small-details {
+  position: absolute;
+  bottom: 35%;
+  transform: rotate(270deg);
+  color: white;
+  background-color: blue;
+  height: 25px;
+  left: -35%;
+  width: 80%;
+}

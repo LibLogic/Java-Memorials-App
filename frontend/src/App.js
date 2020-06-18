@@ -1,15 +1,12 @@
 import React from "react";
-import "./App.css";
-import "./components/todo/todos.css";
-import TodoApp from "./components/todo/TodoApp";
-// import "./components/counter/Counter.css";
-// import Counter from "./components/counter/Counter";
+import "./css/App.css";
+import "./css/memorial.css";
+import Routes from "./memorialApp/routes/Routes";
 
 function App() {
-  // return <div className="App"><Counter /></div>;
   return (
     <div className="App">
-      <TodoApp />
+      <Routes />
     </div>
   );
 }
