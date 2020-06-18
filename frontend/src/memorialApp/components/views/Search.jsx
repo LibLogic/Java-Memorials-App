@@ -1,4 +1,6 @@
 import React, { Component } from "react";
+import SearchDetails from "./SearchDetails";
+import billionGravesService from "../../../api/billionGraves/billionGravesService";
 
 class Search extends Component {
   constructor(props) {
@@ -9,21 +11,21 @@ class Search extends Component {
 
   render() {
     return (
-      <div className="listTodos">
-        <h1>Search</h1>
-        <form className="container">
-          <fieldset className="form-group">
-            <input className="form-control" type="text" name="search" />
-          </fieldset>
-          <button className="btn btn-success" onClick={this.doSearch}>
-            Submit
-          </button>
-        </form>
+      <div>
+        <div className="container" style={{ marginTop: "40px" }}></div>
+        <div className="full-window search">
+          <SearchDetails doSearch={this.doSearch} />
+          <h2>Search</h2>
+        </div>
       </div>
     );
   }
 
   doSearch() {
+    // billionGravesService
+    //   .retreiveSubject()
+    //   .then((response) => console.log(response));
+
     this.props.history.push("/view/main");
   }
 }
