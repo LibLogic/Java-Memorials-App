@@ -17,22 +17,6 @@ class Header extends Component {
                 </Link>
               </li>
             )}
-
-            {/* {this.props.loggedInStatus && (
-              <li>
-                <Link className="nav-link" to="/todos">
-                  Todos
-                </Link>
-              </li>
-            )} */}
-
-            {/* {this.props.loggedInStatus && (
-              <li>
-                <Link className="nav-link" to="/search">
-                  Search
-                </Link>
-              </li>
-            )} */}
           </ul>
           <ul className="navbar-nav navbar-collapse justify-content-end">
             {!this.props.loggedInStatus && (

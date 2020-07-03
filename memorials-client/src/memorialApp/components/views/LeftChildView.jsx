@@ -1,5 +1,6 @@
 import React, { Component } from "react";
-import { SubjectDetails } from "./SubjectDetails";
+import { store } from "../../store";
+import Exports from "./SubjectDetails";
 import { UpArrow, LeftArrow, RightArrow } from "./Controls";
 
 class LeftChildView extends Component {
@@ -13,7 +14,7 @@ class LeftChildView extends Component {
             className="full-window"
             onClick={() => this.props.history.push("/view/main")}
           >
-            <SubjectDetails />
+            <Exports.SubjectDetails store={store} />
             <h2>
               Youngest<br></br>Child
             </h2>

@@ -1,15 +1,13 @@
 import React, { Component } from "react";
-// import { store } from "../store";
 import AuthenticationService from "../../api/AuthenticationService.js";
-// import { setAuthentication } from "../actions";
 
 class Login extends Component {
   constructor(props) {
     super(props);
     this.state = {
       validLogin: -1,
-      username: "",
-      password: "",
+      username: "Tom",
+      password: "pass",
     };
 
     this.handleChange = this.handleChange.bind(this);
@@ -23,7 +21,11 @@ class Login extends Component {
         {!this.state.validLogin && (
           <div className="alert alert-warning">Invalid Credentials</div>
         )}
-        <form className="form-inline" style={{ display: "block" }}>
+        <form
+          className="form-inline"
+          onSubmit={this.loginClicked}
+          style={{ display: "block" }}
+        >
           {" "}
           User Name:{" "}
           <input
@@ -41,11 +43,7 @@ class Login extends Component {
             value={this.state.password}
             onChange={this.handleChange}
           />
-          <button
-            type="button"
-            className="btn btn-success"
-            onClick={this.loginClicked}
-          >
+          <button type="submit" className="btn btn-success">
             Login
           </button>
         </form>
@@ -53,7 +51,8 @@ class Login extends Component {
     );
   }
 
-  loginClicked() {
+  loginClicked(e) {
+    e.preventDefault();
     AuthenticationService.getJwtToken(this.state.username, this.state.password)
       .then((response) => {
         AuthenticationService.registerUser(

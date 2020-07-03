@@ -10,6 +10,7 @@ class AuthenticationService {
   }
 
   registerUser(username, jwtToken) {
+    sessionStorage.removeItem(AUTH_USER_NAME);
     sessionStorage.setItem(AUTH_USER_NAME, username);
     this.setupAxiosInterceptors(jwtToken);
   }

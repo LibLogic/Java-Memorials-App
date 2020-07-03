@@ -1,5 +1,6 @@
 import React, { Component } from "react";
-import { SmallSubjectDetails } from "./SubjectDetails";
+import { store } from "../../store";
+import Exports from "./SubjectDetails";
 
 class ParentsView extends Component {
   render() {
@@ -9,14 +10,20 @@ class ParentsView extends Component {
           className="half-window"
           onClick={() => this.props.history.push("/view/main")}
         >
-          <SmallSubjectDetails className="small-details" />
+          <Exports.SmallSubjectDetails
+            className="small-details"
+            store={store}
+          />
           <h2>Father</h2>
         </div>
         <div
           className="half-window"
           onClick={() => this.props.history.push("/view/main")}
         >
-          <SmallSubjectDetails className="small-details" />
+          <Exports.SmallSubjectDetails
+            className="small-details"
+            store={store}
+          />
           <h2>Mother</h2>
         </div>
       </div>

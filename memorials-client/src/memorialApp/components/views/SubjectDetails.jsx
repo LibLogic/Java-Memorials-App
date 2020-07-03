@@ -1,11 +1,11 @@
 import React, { Component } from "react";
-// import { store } from "../../store";
+import { connect } from "react-redux";
 
-export class SubjectDetails extends Component {
-  render() {
+class SubjectDetails extends Component {
+  render(props) {
     return (
       <div>
-        <div className="container details-btn">Details</div>
+        {/* <div className="container details-btn">Details</div> */}
         <div className="edit-details">
           <form id="edit-form">
             <fieldset className="form-group">
@@ -36,22 +36,34 @@ export class SubjectDetails extends Component {
           </form>
         </div>
 
-        <div className="container small-details-btn">Details</div>
+        {/* <div className="container small-details-btn">Details</div> */}
         <div className="display-details">
-          <h5>{this.state().firstName}</h5>
-          <h6>Born 1960</h6>
-          {/* <button className="btn btn-sm btn-success">Edit</button> */}
+          <h5>{`${this.props.subjectData.firstName} ${this.props.subjectData.lastName}`}</h5>
+          {this.props.subjectData.birthYear &&
+          this.props.subjectData.deathYear ? (
+            <h6>{`${this.props.subjectData.birthYear} — ${this.props.subjectData.deathYear}`}</h6>
+          ) : this.props.subjectData.birthYear ? (
+            <h6>{`${this.props.subjectData.birthYear} — Living`}</h6>
+          ) : (
+            <h6>{""}</h6>
+          )}
+          {this.props.subjectData.graveInfo.latitude &&
+          this.props.subjectData.graveInfo.longitude ? (
+            <p>{`${this.props.subjectData.graveInfo.latitude} ${this.props.subjectData.graveInfo.longitude}`}</p>
+          ) : (
+            <p></p>
+          )}
         </div>
       </div>
     );
   }
 }
 
-export class SmallSubjectDetails extends Component {
+class SmallSubjectDetails extends Component {
   render() {
     return (
       <div>
-        <div className="container small-details-btn">Details</div>
+        {/* <div className="container small-details-btn">Details</div> */}
         <div className="edit-details-sm">
           <form id="edit-form">
             <fieldset className="form-group">
@@ -82,13 +94,37 @@ export class SmallSubjectDetails extends Component {
           </form>
         </div>
 
-        <div className="container small-details-btn">Details</div>
+        {/* <div className="container small-details-btn">Details</div> */}
         <div className="display-details-sm">
-          <h5>John "0" Doe</h5>
-          <h6>1938 — 2018</h6>
+          <h5>{`${this.props.subjectData.firstName} 
+            ${this.props.subjectData.lastName}s'`}</h5>
+          {/* {this.props.subjectData.birthYear &&
+          this.props.subjectData.deathYear ? (
+            <h6>{`${this.props.subjectData.birthYear} — ${this.props.subjectData.deathYear}`}</h6>
+          ) : this.props.subjectData.birthYear ? (
+            <h6>{`${this.props.subjectData.birthYear} — Living`}</h6>
+          ) : (
+            <h6>{""}</h6>
+          )} */}
           {/* <button className="btn btn-sm btn-success">Edit</button> */}
         </div>
       </div>
     );
   }
 }
+
+const mapStateToProps = (state) => {
+  return {
+    subjectData: Object.assign({}, state.subjectData, {
+      graveInfo: Object.assign({}, state.subjectData.graveInfo, {
+        latitude: state.subjectData.graveInfo.latitude,
+        longitude: state.subjectData.graveInfo.longitude,
+      }),
+    }),
+  };
+};
+
+export default {
+  SubjectDetails: connect(mapStateToProps)(SubjectDetails),
+  SmallSubjectDetails: connect(mapStateToProps)(SmallSubjectDetails),
+};

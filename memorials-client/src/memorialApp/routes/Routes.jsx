@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import { store } from "../store";
 import AuthenticatedRoute from "./AuthenticatedRoute";
 import Header from "../components/Header";
 import MainView from "../components/views/MainView";
@@ -25,13 +26,19 @@ class Routes extends Component {
     this.setLoggedIn = this.setLoggedIn.bind(this);
   }
 
-  render() {
+  render(props) {
     return (
       <Router>
         <Header loggedInStatus={this.state.loggedIn} />
         <Switch>
           <AuthenticatedRoute path="/" exact component={Login} />
-          <AuthenticatedRoute path="/search" exact component={Search} />
+
+          <AuthenticatedRoute
+            path="/search"
+            exact
+            render={(props) => <Search {...props} store={store} />}
+          />
+
           <AuthenticatedRoute path="/view/main" exact component={MainView} />
           <AuthenticatedRoute path="/view/parents" exact component={TopView} />
           <AuthenticatedRoute
