@@ -39,11 +39,15 @@ class Search extends Component {
     billionGravesService.retreiveSubject2().then((response) => {
       let firstName = response.data.items[0].given_names.split(" ")[0] || "";
       let middleName = response.data.items[0].given_names.split(" ")[1] || "";
+      let maidenName =
+        response.data.items[0].maiden_names &&
+        ` (${response.data.items[0].maiden_names})`;
 
       const subjectResponse = {
         firstName: firstName,
         middleName: middleName,
         lastName: response.data.items[0].family_names,
+        maidenName: maidenName, //response.data.items[0].maiden_names,
         birthYear: response.data.items[0].birth_year,
         deathYear: response.data.items[0].death_year,
         country: response.data.items[0].cemetery_country,
@@ -57,7 +61,6 @@ class Search extends Component {
           longitude: response.data.items[0].lon,
         },
       };
-      console.log("subjectResponse", subjectResponse);
       this.props.setSubjectInfo(subjectResponse);
     });
 
@@ -71,13 +74,13 @@ const mapStateToProps = (state) => {
       firstName: state.subjectData.firstName,
       middleName: state.subjectData.middleName,
       lastName: state.subjectData.lastName,
-      city: state.subjectData.city,
-      state: state.subjectData.state,
-      county: state.subjectData.county,
-      country: state.subjectData.country,
-      // cemeteryName: state.subjectData.cemeteryName,
       birthYear: state.subjectData.birthYear,
       deathYear: state.subjectData.deathYear,
+      country: state.subjectData.country,
+      state: state.subjectData.state,
+      city: state.subjectData.city,
+      county: state.subjectData.county,
+      cemeteryName: state.subjectData.cemeteryName,
       graveInfo: {
         latitude: state.subjectData.graveInfo.latitude,
         longitude: state.subjectData.graveInfo.longitude,

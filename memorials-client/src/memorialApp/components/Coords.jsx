@@ -10,6 +10,7 @@ class Coords extends Component {
           <p>{`Device Longitude: ${this.props.deviceLocation.longitude}`}</p>
           <p>{`Grave Latitude: ${this.props.subjectData.graveInfo.latitude}`}</p>
           <p>{`Grave Longitude: ${this.props.subjectData.graveInfo.longitude}`}</p>
+          {/* <p>{`Cemetery Name: ${this.props.subjectData.cemeteryName}`}</p> */}
         </div>
       </div>
     );
@@ -19,6 +20,7 @@ class Coords extends Component {
 const mapStateToProps = (state) => {
   return {
     subjectData: {
+      cemeteryName: state.subjectData.cemeteryName,
       graveInfo: {
         latitude: state.subjectData.graveInfo.latitude,
         longitude: state.subjectData.graveInfo.longitude,

@@ -49,6 +49,7 @@ const mapStateToProps = (state) => {
       state: state.subjectData.state,
       city: state.subjectData.city,
       county: state.subjectData.county,
+      cemeteryName: state.subjectData.cemeteryName,
     },
     deviceLocation: {
       latitude: state.deviceLocation.latitude,

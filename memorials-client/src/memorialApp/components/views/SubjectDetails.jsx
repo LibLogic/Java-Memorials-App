@@ -8,7 +8,8 @@ class SubjectDetails extends Component {
         <div className="display-details">
           <h5>
             {`${this.props.subjectData.firstName} ${this.props.subjectData.middleName}
-            ${this.props.subjectData.lastName}`}{" "}
+            ${this.props.subjectData.lastName}`}
+            {`${this.props.subjectData.maidenName}`}
           </h5>
           {this.props.subjectData.birthYear &&
           this.props.subjectData.deathYear ? (
