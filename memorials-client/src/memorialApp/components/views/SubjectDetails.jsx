@@ -5,8 +5,21 @@ class SubjectDetails extends Component {
   render(props) {
     return (
       <div>
-        {/* <div className="container details-btn">Details</div> */}
-        <div className="edit-details">
+        <div className="display-details">
+          <h5>
+            {`${this.props.subjectData.firstName} ${this.props.subjectData.middleName}
+            ${this.props.subjectData.lastName}`}{" "}
+          </h5>
+          {this.props.subjectData.birthYear &&
+          this.props.subjectData.deathYear ? (
+            <h6>{`${this.props.subjectData.birthYear} — ${this.props.subjectData.deathYear}`}</h6>
+          ) : this.props.subjectData.birthYear ? (
+            <h6>{`${this.props.subjectData.birthYear} — Living`}</h6>
+          ) : (
+            <h6>{""}</h6>
+          )}
+        </div>
+        {/* <div className="edit-details">
           <form id="edit-form">
             <fieldset className="form-group">
               <input
@@ -34,26 +47,7 @@ class SubjectDetails extends Component {
             </fieldset>
             <button className="btn btn-sm btn-success">Save</button>
           </form>
-        </div>
-
-        {/* <div className="container small-details-btn">Details</div> */}
-        <div className="display-details">
-          <h5>{`${this.props.subjectData.firstName} ${this.props.subjectData.lastName}`}</h5>
-          {this.props.subjectData.birthYear &&
-          this.props.subjectData.deathYear ? (
-            <h6>{`${this.props.subjectData.birthYear} — ${this.props.subjectData.deathYear}`}</h6>
-          ) : this.props.subjectData.birthYear ? (
-            <h6>{`${this.props.subjectData.birthYear} — Living`}</h6>
-          ) : (
-            <h6>{""}</h6>
-          )}
-          {this.props.subjectData.graveInfo.latitude &&
-          this.props.subjectData.graveInfo.longitude ? (
-            <p>{`${this.props.subjectData.graveInfo.latitude} ${this.props.subjectData.graveInfo.longitude}`}</p>
-          ) : (
-            <p></p>
-          )}
-        </div>
+        </div> */}
       </div>
     );
   }
@@ -63,6 +57,21 @@ class SmallSubjectDetails extends Component {
   render() {
     return (
       <div>
+        {/* <div className="container small-details-btn">Details</div> */}
+        <div className="display-details-sm">
+          <h5>{`${this.props.subjectData.firstName} 
+            ${this.props.subjectData.lastName}s'`}</h5>
+          {/* {this.props.subjectData.birthYear &&
+          this.props.subjectData.deathYear ? (
+            <h6>{`${this.props.subjectData.birthYear} — ${this.props.subjectData.deathYear}`}</h6>
+          ) : this.props.subjectData.birthYear ? (
+            <h6>{`${this.props.subjectData.birthYear} — Living`}</h6>
+          ) : (
+            <h6>{""}</h6>
+          )} */}
+          {/* <button className="btn btn-sm btn-success">Edit</button> */}
+        </div>
+
         {/* <div className="container small-details-btn">Details</div> */}
         <div className="edit-details-sm">
           <form id="edit-form">
@@ -92,21 +101,6 @@ class SmallSubjectDetails extends Component {
             </fieldset>
             <button className="btn btn-sm btn-success">Save</button>
           </form>
-        </div>
-
-        {/* <div className="container small-details-btn">Details</div> */}
-        <div className="display-details-sm">
-          <h5>{`${this.props.subjectData.firstName} 
-            ${this.props.subjectData.lastName}s'`}</h5>
-          {/* {this.props.subjectData.birthYear &&
-          this.props.subjectData.deathYear ? (
-            <h6>{`${this.props.subjectData.birthYear} — ${this.props.subjectData.deathYear}`}</h6>
-          ) : this.props.subjectData.birthYear ? (
-            <h6>{`${this.props.subjectData.birthYear} — Living`}</h6>
-          ) : (
-            <h6>{""}</h6>
-          )} */}
-          {/* <button className="btn btn-sm btn-success">Edit</button> */}
         </div>
       </div>
     );

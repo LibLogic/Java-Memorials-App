@@ -10,6 +10,7 @@ import LeftSiblingView from "../components/views/LeftSiblingView";
 import RightSiblingView from "../components/views/RightSiblingView";
 import LeftChildView from "../components/views/LeftChildView";
 import RightChildView from "../components/views/RightChildView";
+import AddSite from "../components/AddSite";
 import Search from "../components/Search";
 import Login from "../components/Login";
 import Logout from "../components/Logout";
@@ -31,6 +32,8 @@ class Routes extends Component {
       <Router>
         <Header loggedInStatus={this.state.loggedIn} />
         <Switch>
+          <AuthenticatedRoute path="/add-site" exact component={AddSite} />
+
           <AuthenticatedRoute path="/" exact component={Login} />
 
           <AuthenticatedRoute
@@ -39,7 +42,12 @@ class Routes extends Component {
             render={(props) => <Search {...props} store={store} />}
           />
 
-          <AuthenticatedRoute path="/view/main" exact component={MainView} />
+          <AuthenticatedRoute
+            path="/view/main"
+            exact
+            render={(props) => <MainView {...props} store={store} />}
+          />
+
           <AuthenticatedRoute path="/view/parents" exact component={TopView} />
           <AuthenticatedRoute
             path="/view/children"

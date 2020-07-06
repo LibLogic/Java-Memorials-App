@@ -21,7 +21,7 @@ public class BillionResource {
 
 
     private static final String POSTS_API_URL = "https://billiongraves.com/search/results?AMPLabel=HomePageSearch&AMPValue=HomePage&given_names=David&family_names=Hodgkinson&cemetery_state=rhode%20Island&cemetery_county=kent";
-    @GetMapping(path= "/search")
+    @GetMapping(path= "/test")
     public static String main(String[] args) throws IOException, InterruptedException {
 
         HttpClient client = HttpClient.newHttpClient();
@@ -35,6 +35,24 @@ public class BillionResource {
 
         System.out.println(response.headers());
         System.out.println(response.body());
-        return response.body().toString();
+        return response.headers().toString();
     }
+
+//    private static final String POSTS_API_URL = "billiongraves.com/api/1.3/search";
+//    @PostMapping(path= "/search")
+//    public static String main(String[] args) throws IOException, InterruptedException {
+//
+//        HttpClient client = HttpClient.newHttpClient();
+//        HttpRequest request = HttpRequest.newBuilder()
+//                .POST()
+//                .header("accept", "application/json")
+//                .uri(URI.create(POSTS_API_URL))
+//                .build();
+//        HttpResponse<String> response =
+//                client.send(request, HttpResponse.BodyHandlers.ofString());
+//
+//        System.out.println(response.headers());
+//        System.out.println(response.body());
+//        return response.headers().toString();
+//    }
 }

@@ -1,5 +1,14 @@
 @import url(https://unpkg.com/bootstrap@4.1.1/dist/css/bootstrap.min.css);
 
+.location-data {
+  position: absolute;
+  text-align: left;
+}
+
+.location-data p {
+  margin: 0;
+}
+
 .arrow {
   width: 50px;
   height: 25px;
@@ -29,7 +38,7 @@
 .full-window {
   position: relative;
   display: inline-block;
-  padding-top: 18%;
+  padding: 18% 1% 1% 1%;
   background-color: rgb(230, 172, 172);
   height: 500px;
   width: 250px;
@@ -38,7 +47,7 @@
 }
 
 .full-window.search {
-  padding-top: 2%;
+  padding: 2% 1% 1% 1%;
   margin-top: 64px;
 }
 
@@ -60,24 +69,23 @@
 
 .search-details {
   /* display: none; */
-  padding: 10% 5%;
-  position: absolute;
-  bottom: 5%;
+  margin-top: 35%;
+  padding: 9% 6% 6% 6%;
   background-color: rgba(49, 74, 156, 0.4);
-  height: 290px;
-  width: 90%;
-  margin: auto 5%;
+  height: 300px;
+  width: 100%;
 }
 
 .display-details {
   /* display: none; */
-  padding: 10% 5%;
   position: absolute;
   top: 0;
+  left: 0;
+  padding: 5%;
+  padding-top: 9%;
   background-color: rgba(49, 74, 156, 0.4);
   height: 20%px;
   width: 100%;
-  /* margin-left: 35px; */
 }
 
 .display-details-sm {
@@ -86,7 +94,7 @@
   top: 0;
   background-color: rgba(49, 74, 156, 0.4);
   padding: 5% 5%;
-  height: 20%%;
+  height: 20%;
   width: 100%;
   /* margin-left: 35px; */
 }

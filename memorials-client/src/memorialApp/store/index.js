@@ -9,10 +9,10 @@ const initialState = {
     deathYear: "1965",
     city: "Cranston",
     state: "Rhode Island",
-    county: "Kent",
+    county: "Providence",
     country: "United States",
     graveInfo: {
-      stoneImage: "",
+      stoneImg: "",
       latitude: 0,
       longitude: 0,
     },
@@ -24,7 +24,6 @@ const initialState = {
 };
 
 const reducer = (state = initialState, action) => {
-  // console.log(action);
   switch (action.type) {
     case "INPUT_CHANGE":
       return Object.assign({}, state, {
@@ -40,7 +39,13 @@ const reducer = (state = initialState, action) => {
           lastName: action.subjectData.lastName,
           birthYear: action.subjectData.birthYear,
           deathYear: action.subjectData.deathYear,
+          city: state.subjectData.city,
+          state: state.subjectData.state,
+          county: state.subjectData.county,
+          country: state.subjectData.country,
+          cemeteryName: state.subjectData.cemeteryName,
           graveInfo: {
+            stoneImg: action.subjectData.graveInfo.stoneImg,
             latitude: action.subjectData.graveInfo.latitude,
             longitude: action.subjectData.graveInfo.longitude,
           },

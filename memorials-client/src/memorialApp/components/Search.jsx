@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { store } from "../store";
+import LocData from "./LocData";
 import SearchDetails from "./views/SearchDetails";
 import billionGravesService from "../../api/billionGraves/billionGravesService";
 
@@ -13,14 +14,13 @@ class Search extends Component {
 
   render(props) {
     return (
-      <div>
-        <div className="container"></div>
+      <div className="container">
+        <LocData store={store} />
         <div className="full-window search">
-          <SearchDetails store={store} doSearch={this.doSearch} />
-
-          <h5>{`${this.props.subjectData.firstName}
-            ${this.props.subjectData.middleName}
-            ${this.props.subjectData.lastName}`}</h5>
+          <h5>
+            {`${this.props.subjectData.firstName} ${this.props.subjectData.middleName}
+            ${this.props.subjectData.lastName}`}{" "}
+          </h5>
           {this.props.subjectData.birthYear &&
           this.props.subjectData.deathYear ? (
             <h6>{`${this.props.subjectData.birthYear} — ${this.props.subjectData.deathYear}`}</h6>
@@ -29,6 +29,7 @@ class Search extends Component {
           ) : (
             <h6>{""}</h6>
           )}
+          <SearchDetails store={store} doSearch={this.doSearch} />
         </div>
       </div>
     );
@@ -36,23 +37,24 @@ class Search extends Component {
 
   doSearch() {
     billionGravesService.retreiveSubject2().then((response) => {
+      let firstName = response.data.items[0].given_names.split(" ")[0] || "";
+      let middleName = response.data.items[0].given_names.split(" ")[1] || "";
+
       const subjectResponse = {
-        firstName: response.data.items[0].given_names,
-        middleName: response.data.items[0].given_names,
+        firstName: firstName,
+        middleName: middleName,
         lastName: response.data.items[0].family_names,
         birthYear: response.data.items[0].birth_year,
         deathYear: response.data.items[0].death_year,
-        city: response.data.items[0].cemetery_city,
-        state: response.data.items[0].cemetery_state,
         country: response.data.items[0].cemetery_country,
+        state: response.data.items[0].cemetery_state,
+        city: response.data.items[0].cemetery_city,
         county: response.data.items[0].cemetery_county,
+        cemeteryName: response.data.items[0].cemetery_name,
         graveInfo: {
+          stoneImg: response.data.items[0].thumbnail,
           latitude: response.data.items[0].lat,
           longitude: response.data.items[0].lon,
-        },
-        deviceLocation: {
-          latitude: 41.79794000413588,
-          longitude: -71.46327390674594,
         },
       };
       console.log("subjectResponse", subjectResponse);
@@ -69,6 +71,11 @@ const mapStateToProps = (state) => {
       firstName: state.subjectData.firstName,
       middleName: state.subjectData.middleName,
       lastName: state.subjectData.lastName,
+      city: state.subjectData.city,
+      state: state.subjectData.state,
+      county: state.subjectData.county,
+      country: state.subjectData.country,
+      // cemeteryName: state.subjectData.cemeteryName,
       birthYear: state.subjectData.birthYear,
       deathYear: state.subjectData.deathYear,
       graveInfo: {
@@ -86,6 +93,7 @@ const mapDispatchToProps = (dispatch) => {
         type: "SET_SUBJECT_INFO",
         subjectData: Object.assign({}, subjectResponse, {
           graveInfo: Object.assign({}, subjectResponse.graveInfo, {
+            stoneImg: subjectResponse.graveInfo.stoneImg,
             latitude: subjectResponse.graveInfo.latitude,
             longitude: subjectResponse.graveInfo.longitude,
           }),

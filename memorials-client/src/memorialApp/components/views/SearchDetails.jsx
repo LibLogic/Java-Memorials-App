@@ -126,7 +126,7 @@ class SearchDetails extends Component {
             className="btn btn-sm btn-success"
             onClick={this.props.doSearch}
           >
-            Submit
+            Search
           </button>
         </form>
       </div>
@@ -144,8 +144,8 @@ const mapStateToProps = (state) => {
       deathYear: state.subjectData.deathYear,
       city: state.subjectData.city,
       state: state.subjectData.state,
-      country: state.subjectData.country,
       county: state.subjectData.county,
+      country: state.subjectData.country,
       graveInfo: {
         latitude: state.subjectData.graveInfo.latitude,
         longitiue: state.subjectData.graveInfo.longitude,
