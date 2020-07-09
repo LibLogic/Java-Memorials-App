@@ -15,15 +15,18 @@ class MainView extends Component {
           <LeftArrow history={this.props.history} navTo={"younger-sibling"} />
           <div className="full-window">
             <Exports.SubjectDetails store={store} />
-
             {this.props.subjectData.graveInfo.stoneImg && (
               <div>
-                <h6>Headstone at</h6>
                 <img
+                  style={{ marginBottom: "6px" }}
                   src={this.props.subjectData.graveInfo.stoneImg}
                   alt="Headstone"
                 />
-                <h6>{this.props.subjectData.cemeteryName}</h6>
+                <h6>
+                  {`${this.props.subjectData.cemeteryName}`}
+                  <br />
+                  {`${this.props.subjectData.city}, ${this.props.subjectData.state}`}
+                </h6>
               </div>
             )}
           </div>
@@ -39,6 +42,8 @@ const mapStateToProps = (state) => {
   return {
     subjectData: {
       cemeteryName: state.subjectData.cemeteryName,
+      city: state.subjectData.city,
+      state: state.subjectData.state,
       graveInfo: {
         stoneImg: state.subjectData.graveInfo.stoneImg,
       },

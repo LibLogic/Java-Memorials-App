@@ -41,7 +41,6 @@ class SearchDetails extends Component {
               value={this.props.subjectData.lastName}
               onChange={this.props.handleChange}
             />
-            <p>{this.props.inputValue}</p>
           </fieldset>
           <div className="row">
             <div className="col">
@@ -69,6 +68,7 @@ class SearchDetails extends Component {
               </fieldset>
             </div>
           </div>
+          <p></p>
           <div className="row">
             <div className="col">
               <fieldset className="form-group">
@@ -136,6 +136,12 @@ class SearchDetails extends Component {
 
 const mapStateToProps = (state) => {
   return {
+    deviceLocation: {
+      city: state.deviceLocation.city,
+      state: state.deviceLocation.state,
+      county: state.deviceLocation.county,
+      country: state.deviceLocation.country,
+    },
     subjectData: {
       firstName: state.subjectData.firstName,
       middleName: state.subjectData.middleName,

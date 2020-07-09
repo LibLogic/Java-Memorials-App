@@ -9,6 +9,16 @@
   margin: 0;
 }
 
+.saved-data {
+  position: absolute;
+  text-align: left;
+  top: 60%;
+}
+
+.saved-data p {
+  margin: 0;
+}
+
 .arrow {
   width: 50px;
   height: 25px;
