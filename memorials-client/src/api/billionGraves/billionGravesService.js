@@ -4,28 +4,18 @@ import { store } from "../../memorialApp/store";
 const headers = {
   "Content-Type": "application/json",
   Authorization:
-    "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJkYXRlIjoiMjAyMC0wNy0wOVQxNDoxODo1OVoiLCJjbGllbnQiOiI4MGZjZDg1NC0yYzc4LTQ2YjQtYjE0YS0zNDNmZjkyOGU1M2UiLCJwYXRoIjoiL2FwaS8xLjMvc2VhcmNoIn0.yv1OtPrtxzsVEmgDvMeWe9E0b5NWI1DwTBj2om_nv5m8vlHlrSD9W8vFiCtbuhQlFedlrqOe4h_4Tg_XszKmKA",
+    "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJkYXRlIjoiMjAyMC0wNy0xMVQxNjoyODozOVoiLCJjbGllbnQiOiI4MGZjZDg1NC0yYzc4LTQ2YjQtYjE0YS0zNDNmZjkyOGU1M2UiLCJwYXRoIjoiL2FwaS8xLjMvc2VhcmNoIn0.Kb--HhX3ZdtEa4yWkDXLhB7CxqMtLYvzR3sHoNogPXup3aSA0Ownv2f45rCg9vBAUv3xUP4TpRZQpgc11XDW9w",
 };
 
 class billionGravesService {
-  // retreiveSubject() {
-  //   return axios.get(
-  //     `https://cors-anywhere.herokuapp.com/https://billiongraves.com/search/results?AMPLabel=HomePageSearch&AMPValue=HomePage&given_names=${
-  //       store.getState().firstName
-  //     }&family_names=${store.getState().lastName}&cemetery_state=${
-  //       store.getState().state
-  //     }&cemetery_county=${store.getState().county}`
-  //   );
-  // }
-
-  retreiveSubject2() {
+  retreiveSubject() {
     this.setupAxiosInterceptors();
     return axios.post(
       "http://localhost:1337/https://billiongraves.com/api/1.3/search",
       {
-        cemetery_country: store.getState().subjectData.country,
-        cemetery_state: store.getState().subjectData.state,
-        cemetery_county: store.getState().subjectData.county,
+        cemetery_country: store.getState().deviceLocation.country,
+        cemetery_state: store.getState().deviceLocation.state,
+        cemetery_county: store.getState().deviceLocation.county,
         given_names: store.getState().subjectData.firstName,
         family_names: store.getState().subjectData.lastName,
         exact: false,

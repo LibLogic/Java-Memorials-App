@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { store } from "../store";
 import LocData from "./LocData";
-import Random from "./Random";
+import DummyLocData from "./DummyLocData";
 import SearchDetails from "./views/SearchDetails";
 import billionGravesService from "../../api/billionGraves/billionGravesService";
 
@@ -17,7 +17,7 @@ class Search extends Component {
     return (
       <div className="container">
         <LocData store={store} />
-        <Random store={store} />
+        <DummyLocData store={store} />
         <div className="full-window search">
           <h5>
             {`${this.props.subjectData.firstName} ${this.props.subjectData.middleName}
@@ -39,7 +39,7 @@ class Search extends Component {
 
   doSearch() {
     billionGravesService
-      .retreiveSubject2()
+      .retreiveSubject()
       .then((response) => {
         let firstName = response.data.items[0].given_names.split(" ")[0] || "";
         let middleName = response.data.items[0].given_names.split(" ")[1] || "";

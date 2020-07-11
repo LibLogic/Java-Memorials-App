@@ -79,11 +79,13 @@
 
 .search-details {
   /* display: none; */
-  margin-top: 35%;
+  /* margin-top: 35%; */
+  position: absolute;
+  bottom: 5%;
   padding: 9% 6% 6% 6%;
   background-color: rgba(49, 74, 156, 0.4);
   height: 300px;
-  width: 100%;
+  width: 91%;
 }
 
 .display-details {

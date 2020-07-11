@@ -54,13 +54,6 @@ class LocData extends Component {
 
 const mapStateToProps = (state) => {
   return {
-    // subjectData: {
-    //   country: state.subjectData.country,
-    //   state: state.subjectData.state,
-    //   city: state.subjectData.city,
-    //   county: state.subjectData.county,
-    //   cemeteryName: state.subjectData.cemeteryName,
-    // },
     deviceLocation: {
       latitude: state.deviceLocation.latitude,
       longitude: state.deviceLocation.longitude,

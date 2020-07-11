@@ -15,7 +15,7 @@ class MainView extends Component {
           <LeftArrow history={this.props.history} navTo={"younger-sibling"} />
           <div className="full-window">
             <Exports.SubjectDetails store={store} />
-            {this.props.subjectData.graveInfo.stoneImg && (
+            {this.props.subjectData.city && (
               <div>
                 <img
                   style={{ marginBottom: "6px" }}

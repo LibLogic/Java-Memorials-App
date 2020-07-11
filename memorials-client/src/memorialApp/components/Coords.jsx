@@ -6,8 +6,6 @@ class Coords extends Component {
     return (
       <div className="container" style={{ marginTop: "40px" }}>
         <div className="location-data">
-          <p>{`Device Latitude: ${this.props.deviceLocation.latitude}`}</p>
-          <p>{`Device Longitude: ${this.props.deviceLocation.longitude}`}</p>
           <p>{`Grave Latitude: ${this.props.subjectData.graveInfo.latitude}`}</p>
           <p>{`Grave Longitude: ${this.props.subjectData.graveInfo.longitude}`}</p>
         </div>

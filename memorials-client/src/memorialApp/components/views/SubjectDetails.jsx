@@ -6,49 +6,24 @@ class SubjectDetails extends Component {
     return (
       <div>
         <div className="display-details">
-          <h5>
-            {`${this.props.subjectData.firstName} ${this.props.subjectData.middleName}
-            ${this.props.subjectData.lastName}`}
-            {`${this.props.subjectData.maidenName}`}
-          </h5>
-          {this.props.subjectData.birthYear &&
-          this.props.subjectData.deathYear ? (
-            <h6>{`${this.props.subjectData.birthYear} — ${this.props.subjectData.deathYear}`}</h6>
-          ) : this.props.subjectData.birthYear ? (
-            <h6>{`${this.props.subjectData.birthYear} — Living`}</h6>
-          ) : (
-            <h6>{""}</h6>
+          {this.props.subjectData.city && (
+            <div>
+              <h5>
+                {`${this.props.subjectData.firstName} ${this.props.subjectData.middleName}
+          ${this.props.subjectData.lastName}`}
+                {`${this.props.subjectData.maidenName}`}
+              </h5>
+              {this.props.subjectData.birthYear &&
+              this.props.subjectData.deathYear ? (
+                <h6>{`${this.props.subjectData.birthYear} — ${this.props.subjectData.deathYear}`}</h6>
+              ) : this.props.subjectData.birthYear ? (
+                <h6>{`${this.props.subjectData.birthYear} — Living`}</h6>
+              ) : (
+                <h6>{""}</h6>
+              )}
+            </div>
           )}
         </div>
-        {/* <div className="edit-details">
-          <form id="edit-form">
-            <fieldset className="form-group">
-              <input
-                className="form-control"
-                type="text"
-                placeholder="Name"
-                name="name"
-              />
-            </fieldset>
-            <fieldset className="form-group">
-              <input
-                className="form-control"
-                type="text"
-                placeholder="Birth"
-                name="birth"
-              />
-            </fieldset>
-            <fieldset className="form-group">
-              <input
-                className="form-control"
-                type="text"
-                placeholder="Death"
-                name="death"
-              />
-            </fieldset>
-            <button className="btn btn-sm btn-success">Save</button>
-          </form>
-        </div> */}
       </div>
     );
   }

@@ -77,7 +77,7 @@ class SearchDetails extends Component {
                   type="text"
                   placeholder="City"
                   name="city"
-                  value={this.props.subjectData.city}
+                  value={this.props.deviceLocation.city}
                   onChange={this.props.handleChange}
                 />
               </fieldset>
@@ -89,7 +89,7 @@ class SearchDetails extends Component {
                   type="text"
                   placeholder="State"
                   name="state"
-                  value={this.props.subjectData.state}
+                  value={this.props.deviceLocation.state}
                   onChange={this.props.handleChange}
                 />
               </fieldset>
@@ -103,7 +103,7 @@ class SearchDetails extends Component {
                   type="text"
                   placeholder="County"
                   name="county"
-                  value={this.props.subjectData.county}
+                  value={this.props.deviceLocation.county}
                   onChange={this.props.handleChange}
                 />
               </fieldset>
@@ -115,7 +115,7 @@ class SearchDetails extends Component {
                   type="text"
                   placeholder="Country"
                   name="country"
-                  value={this.props.subjectData.country}
+                  value={this.props.deviceLocation.country}
                   onChange={this.props.handleChange}
                 />
               </fieldset>

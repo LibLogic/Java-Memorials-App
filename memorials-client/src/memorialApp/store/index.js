@@ -2,16 +2,16 @@ import { createStore } from "redux";
 
 const initialState = {
   subjectData: {
-    firstName: "David",
-    middleName: "Joseph",
-    lastName: "Hodgkinson",
+    firstName: "",
+    middleName: "",
+    lastName: "",
     maidenName: "",
-    birthYear: "1965",
-    deathYear: "1965",
-    city: "Cranston",
-    state: "Rhode Island",
-    county: "Providence",
-    country: "United States",
+    birthYear: "",
+    deathYear: "",
+    city: "",
+    state: "",
+    county: "",
+    country: "",
     cemeteryName: "",
     graveInfo: {
       stoneImg: "",
@@ -27,16 +27,38 @@ const initialState = {
     county: 0,
     country: 0,
   },
-  savedCoords: {
-    latitude: 41.79794000413588,
-    longitude: -71.46327390674594,
-    firstName: "David",
-    middleName: "Joseph",
-    lastName: "Hodgkinson",
-    maidenName: "",
-    birthYear: "1965",
-    deathYear: "1965",
-  },
+  savedCoords: [
+    {
+      latitude: 41.79794000413588,
+      longitude: -71.46327390674594,
+      firstName: "David",
+      middleName: "Joseph",
+      lastName: "Hodgkinson",
+      maidenName: "",
+      birthYear: "1965",
+      deathYear: "1965",
+    },
+    {
+      latitude: 41.79345000095653,
+      longitude: -71.4625964723873,
+      firstName: "Amos",
+      middleName: "H",
+      lastName: "Kennedy",
+      maidenName: "",
+      birthYear: "1907",
+      deathYear: "1966",
+    },
+    {
+      latitude: 41.854034,
+      longitude: -71.381065,
+      firstName: "Howard",
+      middleName: "Philips",
+      lastName: "Lovecraft",
+      maidenName: "",
+      birthYear: "1890",
+      deathYear: "1937",
+    },
+  ],
 };
 
 const reducer = (state = initialState, action) => {
@@ -84,6 +106,29 @@ const reducer = (state = initialState, action) => {
           },
         },
       });
+
+    case "SET_LOC_AREA":
+      return Object.assign({}, state, {
+        subjectData: Object.assign({}, state, {
+          firstName: action.firstName,
+          middleName: action.middleName,
+          lastName: action.lastName,
+          birthYear: action.birthYear,
+          deathYear: action.deathYear,
+          graveInfo: {
+            stoneImg: "action.subjectData.graveInfo.stoneImg",
+            latitude: action.latitude,
+            longitude: action.longitude,
+          },
+        }),
+        deviceLocation: Object.assign({}, state, {
+          city: action.city,
+          state: action.state,
+          county: action.county,
+          country: action.country,
+        }),
+      });
+
     default:
       return state;
   }
