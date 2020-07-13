@@ -19,18 +19,25 @@ class Search extends Component {
         <LocData store={store} />
         <DummyLocData store={store} />
         <div className="full-window search">
-          <h5>
-            {`${this.props.subjectData.firstName} ${this.props.subjectData.middleName}
-            ${this.props.subjectData.lastName}`}{" "}
-          </h5>
-          {this.props.subjectData.birthYear &&
-          this.props.subjectData.deathYear ? (
-            <h6>{`${this.props.subjectData.birthYear} — ${this.props.subjectData.deathYear}`}</h6>
-          ) : this.props.subjectData.birthYear ? (
-            <h6>{`${this.props.subjectData.birthYear} — Living`}</h6>
-          ) : (
-            <h6>{""}</h6>
+          {!this.props.subjectData.lastName && (
+            <div id="camera-window" className="camera-window">
+              Camera View
+            </div>
           )}
+          <div className="display-detail">
+            <h5>
+              {`${this.props.subjectData.firstName} ${this.props.subjectData.middleName}
+              ${this.props.subjectData.lastName}`}{" "}
+            </h5>
+            {this.props.subjectData.birthYear &&
+            this.props.subjectData.deathYear ? (
+              <h6>{`${this.props.subjectData.birthYear} — ${this.props.subjectData.deathYear}`}</h6>
+            ) : this.props.subjectData.birthYear ? (
+              <h6>{`${this.props.subjectData.birthYear} — Living`}</h6>
+            ) : (
+              <h6>{""}</h6>
+            )}
+          </div>
           <SearchDetails store={store} doSearch={this.doSearch} />
         </div>
       </div>

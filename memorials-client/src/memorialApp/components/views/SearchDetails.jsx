@@ -73,6 +73,7 @@ class SearchDetails extends Component {
             <div className="col">
               <fieldset className="form-group">
                 <input
+                  disabled
                   className="form-control"
                   type="text"
                   placeholder="City"
@@ -85,6 +86,7 @@ class SearchDetails extends Component {
             <div className="col">
               <fieldset className="form-group">
                 <input
+                  disabled
                   className="form-control"
                   type="text"
                   placeholder="State"
@@ -99,6 +101,7 @@ class SearchDetails extends Component {
             <div className="col">
               <fieldset className="form-group">
                 <input
+                  disabled
                   className="form-control"
                   type="text"
                   placeholder="County"
@@ -111,6 +114,7 @@ class SearchDetails extends Component {
             <div className="col">
               <fieldset className="form-group">
                 <input
+                  disabled
                   className="form-control"
                   type="text"
                   placeholder="Country"
@@ -126,7 +130,7 @@ class SearchDetails extends Component {
             className="btn btn-sm btn-success"
             onClick={this.props.doSearch}
           >
-            Search
+            Submit
           </button>
         </form>
       </div>
@@ -163,6 +167,8 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
   return {
     handleChange: (e) => {
+      let camWin = document.getElementById("camera-window");
+      camWin.classList.add("hidden");
       const action = {
         type: "INPUT_CHANGE",
         key: e.target.name,

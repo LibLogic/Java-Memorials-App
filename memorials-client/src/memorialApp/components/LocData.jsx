@@ -19,6 +19,12 @@ class LocData extends Component {
     return (
       <div className="container" style={{ marginTop: "40px" }}>
         <div className="location-data">
+          <button
+            className="btn btn-sm btn-success"
+            onClick={this.resetActualLocation}
+          >
+            Reset Actual Location
+          </button>
           <p>{`Device Latitude: ${this.props.deviceLocation.latitude}`}</p>
           <p>{`Device Longitude: ${this.props.deviceLocation.longitude}`}</p>
           <p>{`Country: ${this.props.deviceLocation.country}`}</p>
@@ -29,6 +35,10 @@ class LocData extends Component {
       </div>
     );
   }
+
+  resetActualLocation = () => {
+    navigator.geolocation.getCurrentPosition(this.showPosition);
+  };
 
   showPosition = (position) => {
     LocationService.getLocationInfo(
@@ -69,8 +79,13 @@ const mapDispatchToProps = (dispatch) => {
   return {
     setDeviceLocation: (deviceLocationResponse) => {
       const action = {
-        type: "SET_DEVICE_LOCATION",
+        type: "RESET_DEVICE_LOCATION",
         deviceLocation: deviceLocationResponse,
+        firstName: "",
+        middleName: "",
+        lastName: "",
+        birthYear: "",
+        deathYear: "",
       };
       dispatch(action);
     },

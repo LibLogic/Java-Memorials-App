@@ -1,5 +1,9 @@
 @import url(https://unpkg.com/bootstrap@4.1.1/dist/css/bootstrap.min.css);
 
+.hidden {
+  display: none;
+}
+
 .location-data {
   position: absolute;
   text-align: left;
@@ -61,6 +65,12 @@
   margin-top: 64px;
 }
 
+.camera-window {
+  width: 100%;
+  height: 130px;
+  background-color: rgb(172, 190, 230);
+}
+
 .half-window {
   position: relative;
   border-top: 1px solid black;
@@ -86,6 +96,17 @@
   background-color: rgba(49, 74, 156, 0.4);
   height: 300px;
   width: 91%;
+}
+
+.display-detail {
+  /* display: none; */
+  position: absolute;
+  top: 0;
+  left: 0;
+  padding: 5%;
+  padding-top: 9%;
+  height: 20%px;
+  width: 100%;
 }
 
 .display-details {

@@ -73,6 +73,25 @@ const reducer = (state = initialState, action) => {
         }),
       });
 
+    case "RESET_DEVICE_LOCATION":
+      return Object.assign({}, state, {
+        deviceLocation: {
+          latitude: action.deviceLocation.latitude,
+          longitude: action.deviceLocation.longitude,
+          city: action.deviceLocation.city,
+          state: action.deviceLocation.state,
+          county: action.deviceLocation.county,
+          country: action.deviceLocation.country,
+        },
+        subjectData: Object.assign({}, state.subjectData, {
+          firstName: action.firstName,
+          middleName: action.middleName,
+          lastName: action.lastName,
+          birthYear: action.birthYear,
+          deathYear: action.deathYear,
+        }),
+      });
+
     case "SET_DEVICE_LOCATION":
       return Object.assign({}, state, {
         deviceLocation: {

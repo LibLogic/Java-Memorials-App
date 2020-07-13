@@ -24,12 +24,12 @@ class DummyLocData extends Component {
           <p>{`Device Longitude: ${
             this.props.savedCoords[this.state.key].longitude
           }`}</p>
-          <button
+          {/* <button
             className="btn btn-sm btn-success"
             onClick={() => this.getLocArea(this.state.key)}
           >
             Submit to Form
-          </button>
+          </button> */}
         </div>
       </div>
     );
@@ -40,6 +40,7 @@ class DummyLocData extends Component {
     this.setState({
       key: i,
     });
+    this.getLocArea(this.state.key);
   };
 
   getLocArea = (key) => {
