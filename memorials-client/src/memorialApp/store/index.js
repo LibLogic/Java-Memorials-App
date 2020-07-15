@@ -58,6 +58,16 @@ const initialState = {
       birthYear: "1890",
       deathYear: "1937",
     },
+    {
+      latitude: 41.545836223028,
+      longitude: -71.538434519014,
+      firstName: "Cecelia",
+      middleName: "M",
+      lastName: "Blair",
+      maidenName: "Aldrich",
+      birthYear: "1860",
+      deathYear: "1903",
+    },
   ],
 };
 
@@ -73,7 +83,7 @@ const reducer = (state = initialState, action) => {
         }),
       });
 
-    case "RESET_DEVICE_LOCATION":
+    case "SET_TO_DEVICE_LOCATION":
       return Object.assign({}, state, {
         deviceLocation: {
           latitude: action.deviceLocation.latitude,
@@ -90,18 +100,6 @@ const reducer = (state = initialState, action) => {
           birthYear: action.birthYear,
           deathYear: action.deathYear,
         }),
-      });
-
-    case "SET_DEVICE_LOCATION":
-      return Object.assign({}, state, {
-        deviceLocation: {
-          latitude: action.deviceLocation.latitude,
-          longitude: action.deviceLocation.longitude,
-          city: action.deviceLocation.city,
-          state: action.deviceLocation.state,
-          county: action.deviceLocation.county,
-          country: action.deviceLocation.country,
-        },
       });
 
     case "SET_SUBJECT_INFO":
@@ -141,6 +139,8 @@ const reducer = (state = initialState, action) => {
           },
         }),
         deviceLocation: Object.assign({}, state, {
+          latitude: action.latitude,
+          longitude: action.longitude,
           city: action.city,
           state: action.state,
           county: action.county,

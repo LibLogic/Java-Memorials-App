@@ -15,6 +15,9 @@ class MainView extends Component {
           <LeftArrow history={this.props.history} navTo={"younger-sibling"} />
           <div className="full-window">
             <Exports.SubjectDetails store={store} />
+            {/* <div>
+              <img src="./flower.png" alt="" />
+            </div> */}
             {this.props.subjectData.city && (
               <div>
                 <img

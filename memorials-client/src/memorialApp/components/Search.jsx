@@ -16,14 +16,12 @@ class Search extends Component {
   render(props) {
     return (
       <div className="container">
-        <LocData store={store} />
+        <LocData store={store} doSearch={this.doSearch} />
         <DummyLocData store={store} />
         <div className="full-window search">
-          {!this.props.subjectData.lastName && (
-            <div id="camera-window" className="camera-window">
-              Camera View
-            </div>
-          )}
+          <div id="camera-window" className="camera-window">
+            Camera View
+          </div>
           <div className="display-detail">
             <h5>
               {`${this.props.subjectData.firstName} ${this.props.subjectData.middleName}

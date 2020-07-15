@@ -9,7 +9,7 @@ class LocData extends Component {
     this.showPosition = this.showPosition.bind(this);
 
     if (navigator.geolocation) {
-      navigator.geolocation.getCurrentPosition(this.showPosition);
+      this.getWatch();
     } else {
       console.log("Geolocation is not supported by this browser.");
     }
@@ -19,11 +19,9 @@ class LocData extends Component {
     return (
       <div className="container" style={{ marginTop: "40px" }}>
         <div className="location-data">
-          <button
-            className="btn btn-sm btn-success"
-            onClick={this.resetActualLocation}
-          >
-            Reset Actual Location
+          {console.log(this.props.deviceLocation.latitude)}
+          <button className="btn btn-sm btn-success" onClick={this.getWatch}>
+            Actual Location
           </button>
           <p>{`Device Latitude: ${this.props.deviceLocation.latitude}`}</p>
           <p>{`Device Longitude: ${this.props.deviceLocation.longitude}`}</p>
@@ -36,8 +34,9 @@ class LocData extends Component {
     );
   }
 
-  resetActualLocation = () => {
+  getWatch = () => {
     navigator.geolocation.getCurrentPosition(this.showPosition);
+    // navigator.geolocation.watchPosition(this.showPosition);
   };
 
   showPosition = (position) => {
@@ -59,11 +58,19 @@ class LocData extends Component {
       };
       this.props.setDeviceLocation(deviceLocationResponse);
     });
+    console.log("hello " + this.props.deviceLocation.latitude);
   };
 }
 
 const mapStateToProps = (state) => {
   return {
+    subjectData: {
+      firstName: state.subjectData.firstName,
+      middleName: state.subjectData.middleName,
+      lastName: state.subjectData.lastName,
+      birthYear: state.subjectData.birthYear,
+      deathYear: state.subjectData.deathYear,
+    },
     deviceLocation: {
       latitude: state.deviceLocation.latitude,
       longitude: state.deviceLocation.longitude,
@@ -79,7 +86,7 @@ const mapDispatchToProps = (dispatch) => {
   return {
     setDeviceLocation: (deviceLocationResponse) => {
       const action = {
-        type: "RESET_DEVICE_LOCATION",
+        type: "SET_TO_DEVICE_LOCATION",
         deviceLocation: deviceLocationResponse,
         firstName: "",
         middleName: "",

@@ -37,19 +37,10 @@ class SmallSubjectDetails extends Component {
         <div className="display-details-sm">
           <h5>{`${this.props.subjectData.firstName} 
             ${this.props.subjectData.lastName}s'`}</h5>
-          {/* {this.props.subjectData.birthYear &&
-          this.props.subjectData.deathYear ? (
-            <h6>{`${this.props.subjectData.birthYear} — ${this.props.subjectData.deathYear}`}</h6>
-          ) : this.props.subjectData.birthYear ? (
-            <h6>{`${this.props.subjectData.birthYear} — Living`}</h6>
-          ) : (
-            <h6>{""}</h6>
-          )} */}
-          {/* <button className="btn btn-sm btn-success">Edit</button> */}
         </div>
 
         {/* <div className="container small-details-btn">Details</div> */}
-        <div className="edit-details-sm">
+        {/* <div className="edit-details-sm">
           <form id="edit-form">
             <fieldset className="form-group">
               <input
@@ -77,7 +68,7 @@ class SmallSubjectDetails extends Component {
             </fieldset>
             <button className="btn btn-sm btn-success">Save</button>
           </form>
-        </div>
+        </div> */}
       </div>
     );
   }
