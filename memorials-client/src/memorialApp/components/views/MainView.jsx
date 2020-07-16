@@ -4,6 +4,7 @@ import { store } from "../../store/";
 import Coords from "../Coords";
 import Exports from "./SubjectDetails";
 import { LeftArrow, RightArrow } from "./Controls";
+import flower from "../../images/flower.png";
 
 class MainView extends Component {
   render() {
@@ -15,9 +16,6 @@ class MainView extends Component {
           <LeftArrow history={this.props.history} navTo={"younger-sibling"} />
           <div className="full-window">
             <Exports.SubjectDetails store={store} />
-            {/* <div>
-              <img src="./flower.png" alt="" />
-            </div> */}
             {this.props.subjectData.city && (
               <div>
                 <div>
@@ -35,14 +33,16 @@ class MainView extends Component {
                     {`${this.props.subjectData.city}, ${this.props.subjectData.state}`}
                   </h6>
                 </div>
-                {/* <button className="btn btn-sm btn-success">
-                  Leave a Virtual Flower
-                </button> */}
+
                 <table id="flower">
                   <tbody>
                     <tr>
-                      <td></td>
-                      <td></td>
+                      <td>
+                        <img alt={"Tom Hodgkinson"} src={flower} />
+                      </td>
+                      <td>
+                        <img alt={"Tom Hodgkinson"} src={flower} />
+                      </td>
                       <td></td>
                       <td></td>
                       <td></td>

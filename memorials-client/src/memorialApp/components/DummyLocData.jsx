@@ -19,10 +19,10 @@ class DummyLocData extends Component {
             Get Saved User Coordinates
           </button>
           <p>{`Device Latitude: ${
-            this.props.savedCoords[this.state.key].latitude
+            this.props.sitesData[this.state.key].graveInfo.latitude
           }`}</p>
           <p>{`Device Longitude: ${
-            this.props.savedCoords[this.state.key].longitude
+            this.props.sitesData[this.state.key].graveInfo.longitude
           }`}</p>
           {/* <button
             className="btn btn-sm btn-success"
@@ -36,7 +36,7 @@ class DummyLocData extends Component {
   }
 
   incToNext = () => {
-    let i = (this.state.key + 1) % store.getState().savedCoords.length;
+    let i = (this.state.key + 1) % store.getState().sitesData.length;
     this.setState({
       key: i,
     });
@@ -45,21 +45,21 @@ class DummyLocData extends Component {
 
   getLocArea = (key) => {
     LocationService.getLocationInfo(
-      this.props.savedCoords[key].latitude,
-      this.props.savedCoords[key].longitude
+      this.props.sitesData[key].graveInfo.latitude,
+      this.props.sitesData[key].graveInfo.longitude
     ).then((response) => {
       let country =
         response.data.countryName === "United States of America"
           ? "United States"
           : response.data.countryName;
       let dummyLocationResponse = {
-        latitude: this.props.savedCoords[key].latitude,
-        longitude: this.props.savedCoords[key].longitude,
-        firstName: this.props.savedCoords[key].firstName,
-        middleName: this.props.savedCoords[key].middleName,
-        lastName: this.props.savedCoords[key].lastName,
-        birthYear: this.props.savedCoords[key].birthYear,
-        deathYear: this.props.savedCoords[key].deathYear,
+        latitude: this.props.sitesData[key].graveInfo.latitude,
+        longitude: this.props.sitesData[key].graveInfo.longitude,
+        firstName: this.props.sitesData[key].firstName,
+        middleName: this.props.sitesData[key].middleName,
+        lastName: this.props.sitesData[key].lastName,
+        birthYear: this.props.sitesData[key].birthYear,
+        deathYear: this.props.sitesData[key].deathYear,
         city: response.data.city,
         state: response.data.principalSubdivision,
         county: response.data.localityInfo.informative[2].name,
@@ -72,7 +72,7 @@ class DummyLocData extends Component {
 
 const mapStateToProps = (state) => {
   return {
-    savedCoords: state.savedCoords,
+    sitesData: state.sitesData,
   };
 };
 

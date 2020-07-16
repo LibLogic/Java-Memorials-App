@@ -19,7 +19,6 @@ class LocData extends Component {
     return (
       <div className="container" style={{ marginTop: "40px" }}>
         <div className="location-data">
-          {console.log(this.props.deviceLocation.latitude)}
           <button className="btn btn-sm btn-success" onClick={this.getWatch}>
             Actual Location (Reset)
           </button>
@@ -58,7 +57,6 @@ class LocData extends Component {
       };
       this.props.setDeviceLocation(deviceLocationResponse);
     });
-    console.log("hello " + this.props.deviceLocation.latitude);
   };
 }
 

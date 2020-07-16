@@ -180,7 +180,11 @@
 #flower td {
   width: 20%;
   height: 35px;
-  border: 1px dashed #686868;
+  /* border: 1px dashed #686868; */
+}
+
+#flower td img {
+  max-width: 100%;
 }
 
 button.flower {
