@@ -3,14 +3,14 @@ import { connect } from "react-redux";
 import { store } from "../../store/";
 import Coords from "../Coords";
 import Exports from "./SubjectDetails";
-import { UpArrow, DownArrow, LeftArrow, RightArrow } from "./Controls";
+import { LeftArrow, RightArrow } from "./Controls";
 
 class MainView extends Component {
   render() {
     return (
       <div className="container" style={{ marginTop: "40px" }}>
         <Coords store={store} />
-        <UpArrow history={this.props.history} navTo={"parents"} />
+        {/* <UpArrow history={this.props.history} navTo={"parents"} /> */}
         <div>
           <LeftArrow history={this.props.history} navTo={"younger-sibling"} />
           <div className="full-window">
@@ -20,22 +20,55 @@ class MainView extends Component {
             </div> */}
             {this.props.subjectData.city && (
               <div>
-                <img
-                  style={{ marginBottom: "6px" }}
-                  src={this.props.subjectData.graveInfo.stoneImg}
-                  alt="Headstone"
-                />
-                <h6>
-                  {`${this.props.subjectData.cemeteryName}`}
-                  <br />
-                  {`${this.props.subjectData.city}, ${this.props.subjectData.state}`}
-                </h6>
+                <div>
+                  <img
+                    style={{ marginBottom: "6px" }}
+                    src={this.props.subjectData.graveInfo.stoneImg}
+                    alt="Headstone"
+                  />
+                  <button className="btn btn-sm btn-success flower">
+                    Leave a Virtual Flower
+                  </button>
+                  <h6 className="loc-info">
+                    {`${this.props.subjectData.cemeteryName}`}
+                    <br />
+                    {`${this.props.subjectData.city}, ${this.props.subjectData.state}`}
+                  </h6>
+                </div>
+                {/* <button className="btn btn-sm btn-success">
+                  Leave a Virtual Flower
+                </button> */}
+                <table id="flower">
+                  <tbody>
+                    <tr>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                    </tr>
+                    <tr>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                    </tr>
+                    <tr>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                    </tr>
+                  </tbody>
+                </table>
               </div>
             )}
           </div>
           <RightArrow history={this.props.history} navTo={"older-sibling"} />
         </div>
-        <DownArrow history={this.props.history} navTo={"children"} />
+        {/* <DownArrow history={this.props.history} navTo={"children"} /> */}
       </div>
     );
   }

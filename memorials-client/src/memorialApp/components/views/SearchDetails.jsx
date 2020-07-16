@@ -68,13 +68,15 @@ class SearchDetails extends Component {
               </fieldset>
             </div>
           </div>
-          <button
-            type="button"
-            className="btn btn-sm btn-success"
-            onClick={this.props.doSearch}
-          >
-            Submit
-          </button>
+          {this.props.subjectData.lastName.length > 2 && (
+            <button
+              type="button"
+              className="btn btn-sm btn-success"
+              onClick={this.props.doSearch}
+            >
+              Submit
+            </button>
+          )}
         </form>
       </div>
     );

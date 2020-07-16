@@ -43,9 +43,23 @@ class Search extends Component {
   }
 
   doSearch() {
+    for (let i = 0; i < store.getState().savedCoords.length; i++) {
+      if (
+        store.getState().deviceLocation.latitude ===
+          store.getState().savedCoords[i].latitude &&
+        store.getState().deviceLocation.longitude ===
+          store.getState().savedCoords[i].longitude
+      ) {
+        //the site is in savedCoords so display it
+        console.log(store.getState().savedCoords[i]);
+      }
+      // else we do a look up and if we have a result store it
+    }
+
     billionGravesService
       .retreiveSubject()
       .then((response) => {
+        //lets narrow down the response to 1
         let firstName = response.data.items[0].given_names.split(" ")[0] || "";
         let middleName = response.data.items[0].given_names.split(" ")[1] || "";
         let maidenName =
@@ -66,10 +80,12 @@ class Search extends Component {
           cemeteryName: response.data.items[0].cemetery_name,
           graveInfo: {
             stoneImg: response.data.items[0].thumbnail,
-            latitude: response.data.items[0].lat,
-            longitude: response.data.items[0].lon,
+            latitude: response.data.items[0].lat.toFixed(7),
+            longitude: response.data.items[0].lon.toFixed(7),
           },
         };
+
+        // add subjectResponse to savedCoords array
         this.props.setSubjectInfo(subjectResponse);
       })
       .catch((response) => {

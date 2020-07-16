@@ -29,8 +29,8 @@ const initialState = {
   },
   savedCoords: [
     {
-      latitude: 41.79794000413588,
-      longitude: -71.46327390674594,
+      latitude: 41.79794,
+      longitude: -71.4632739,
       firstName: "David",
       middleName: "Joseph",
       lastName: "Hodgkinson",
@@ -39,8 +39,8 @@ const initialState = {
       deathYear: "1965",
     },
     {
-      latitude: 41.79345000095653,
-      longitude: -71.4625964723873,
+      latitude: 41.79345,
+      longitude: -71.4625964,
       firstName: "Amos",
       middleName: "H",
       lastName: "Kennedy",
@@ -59,8 +59,8 @@ const initialState = {
       deathYear: "1937",
     },
     {
-      latitude: 41.545836223028,
-      longitude: -71.538434519014,
+      latitude: 41.5458362,
+      longitude: -71.5384345,
       firstName: "Cecelia",
       middleName: "M",
       lastName: "Blair",

@@ -21,7 +21,7 @@ class LocData extends Component {
         <div className="location-data">
           {console.log(this.props.deviceLocation.latitude)}
           <button className="btn btn-sm btn-success" onClick={this.getWatch}>
-            Actual Location
+            Actual Location (Reset)
           </button>
           <p>{`Device Latitude: ${this.props.deviceLocation.latitude}`}</p>
           <p>{`Device Longitude: ${this.props.deviceLocation.longitude}`}</p>
@@ -49,8 +49,8 @@ class LocData extends Component {
           ? "United States"
           : response.data.countryName;
       let deviceLocationResponse = {
-        latitude: response.data.latitude,
-        longitude: response.data.longitude,
+        latitude: response.data.latitude.toFixed(7),
+        longitude: response.data.longitude.toFixed(7),
         city: response.data.city,
         state: response.data.principalSubdivision,
         county: response.data.localityInfo.informative[2].name,
