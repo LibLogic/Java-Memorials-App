@@ -4,7 +4,7 @@ import { store } from "../../memorialApp/store";
 const headers = {
   "Content-Type": "application/json",
   Authorization:
-    "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJkYXRlIjoiMjAyMC0wNy0xNlQwMDoxNTo1MVoiLCJjbGllbnQiOiI4MGZjZDg1NC0yYzc4LTQ2YjQtYjE0YS0zNDNmZjkyOGU1M2UiLCJwYXRoIjoiL2FwaS8xLjMvc2VhcmNoIn0.dQk9MQ201igTKr8nHN9HIEWaQr9O6BIGDZKj0CkzH9DkGNljy4OsABDee3EM2jJpSRV4Ob9WAn4k3STidIFvjA",
+    "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJkYXRlIjoiMjAyMC0wNy0xNlQxNzozMjo1N1oiLCJjbGllbnQiOiI4MGZjZDg1NC0yYzc4LTQ2YjQtYjE0YS0zNDNmZjkyOGU1M2UiLCJwYXRoIjoiL2FwaS8xLjMvc2VhcmNoIn0.AiNjh1RQarv7UaWxO4AuF1sQoe0tI4DfeVv9boXpAPVcJ8akWtaQllve-OlDd2VTrmiD512nQUFZqC5z5dGBlQ",
 };
 
 class billionGravesService {

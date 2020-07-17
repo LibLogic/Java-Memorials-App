@@ -3,8 +3,7 @@ import { connect } from "react-redux";
 import { store } from "../../store/";
 import Coords from "../Coords";
 import Exports from "./SubjectDetails";
-import { LeftArrow, RightArrow } from "./Controls";
-import flower from "../../images/flower.png";
+import Flowers from "../Flowers";
 
 class MainView extends Component {
   render() {
@@ -13,7 +12,7 @@ class MainView extends Component {
         <Coords store={store} />
         {/* <UpArrow history={this.props.history} navTo={"parents"} /> */}
         <div>
-          <LeftArrow history={this.props.history} navTo={"younger-sibling"} />
+          {/* <LeftArrow history={this.props.history} navTo={"younger-sibling"} /> */}
           <div className="full-window">
             <Exports.SubjectDetails store={store} />
             {this.props.subjectData.city && (
@@ -33,40 +32,11 @@ class MainView extends Component {
                     {`${this.props.subjectData.city}, ${this.props.subjectData.state}`}
                   </h6>
                 </div>
-
-                <table id="flower">
-                  <tbody>
-                    <tr>
-                      <td>
-                        <img alt={"Tom Hodgkinson"} src={flower} />
-                      </td>
-                      <td>
-                        <img alt={"Tom Hodgkinson"} src={flower} />
-                      </td>
-                      <td></td>
-                      <td></td>
-                      <td></td>
-                    </tr>
-                    <tr>
-                      <td></td>
-                      <td></td>
-                      <td></td>
-                      <td></td>
-                      <td></td>
-                    </tr>
-                    <tr>
-                      <td></td>
-                      <td></td>
-                      <td></td>
-                      <td></td>
-                      <td></td>
-                    </tr>
-                  </tbody>
-                </table>
+                <Flowers store={store} />
               </div>
             )}
           </div>
-          <RightArrow history={this.props.history} navTo={"older-sibling"} />
+          {/* <RightArrow history={this.props.history} navTo={"older-sibling"} /> */}
         </div>
         {/* <DownArrow history={this.props.history} navTo={"children"} /> */}
       </div>

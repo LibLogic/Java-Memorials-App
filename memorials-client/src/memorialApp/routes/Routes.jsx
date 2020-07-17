@@ -4,13 +4,13 @@ import { store } from "../store";
 import AuthenticatedRoute from "./AuthenticatedRoute";
 import Header from "../components/Header";
 import MainView from "../components/views/MainView";
-import TopView from "../components/views/TopView";
-import BottomView from "../components/views/BottomView";
-import LeftSiblingView from "../components/views/LeftSiblingView";
-import RightSiblingView from "../components/views/RightSiblingView";
-import LeftChildView from "../components/views/LeftChildView";
-import RightChildView from "../components/views/RightChildView";
-import AddSite from "../components/AddSite";
+// import TopView from "../components/views/TopView";
+// import BottomView from "../components/views/BottomView";
+// import LeftSiblingView from "../components/views/LeftSiblingView";
+// import RightSiblingView from "../components/views/RightSiblingView";
+// import LeftChildView from "../components/views/LeftChildView";
+// import RightChildView from "../components/views/RightChildView";
+// import AddSite from "../components/AddSite";
 import Search from "../components/Search";
 import Login from "../components/Login";
 import Logout from "../components/Logout";
@@ -32,7 +32,7 @@ class Routes extends Component {
       <Router>
         <Header loggedInStatus={this.state.loggedIn} />
         <Switch>
-          <AuthenticatedRoute path="/add-site" exact component={AddSite} />
+          {/* <AuthenticatedRoute path="/add-site" exact component={AddSite} /> */}
 
           <AuthenticatedRoute path="/" exact component={Login} />
 
@@ -47,14 +47,14 @@ class Routes extends Component {
             exact
             render={(props) => <MainView {...props} store={store} />}
           />
-
+          {/* 
           <AuthenticatedRoute path="/view/parents" exact component={TopView} />
           <AuthenticatedRoute
             path="/view/children"
             exact
             component={BottomView}
-          />
-          <AuthenticatedRoute
+          /> */}
+          {/* <AuthenticatedRoute
             path="/view/younger-sibling"
             exact
             component={LeftSiblingView}
@@ -73,7 +73,7 @@ class Routes extends Component {
             path="/view/older-child"
             exact
             component={RightChildView}
-          />
+          /> */}
           <Route
             path="/login"
             exact

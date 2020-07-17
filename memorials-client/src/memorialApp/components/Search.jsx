@@ -86,23 +86,22 @@ class Search extends Component {
       this.props.history.push("/view/main");
     };
 
-    //  conductSearch();
+    conductSearch();
 
-    for (let i = 0; i < store.getState().sitesData.length; i++) {
-      if (
-        store.getState().deviceLocation.latitude ===
-          store.getState().sitesData[i].graveInfo.latitude &&
-        store.getState().deviceLocation.longitude ===
-          store.getState().sitesData[i].graveInfo.longitude
-      ) {
-        //the site is in sitesData so display it
-        let siteDataResponse = { ...store.getState().sitesData[i] };
-        this.props.setSubjectInfo(siteDataResponse);
-        this.props.history.push("/view/main");
-      } else {
-        conductSearch();
-      }
-    }
+    //   for (let i = 0; i < store.getState().sitesData.length; i++) {
+    //     if (
+    //       store.getState().deviceLocation.latitude ===
+    //         store.getState().sitesData[i].graveInfo.latitude &&
+    //       store.getState().deviceLocation.longitude ===
+    //         store.getState().sitesData[i].graveInfo.longitude
+    //     ) {
+    //       let siteDataResponse = { ...store.getState().sitesData[i] };
+    //       this.props.setSubjectInfo(siteDataResponse);
+    //       this.props.history.push("/view/main");
+    //     } else {
+    //       conductSearch();
+    //     }
+    //   }
   }
 }
 
