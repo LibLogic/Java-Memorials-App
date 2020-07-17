@@ -62,13 +62,6 @@ class LocData extends Component {
 
 const mapStateToProps = (state) => {
   return {
-    subjectData: {
-      firstName: state.subjectData.firstName,
-      middleName: state.subjectData.middleName,
-      lastName: state.subjectData.lastName,
-      birthYear: state.subjectData.birthYear,
-      deathYear: state.subjectData.deathYear,
-    },
     deviceLocation: {
       latitude: state.deviceLocation.latitude,
       longitude: state.deviceLocation.longitude,

@@ -16,7 +16,6 @@ class SearchDetails extends Component {
                   placeholder="First Name"
                   value={this.props.subjectData.firstName}
                   onChange={this.props.handleChange}
-                  x-webkit-speech="true"
                 />
               </fieldset>
             </div>
@@ -29,7 +28,6 @@ class SearchDetails extends Component {
                   name="middleName"
                   value={this.props.subjectData.middleName}
                   onChange={this.props.handleChange}
-                  x-webkit-speech="true"
                 />
               </fieldset>
             </div>
@@ -42,7 +40,6 @@ class SearchDetails extends Component {
               name="lastName"
               value={this.props.subjectData.lastName}
               onChange={this.props.handleChange}
-              x-webkit-speech="true"
             />
           </fieldset>
           <div className="row">
@@ -55,7 +52,6 @@ class SearchDetails extends Component {
                   name="birthYear"
                   value={this.props.subjectData.birthYear}
                   onChange={this.props.handleChange}
-                  x-webkit-speech="true"
                 />
               </fieldset>
             </div>
@@ -68,20 +64,19 @@ class SearchDetails extends Component {
                   name="deathYear"
                   value={this.props.subjectData.deathYear}
                   onChange={this.props.handleChange}
-                  x-webkit-speech="true"
                 />
               </fieldset>
             </div>
           </div>
-          {this.props.subjectData.lastName.length > 2 && (
-            <button
-              type="button"
-              className="btn btn-sm btn-success"
-              onClick={this.props.doSearch}
-            >
-              Submit
-            </button>
-          )}
+          {/* {this.props.subjectData.lastName.length > 2 && ( */}
+          <button
+            type="button"
+            className="btn btn-sm btn-success"
+            onClick={this.props.doSearch}
+          >
+            Submit
+          </button>
+          {/* )} */}
         </form>
       </div>
     );
@@ -90,13 +85,16 @@ class SearchDetails extends Component {
 
 const mapStateToProps = (state) => {
   return {
+    ...state,
     deviceLocation: {
+      ...state.deviceLocation,
       city: state.deviceLocation.city,
       state: state.deviceLocation.state,
       county: state.deviceLocation.county,
       country: state.deviceLocation.country,
     },
     subjectData: {
+      ...state.subjectData,
       firstName: state.subjectData.firstName,
       middleName: state.subjectData.middleName,
       lastName: state.subjectData.lastName,
@@ -107,6 +105,7 @@ const mapStateToProps = (state) => {
       county: state.subjectData.county,
       country: state.subjectData.country,
       graveInfo: {
+        ...state.subjectData.graveInfo,
         latitude: state.subjectData.graveInfo.latitude,
         longitiue: state.subjectData.graveInfo.longitude,
       },

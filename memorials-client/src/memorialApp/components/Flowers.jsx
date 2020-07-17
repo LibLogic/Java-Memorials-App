@@ -4,21 +4,6 @@ import flower from "../images/flower.png";
 
 class Flowers extends Component {
   render() {
-    //  let displayFlower0 = false;
-    // displayFlower1 = false,
-    // displayFlower2 = false,
-    // displayFlower3 = false,
-    // displayFlower4 = false,
-    // displayFlower5 = false,
-    // displayFlower6 = false,
-    // displayFlower7 = false,
-    // displayFlower8 = false,
-    // displayFlower9 = false,
-    // displayFlower10 = false,
-    // displayFlower11 = false,
-    // displayFlower12 = false,
-    // displayFlower13 = false,
-    // displayFlower14 = false;
     this.getFlowers();
     return (
       <table id="flower">
@@ -198,7 +183,7 @@ class Flowers extends Component {
 
 const mapStateToProps = (state) => {
   return {
-    flowers: state.sitesData[0].flowers,
+    flowers: state.subjectData.flowers,
   };
 };
 

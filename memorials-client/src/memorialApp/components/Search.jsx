@@ -47,20 +47,19 @@ class Search extends Component {
       billionGravesService
         .retreiveSubject()
         .then((response) => {
-          //lets narrow down the response to 1
           let firstName =
             response.data.items[0].given_names.split(" ")[0] || "";
           let middleName =
             response.data.items[0].given_names.split(" ")[1] || "";
-          let maidenName =
-            response.data.items[0].maiden_names &&
-            ` (${response.data.items[0].maiden_names})`;
+          // let maidenName =
+          //   response.data.items[0].maiden_names &&
+          //   ` (${response.data.items[0].maiden_names})`;
 
           const subjectResponse = {
             firstName: firstName,
             middleName: middleName,
             lastName: response.data.items[0].family_names,
-            maidenName: maidenName,
+            maidenName: response.data.items[0].maiden_names,
             birthYear: response.data.items[0].birth_year,
             deathYear: response.data.items[0].death_year,
             country: response.data.items[0].cemetery_country,
@@ -73,9 +72,8 @@ class Search extends Component {
               latitude: response.data.items[0].lat.toFixed(7),
               longitude: response.data.items[0].lon.toFixed(7),
             },
+            flowers: [],
           };
-          //        store.getState().sitesData.push(subjectResponse); // needs to be merged
-
           console.log("went to network");
           this.props.setSubjectInfo(subjectResponse);
         })
@@ -86,22 +84,33 @@ class Search extends Component {
       this.props.history.push("/view/main");
     };
 
-    conductSearch();
-
-    //   for (let i = 0; i < store.getState().sitesData.length; i++) {
-    //     if (
-    //       store.getState().deviceLocation.latitude ===
-    //         store.getState().sitesData[i].graveInfo.latitude &&
-    //       store.getState().deviceLocation.longitude ===
-    //         store.getState().sitesData[i].graveInfo.longitude
-    //     ) {
-    //       let siteDataResponse = { ...store.getState().sitesData[i] };
-    //       this.props.setSubjectInfo(siteDataResponse);
-    //       this.props.history.push("/view/main");
-    //     } else {
-    //       conductSearch();
-    //     }
-    //   }
+    billionGravesService
+      .retreiveSubject()
+      .then((response) => {
+        let image = response.data.items[0].thumbnail;
+        let found = false;
+        for (let i = 0; i < store.getState().sitesData.length; i++) {
+          if (
+            store.getState().deviceLocation.latitude ===
+              store.getState().sitesData[i].graveInfo.latitude &&
+            store.getState().deviceLocation.longitude ===
+              store.getState().sitesData[i].graveInfo.longitude &&
+            store.getState().sitesData[i].lastName ===
+              store.getState().subjectData.lastName
+          ) {
+            found = true;
+            let siteDataResponse = { ...store.getState().sitesData[i] };
+            this.props.setSubjectInfo(siteDataResponse, image);
+            this.props.history.push("/view/main");
+          }
+        }
+        if (!found) {
+          conductSearch();
+        }
+      })
+      .catch((response) => {
+        console.log(response);
+      });
   }
 }
 
@@ -128,16 +137,19 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    setSubjectInfo: (subjectResponse) => {
+    setSubjectInfo: (subjectResponse, image) => {
       const action = {
         type: "SET_SUBJECT_INFO",
-        subjectData: Object.assign({}, subjectResponse, {
-          graveInfo: Object.assign({}, subjectResponse.graveInfo, {
-            stoneImg: subjectResponse.graveInfo.stoneImg,
+        subjectData: {
+          ...subjectResponse,
+          flowers: subjectResponse.flowers,
+          graveInfo: {
+            ...subjectResponse.graveInfo,
+            stoneImg: image,
             latitude: subjectResponse.graveInfo.latitude,
             longitude: subjectResponse.graveInfo.longitude,
-          }),
-        }),
+          },
+        },
       };
       dispatch(action);
     },

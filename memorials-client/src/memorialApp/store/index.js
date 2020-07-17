@@ -2,6 +2,7 @@ import { createStore } from "redux";
 
 const initialState = {
   subjectData: {
+    siteId: null,
     firstName: "",
     middleName: "",
     lastName: "",
@@ -18,6 +19,7 @@ const initialState = {
       latitude: 0,
       longitude: 0,
     },
+    flowers: [],
   },
   deviceLocation: {
     latitude: 0,
@@ -29,6 +31,7 @@ const initialState = {
   },
   sitesData: [
     {
+      siteId: 0,
       firstName: "David",
       middleName: "Joseph",
       lastName: "Hodgkinson",
@@ -41,18 +44,46 @@ const initialState = {
       country: "United States",
       cemeteryName: "Saint Ann Cemetery",
       graveInfo: {
-        stoneImg:
-          "https://s3.amazonaws.com/images.billiongraves.com/headstones/thumbnails/20181019/24319677.jpg?t=2018-10-22+16%3A00%3A22",
+        stoneImg: "",
         latitude: 41.79794,
         longitude: -71.4632739,
       },
       flowers: [
-        { leftBy: "Tom Hodgkinson" },
+        { leftBy: "Tommy Hodgkinson" },
+        { leftBy: "Kelly Hodgkinson" },
+        { leftBy: "Carlene Hodgkinson" },
         { leftBy: "Stephen Hodgkinson" },
         { leftBy: "Carleton Hodgkinson" },
       ],
     },
     {
+      siteId: 1,
+      firstName: "Elizabeth",
+      middleName: "Constance",
+      lastName: "Donnelly",
+      maidenName: "Moore",
+      birthYear: "1939",
+      deathYear: "2001",
+      city: "Cranston",
+      state: "Rhode Island",
+      county: "Providence",
+      country: "United States",
+      cemeteryName: "Saint Ann Cemetery",
+      graveInfo: {
+        stoneImg: "",
+        latitude: 41.79794,
+        longitude: -71.4632739,
+      },
+      flowers: [
+        { leftBy: "Tommy Hodgkinson" },
+        { leftBy: "Kelly Hodgkinson" },
+        { leftBy: "Carlene Hodgkinson" },
+        { leftBy: "Stephen Hodgkinson" },
+        { leftBy: "Carleton Hodgkinson" },
+      ],
+    },
+    {
+      siteId: 2,
       firstName: "Amos",
       middleName: "H",
       lastName: "Kennedy",
@@ -69,46 +100,41 @@ const initialState = {
         latitude: 41.79345,
         longitude: -71.4625964,
       },
-      flowers: [{ leftBy: "Mr. Kennedy" }],
+      flowers: [{ leftBy: "Mr. Robert Kennedy" }],
     },
-    // {
-    //   latitude: 41.854034,
-    //   longitude: -71.381065,
-    //   firstName: "Howard",
-    //   middleName: "Philips",
-    //   lastName: "Lovecraft",
-    //   maidenName: "",
-    //   birthYear: "1890",
-    //   deathYear: "1937",
-    // },
-    // {
-    //   latitude: 41.5458362,
-    //   longitude: -71.5384345,
-    //   firstName: "Cecelia",
-    //   middleName: "M",
-    //   lastName: "Blair",
-    //   maidenName: "Aldrich",
-    //   birthYear: "1860",
-    //   deathYear: "1903",
-    // },
   ],
 };
 
 const reducer = (state = initialState, action) => {
   switch (action.type) {
     case "INPUT_CHANGE":
-      return Object.assign({}, state, {
-        deviceLocation: Object.assign({}, state.deviceLocation, {
+      return {
+        ...state,
+        deviceLocation: {
+          ...state.deviceLocation,
           [action.key]: action.value,
-        }),
-        subjectData: Object.assign({}, state.subjectData, {
+        },
+        subjectData: {
+          ...state.subjectData,
           [action.key]: action.value,
-        }),
-      });
+        },
+      };
+
+    case "ADD_FLOWER":
+      return {
+        ...state.subjectData,
+        flowers: {
+          ...state.subjectData.flowers,
+          leftBy: action.leftBy,
+          date: action.date,
+        },
+      };
 
     case "SET_TO_DEVICE_LOCATION":
-      return Object.assign({}, state, {
+      return {
+        ...state,
         deviceLocation: {
+          ...state.deviceLocation,
           latitude: action.deviceLocation.latitude,
           longitude: action.deviceLocation.longitude,
           city: action.deviceLocation.city,
@@ -116,18 +142,23 @@ const reducer = (state = initialState, action) => {
           county: action.deviceLocation.county,
           country: action.deviceLocation.country,
         },
-        subjectData: Object.assign({}, state.subjectData, {
+        subjectData: {
+          ...state.subjectData,
           firstName: action.firstName,
           middleName: action.middleName,
           lastName: action.lastName,
           birthYear: action.birthYear,
           deathYear: action.deathYear,
-        }),
-      });
+        },
+      };
 
     case "SET_SUBJECT_INFO":
-      return Object.assign({}, state, {
+      return {
+        ...state,
         subjectData: {
+          ...state.subjectData,
+          flowers: action.subjectData.flowers,
+          siteId: action.subjectData.siteId,
           firstName: action.subjectData.firstName,
           middleName: action.subjectData.middleName,
           lastName: action.subjectData.lastName,
@@ -140,36 +171,40 @@ const reducer = (state = initialState, action) => {
           country: action.subjectData.country,
           cemeteryName: action.subjectData.cemeteryName,
           graveInfo: {
+            ...state.subjectData.graveInfo,
             stoneImg: action.subjectData.graveInfo.stoneImg,
             latitude: action.subjectData.graveInfo.latitude,
             longitude: action.subjectData.graveInfo.longitude,
           },
         },
-      });
+      };
 
     case "SET_LOC_AREA":
-      return Object.assign({}, state, {
-        subjectData: Object.assign({}, state, {
+      return {
+        ...state,
+        subjectData: {
+          ...state.subjectData,
           firstName: action.firstName,
           middleName: action.middleName,
           lastName: action.lastName,
           birthYear: action.birthYear,
           deathYear: action.deathYear,
           graveInfo: {
-            stoneImg: "action.subjectData.graveInfo.stoneImg",
+            ...state.subjectData.graveInfo,
             latitude: action.latitude,
             longitude: action.longitude,
           },
-        }),
-        deviceLocation: Object.assign({}, state, {
+        },
+        deviceLocation: {
+          ...state.deviceLocation,
           latitude: action.latitude,
           longitude: action.longitude,
           city: action.city,
           state: action.state,
           county: action.county,
           country: action.country,
-        }),
-      });
+        },
+      };
 
     default:
       return state;

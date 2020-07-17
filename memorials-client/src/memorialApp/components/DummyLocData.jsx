@@ -24,12 +24,6 @@ class DummyLocData extends Component {
           <p>{`Device Longitude: ${
             this.props.sitesData[this.state.key].graveInfo.longitude
           }`}</p>
-          {/* <button
-            className="btn btn-sm btn-success"
-            onClick={() => this.getLocArea(this.state.key)}
-          >
-            Submit to Form
-          </button> */}
         </div>
       </div>
     );

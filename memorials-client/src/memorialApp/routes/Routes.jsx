@@ -14,7 +14,7 @@ import MainView from "../components/views/MainView";
 import Search from "../components/Search";
 import Login from "../components/Login";
 import Logout from "../components/Logout";
-import Footer from "../components/Footer";
+// import Footer from "../components/Footer";
 import Error from "../components/Error";
 
 class Routes extends Component {
@@ -32,8 +32,6 @@ class Routes extends Component {
       <Router>
         <Header loggedInStatus={this.state.loggedIn} />
         <Switch>
-          {/* <AuthenticatedRoute path="/add-site" exact component={AddSite} /> */}
-
           <AuthenticatedRoute path="/" exact component={Login} />
 
           <AuthenticatedRoute
@@ -47,33 +45,6 @@ class Routes extends Component {
             exact
             render={(props) => <MainView {...props} store={store} />}
           />
-          {/* 
-          <AuthenticatedRoute path="/view/parents" exact component={TopView} />
-          <AuthenticatedRoute
-            path="/view/children"
-            exact
-            component={BottomView}
-          /> */}
-          {/* <AuthenticatedRoute
-            path="/view/younger-sibling"
-            exact
-            component={LeftSiblingView}
-          />
-          <AuthenticatedRoute
-            path="/view/older-sibling"
-            exact
-            component={RightSiblingView}
-          />
-          <AuthenticatedRoute
-            path="/view/younger-child"
-            exact
-            component={LeftChildView}
-          />
-          <AuthenticatedRoute
-            path="/view/older-child"
-            exact
-            component={RightChildView}
-          /> */}
           <Route
             path="/login"
             exact
@@ -90,7 +61,6 @@ class Routes extends Component {
           />
           <Route component={Error} />
         </Switch>
-        <Footer />
       </Router>
     );
   }
