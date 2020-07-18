@@ -2,20 +2,33 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { store } from "../../store/";
 import Coords from "../Coords";
-// import Exports from "./SubjectDetails";
+import Modal from "../Modal";
 import SubjectDetails from "./SubjectDetails";
 
 import Flowers from "../Flowers";
 
 class MainView extends Component {
+  constructor() {
+    super();
+
+    this.state = {
+      leftBy: "",
+    };
+  }
+
   render() {
     return (
       <div className="container" style={{ marginTop: "40px" }}>
         <Coords store={store} />
         <div>
           <div className="full-window">
+            <Modal
+              addFlower={() => this.props.addFlower(this.state.leftBy)}
+              store={store}
+              handleChange={this.handleChange}
+            />
             <SubjectDetails store={store} />
-            {true && (
+            {this.props.subjectData.graveInfo.stoneImg && (
               <div>
                 <div>
                   <img
@@ -25,7 +38,7 @@ class MainView extends Component {
                   />
                   <button
                     className="btn btn-sm btn-success flower"
-                    onClick={this.addFlower}
+                    onClick={this.props.showModal}
                   >
                     Leave a Virtual Flower
                   </button>
@@ -43,6 +56,12 @@ class MainView extends Component {
       </div>
     );
   }
+
+  handleChange = (e) => {
+    this.setState({
+      leftBy: e.target.value,
+    });
+  };
 }
 
 const mapStateToProps = (state) => {
@@ -56,8 +75,33 @@ const mapStateToProps = (state) => {
         ...state.subjectData.graveInfo,
         stoneImg: state.subjectData.graveInfo.stoneImg,
       },
+      flowers: {
+        ...state.subjectData.flowers,
+        showModal: state.subjectData.flowers.showModal,
+      },
     },
   };
 };
 
-export default connect(mapStateToProps)(MainView);
+const mapDispatchToProps = (dispatch) => {
+  return {
+    showModal: () => {
+      const action = {
+        type: "OPEN_MODAL",
+        showModal: true,
+      };
+      dispatch(action);
+    },
+    addFlower: (leftBy) => {
+      const action = {
+        type: "ADD_FLOWER",
+        leftBy: leftBy,
+        date: new Date().toLocaleDateString("en-US"),
+        showModal: false,
+      };
+      dispatch(action);
+    },
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(MainView);

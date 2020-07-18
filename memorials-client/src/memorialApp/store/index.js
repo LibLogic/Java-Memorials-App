@@ -19,7 +19,10 @@ const initialState = {
       latitude: 0,
       longitude: 0,
     },
-    flowers: [],
+    flowers: {
+      showModal: false,
+      details: [],
+    },
   },
   deviceLocation: {
     latitude: 0,
@@ -48,13 +51,10 @@ const initialState = {
         latitude: 41.79794,
         longitude: -71.4632739,
       },
-      flowers: [
-        { leftBy: "Tommy Hodgkinson" },
-        { leftBy: "Kelly Hodgkinson" },
-        { leftBy: "Carlene Hodgkinson" },
-        { leftBy: "Stephen Hodgkinson" },
-        { leftBy: "Carleton Hodgkinson" },
-      ],
+      flowers: {
+        showModal: false,
+        details: [],
+      },
     },
     {
       siteId: 1,
@@ -74,13 +74,10 @@ const initialState = {
         latitude: 41.79794,
         longitude: -71.4632739,
       },
-      flowers: [
-        { leftBy: "Tommy Hodgkinson" },
-        { leftBy: "Kelly Hodgkinson" },
-        { leftBy: "Carlene Hodgkinson" },
-        { leftBy: "Stephen Hodgkinson" },
-        { leftBy: "Carleton Hodgkinson" },
-      ],
+      flowers: {
+        showModal: false,
+        details: [],
+      },
     },
     {
       siteId: 2,
@@ -100,7 +97,10 @@ const initialState = {
         latitude: 41.79345,
         longitude: -71.4625964,
       },
-      flowers: [{ leftBy: "Mr. Robert Kennedy" }],
+      flowers: {
+        showModal: false,
+        details: [],
+      },
     },
   ],
 };
@@ -120,13 +120,34 @@ const reducer = (state = initialState, action) => {
         },
       };
 
+    case "OPEN_MODAL":
+      return {
+        ...state,
+        subjectData: {
+          ...state.subjectData,
+          flowers: {
+            ...state.subjectData.flowers,
+            showModal: action.showModal,
+          },
+        },
+      };
+
     case "ADD_FLOWER":
       return {
-        ...state.subjectData,
-        flowers: {
-          ...state.subjectData.flowers,
-          leftBy: action.leftBy,
-          date: action.date,
+        ...state,
+        subjectData: {
+          ...state.subjectData,
+          flowers: {
+            ...state.subjectData.flowers,
+            showModal: action.showModal,
+            details: [
+              ...state.subjectData.flowers.details,
+              {
+                leftBy: action.leftBy || "Anonymous",
+                date: action.date,
+              },
+            ],
+          },
         },
       };
 

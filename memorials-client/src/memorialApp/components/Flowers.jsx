@@ -12,8 +12,8 @@ class Flowers extends Component {
             <td>
               {this.displayFlower0 && (
                 <img
-                  title={`Flower left by: 
-                  ${this.displayFlower0}`}
+                  title={`Left on ${this.displayFlower0.date} 
+by ${this.displayFlower0.leftBy} `}
                   alt={"Flower"}
                   src={flower}
                 />
@@ -22,8 +22,8 @@ class Flowers extends Component {
             <td>
               {this.displayFlower1 && (
                 <img
-                  title={`Flower left by: 
-                  ${this.displayFlower1}`}
+                  title={`Left on ${this.displayFlower1.date} 
+by ${this.displayFlower1.leftBy} `}
                   alt={"Flower"}
                   src={flower}
                 />
@@ -32,8 +32,8 @@ class Flowers extends Component {
             <td>
               {this.displayFlower2 && (
                 <img
-                  title={`Flower left by: 
-                  ${this.displayFlower2}`}
+                  title={`Left on ${this.displayFlower2.date} 
+by ${this.displayFlower2.leftBy} `}
                   alt={"Flower"}
                   src={flower}
                 />
@@ -42,8 +42,8 @@ class Flowers extends Component {
             <td>
               {this.displayFlower3 && (
                 <img
-                  title={`Flower left by: 
-                  ${this.displayFlower3}`}
+                  title={`Left on ${this.displayFlower3.date} 
+by ${this.displayFlower3.leftBy} `}
                   alt={"Flower"}
                   src={flower}
                 />
@@ -52,8 +52,8 @@ class Flowers extends Component {
             <td>
               {this.displayFlower4 && (
                 <img
-                  title={`Flower left by: 
-                  ${this.displayFlower4}`}
+                  title={`Left on ${this.displayFlower4.date} 
+by ${this.displayFlower4.leftBy} `}
                   alt={"Flower"}
                   src={flower}
                 />
@@ -64,8 +64,8 @@ class Flowers extends Component {
             <td>
               {this.displayFlower5 && (
                 <img
-                  title={`Flower left by: 
-                  ${this.displayFlower5}`}
+                  title={`Left on ${this.displayFlower5.date} 
+by ${this.displayFlower5.leftBy} `}
                   alt={"Flower"}
                   src={flower}
                 />
@@ -74,8 +74,8 @@ class Flowers extends Component {
             <td>
               {this.displayFlower6 && (
                 <img
-                  title={`Flower left by: 
-                  ${this.displayFlower6}`}
+                  title={`Left on ${this.displayFlower6.date} 
+by ${this.displayFlower6.leftBy} `}
                   alt={"Flower"}
                   src={flower}
                 />
@@ -84,8 +84,8 @@ class Flowers extends Component {
             <td>
               {this.displayFlower7 && (
                 <img
-                  title={`Flower left by: 
-                  ${this.displayFlower7}`}
+                  title={`Left on ${this.displayFlower7.date} 
+by ${this.displayFlower7.leftBy} `}
                   alt={"Flower"}
                   src={flower}
                 />
@@ -94,8 +94,8 @@ class Flowers extends Component {
             <td>
               {this.displayFlower8 && (
                 <img
-                  title={`Flower left by: 
-                  ${this.displayFlower8}`}
+                  title={`Left on ${this.displayFlower8.date} 
+by ${this.displayFlower8.leftBy} `}
                   alt={"Flower"}
                   src={flower}
                 />
@@ -104,8 +104,8 @@ class Flowers extends Component {
             <td>
               {this.displayFlower9 && (
                 <img
-                  title={`Flower left by: 
-                  ${this.displayFlower9}`}
+                  title={`Left on ${this.displayFlower9.date} 
+by ${this.displayFlower9.leftBy} `}
                   alt={"Flower"}
                   src={flower}
                 />
@@ -116,8 +116,8 @@ class Flowers extends Component {
             <td>
               {this.displayFlower10 && (
                 <img
-                  title={`Flower left by: 
-                  ${this.displayFlower10}`}
+                  title={`Left on ${this.displayFlower10.date} 
+by ${this.displayFlower10.leftBy} `}
                   alt={"Flower"}
                   src={flower}
                 />
@@ -126,8 +126,8 @@ class Flowers extends Component {
             <td>
               {this.displayFlower11 && (
                 <img
-                  title={`Flower left by: 
-                  ${this.displayFlower11}`}
+                  title={`Left on ${this.displayFlower11.date} 
+by ${this.displayFlower11.leftBy} `}
                   alt={"Flower"}
                   src={flower}
                 />
@@ -136,8 +136,8 @@ class Flowers extends Component {
             <td>
               {this.displayFlower12 && (
                 <img
-                  title={`Flower left by: 
-                  ${this.displayFlower12}`}
+                  title={`Left on ${this.displayFlower12.date} 
+by ${this.displayFlower12.leftBy} `}
                   alt={"Flower"}
                   src={flower}
                 />
@@ -146,8 +146,8 @@ class Flowers extends Component {
             <td>
               {this.displayFlower13 && (
                 <img
-                  title={`Flower left by: 
-                  ${this.displayFlower13}`}
+                  title={`Left on ${this.displayFlower13.date} 
+by ${this.displayFlower13.leftBy} `}
                   alt={"Flower"}
                   src={flower}
                 />
@@ -156,8 +156,8 @@ class Flowers extends Component {
             <td>
               {this.displayFlower14 && (
                 <img
-                  title={`Flower left by: 
-                  ${this.displayFlower14}`}
+                  title={`Left on ${this.displayFlower14.date} 
+by ${this.displayFlower14.leftBy} `}
                   alt={"Flower"}
                   src={flower}
                 />
@@ -174,9 +174,9 @@ class Flowers extends Component {
       let temp = "displayFlower" + i;
       this[temp] = false;
     }
-    for (let i = 0; i < this.props.flowers.length; i++) {
+    for (let i = 0; i < this.props.flowers.details.length; i++) {
       let temp = "displayFlower" + i;
-      this[temp] = this.props.flowers[i].leftBy;
+      this[temp] = this.props.flowers.details[i];
     }
   };
 }
