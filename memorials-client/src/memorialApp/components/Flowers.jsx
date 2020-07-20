@@ -174,16 +174,16 @@ by ${this.displayFlower14.leftBy} `}
       let temp = "displayFlower" + i;
       this[temp] = false;
     }
-    for (let i = 0; i < this.props.flowers.details.length; i++) {
+    for (let i = 0; i < this.props.details.length; i++) {
       let temp = "displayFlower" + i;
-      this[temp] = this.props.flowers.details[i];
+      this[temp] = this.props.details[i];
     }
   };
 }
 
 const mapStateToProps = (state) => {
   return {
-    flowers: state.subjectData.flowers,
+    details: state.subjectData.flowers.details,
   };
 };
 

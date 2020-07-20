@@ -23,7 +23,7 @@ class Modal extends Component {
           <button
             className="btn btn-sm btn-success"
             type="submit"
-            onClick={this.props.addFlower}
+            onClick={this.props.processFlower}
           >
             OK
           </button>
@@ -35,7 +35,7 @@ class Modal extends Component {
 
 const mapStateToProps = (state) => {
   return {
-    showModal: state.subjectData.flowers.showModal,
+    showModal: state.subjectData.showModal,
   };
 };
 

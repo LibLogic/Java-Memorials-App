@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import AuthenticationService from "../../api/AuthenticationService.js";
+import AuthenticationService from "../api/AuthenticationService.js";
 
 class Logout extends Component {
   constructor(props) {

@@ -4,7 +4,7 @@ import { store } from "../store";
 import LocData from "./LocData";
 import DummyLocData from "./DummyLocData";
 import SearchDetails from "./SearchDetails";
-import billionGravesService from "../../api/billionGraves/billionGravesService";
+import billionGravesService from "../api/billionGraves/billionGravesService";
 
 class Search extends Component {
   constructor(props) {

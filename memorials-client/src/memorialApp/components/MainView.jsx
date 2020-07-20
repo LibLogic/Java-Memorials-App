@@ -19,12 +19,13 @@ class MainView extends Component {
 
   render() {
     return (
-      <div className="container" style={{ marginTop: "40px" }}>
+      <div className="container">
         <Coords store={store} />
         <div>
           <div className="full-window">
             <Modal
-              addFlower={() => this.props.addFlower(this.state.leftBy)}
+              leftBy={this.state.leftBy}
+              processFlower={() => this.processFlower(this.state.leftBy)}
               store={store}
               handleChange={this.handleChange}
             />
@@ -64,6 +65,14 @@ class MainView extends Component {
       leftBy: e.target.value,
     });
   };
+
+  processFlower = (leftBy) => {
+    this.props.addFlower(leftBy);
+    this.setState({
+      leftBy: "",
+    });
+    console.log("saving flower");
+  };
 }
 
 const mapStateToProps = (state) => {
@@ -73,13 +82,10 @@ const mapStateToProps = (state) => {
       cemeteryName: state.subjectData.cemeteryName,
       city: state.subjectData.city,
       state: state.subjectData.state,
+      showModal: state.subjectData.showModal,
       graveInfo: {
         ...state.subjectData.graveInfo,
         stoneImg: state.subjectData.graveInfo.stoneImg,
-      },
-      flowers: {
-        ...state.subjectData.flowers,
-        showModal: state.subjectData.flowers.showModal,
       },
     },
   };

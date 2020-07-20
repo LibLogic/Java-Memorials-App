@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import LocationService from "../../api/locationService";
+import LocationService from "../api/locationService";
 
 class LocData extends Component {
   constructor(props) {

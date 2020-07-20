@@ -40,6 +40,10 @@
   }
 }
 
+.hidden {
+  display: none;
+}
+
 #flower-modal {
   width: 91%;
   justify-content: center;
@@ -47,13 +51,47 @@
 }
 
 #fb-modal {
-  display: block;
-  background-color: white;
+  background-color: rgb(235, 229, 199);
   width: 92%;
-  padding: 10px 5px 15px 5px;
   position: absolute;
   top: 100px;
   z-index: 1;
+}
+
+.cemetery {
+  margin-bottom: 30px;
+  margin-top: -14px;
+  line-height: 1.4em;
+  padding: 0 12px;
+}
+
+.fb-memorial {
+  line-height: 1.4em;
+  padding: 0 12px;
+}
+
+.fb-prompt {
+  background-color: rgb(206, 202, 180);
+  padding: 15px 5px 15px 5px;
+}
+
+.fb-question {
+  margin-bottom: 0;
+}
+#yes {
+  margin: 3px;
+}
+.yes {
+  margin: 4px;
+  display: inline-block;
+}
+#no {
+  margin: 3px;
+}
+
+.no {
+  margin: 4px;
+  display: inline-block;
 }
 
 .hidden {
@@ -118,7 +156,6 @@
 
 .full-window.search {
   padding: 2% 1% 1% 1%;
-  margin-top: 64px;
 }
 
 .camera-window {

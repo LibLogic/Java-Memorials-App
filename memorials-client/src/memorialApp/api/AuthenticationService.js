@@ -1,5 +1,5 @@
 import axios from "axios";
-import { API_URL_ROOT, AUTH_USER_NAME } from "../memorialApp/Constants";
+import { API_URL_ROOT, AUTH_USER_NAME } from "../constants";
 
 class AuthenticationService {
   getJwtToken(username, password) {

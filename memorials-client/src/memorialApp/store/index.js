@@ -19,9 +19,9 @@ const initialState = {
       latitude: 0,
       longitude: 0,
     },
+    showModal: false,
+    showFBModal: false,
     flowers: {
-      showModal: false,
-      showFBModal: false,
       details: [],
     },
   },
@@ -52,9 +52,9 @@ const initialState = {
         latitude: 41.79794,
         longitude: -71.4632739,
       },
+      showModal: false,
+      showFBModal: false,
       flowers: {
-        showModal: false,
-        showFBModal: false,
         details: [],
       },
     },
@@ -76,9 +76,9 @@ const initialState = {
         latitude: 41.79794,
         longitude: -71.4632739,
       },
+      showModal: false,
+      showFBModal: false,
       flowers: {
-        showModal: false,
-        showFBModal: false,
         details: [],
       },
     },
@@ -100,9 +100,9 @@ const initialState = {
         latitude: 41.79345,
         longitude: -71.4625964,
       },
+      showModal: false,
+      showFBModal: false,
       flowers: {
-        showModal: false,
-        showFBModal: false,
         details: [],
       },
     },
@@ -129,10 +129,16 @@ const reducer = (state = initialState, action) => {
         ...state,
         subjectData: {
           ...state.subjectData,
-          flowers: {
-            ...state.subjectData.flowers,
-            showModal: action.showModal,
-          },
+          showModal: action.showModal,
+        },
+      };
+
+    case "CLOSE_FB_MODAL":
+      return {
+        ...state,
+        subjectData: {
+          ...state.subjectData,
+          showFBModal: action.showFBModal,
         },
       };
 
@@ -141,10 +147,10 @@ const reducer = (state = initialState, action) => {
         ...state,
         subjectData: {
           ...state.subjectData,
+          showModal: action.showModal,
+          showFBModal: action.showFBModal,
           flowers: {
             ...state.subjectData.flowers,
-            showModal: action.showModal,
-            showFBModal: action.showFBModal,
             details: [
               ...state.subjectData.flowers.details,
               {

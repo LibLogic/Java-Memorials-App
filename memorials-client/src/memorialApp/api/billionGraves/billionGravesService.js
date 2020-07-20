@@ -1,10 +1,10 @@
 import axios from "axios";
-import { store } from "../../memorialApp/store";
+import { store } from "../../store";
 
 const headers = {
   "Content-Type": "application/json",
   Authorization:
-    "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJkYXRlIjoiMjAyMC0wNy0xOVQxNDowMzoxOVoiLCJjbGllbnQiOiI4MGZjZDg1NC0yYzc4LTQ2YjQtYjE0YS0zNDNmZjkyOGU1M2UiLCJwYXRoIjoiL2FwaS8xLjMvc2VhcmNoIn0.hYwUR1ZOYtc-SZIWCgwk3hNkGtXNBnD2JKMdyZKF0qwXFqT713rIvDlaa09eQrI9K2459vgiafiNEFzlHyPqaA",
+    "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJkYXRlIjoiMjAyMC0wNy0yMFQxNjoxMjowOFoiLCJjbGllbnQiOiI4MGZjZDg1NC0yYzc4LTQ2YjQtYjE0YS0zNDNmZjkyOGU1M2UiLCJwYXRoIjoiL2FwaS8xLjMvc2VhcmNoIn0.k-S5nSDIJRpUnDCgnOh3QY-b-pc04ffJKbD9aNrheqUr7nkVHPRDNWlCKTbxEp8GgEOv7C6riCwvGkSxxS6JrQ",
 };
 
 class billionGravesService {
