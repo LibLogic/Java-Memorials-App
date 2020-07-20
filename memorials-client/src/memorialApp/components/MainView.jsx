@@ -1,11 +1,12 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { store } from "../../store/";
-import Coords from "../Coords";
-import Modal from "../Modal";
+import { store } from "../store";
+import Coords from "./Coords";
+import Modal from "./Modal";
+import FBModal from "./FBModal";
 import SubjectDetails from "./SubjectDetails";
 
-import Flowers from "../Flowers";
+import Flowers from "./Flowers";
 
 class MainView extends Component {
   constructor() {
@@ -27,8 +28,9 @@ class MainView extends Component {
               store={store}
               handleChange={this.handleChange}
             />
+            <FBModal store={store} />
             <SubjectDetails store={store} />
-            {this.props.subjectData.graveInfo.stoneImg && (
+            {(this.props.subjectData.graveInfo.stoneImg && (
               <div>
                 <div>
                   <img
@@ -50,7 +52,7 @@ class MainView extends Component {
                 </div>
                 <Flowers store={store} />
               </div>
-            )}
+            )) || <h3>Nothing Found Here</h3>}
           </div>
         </div>
       </div>
@@ -98,6 +100,7 @@ const mapDispatchToProps = (dispatch) => {
         leftBy: leftBy,
         date: new Date().toLocaleDateString("en-US"),
         showModal: false,
+        showFBModal: true,
       };
       dispatch(action);
     },

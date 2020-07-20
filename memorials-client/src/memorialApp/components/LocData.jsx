@@ -82,8 +82,11 @@ const mapDispatchToProps = (dispatch) => {
         firstName: "",
         middleName: "",
         lastName: "",
+        maidenName: "",
         birthYear: "",
         deathYear: "",
+        cemeteryName: "",
+        stoneImg: "",
       };
       dispatch(action);
     },

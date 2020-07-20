@@ -3,18 +3,10 @@ import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import { store } from "../store";
 import AuthenticatedRoute from "./AuthenticatedRoute";
 import Header from "../components/Header";
-import MainView from "../components/views/MainView";
-// import TopView from "../components/views/TopView";
-// import BottomView from "../components/views/BottomView";
-// import LeftSiblingView from "../components/views/LeftSiblingView";
-// import RightSiblingView from "../components/views/RightSiblingView";
-// import LeftChildView from "../components/views/LeftChildView";
-// import RightChildView from "../components/views/RightChildView";
-// import AddSite from "../components/AddSite";
+import MainView from "../components/MainView";
 import Search from "../components/Search";
 import Login from "../components/Login";
 import Logout from "../components/Logout";
-// import Footer from "../components/Footer";
 import Error from "../components/Error";
 
 class Routes extends Component {

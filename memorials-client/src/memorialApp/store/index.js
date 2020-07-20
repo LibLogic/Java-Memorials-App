@@ -21,6 +21,7 @@ const initialState = {
     },
     flowers: {
       showModal: false,
+      showFBModal: false,
       details: [],
     },
   },
@@ -53,6 +54,7 @@ const initialState = {
       },
       flowers: {
         showModal: false,
+        showFBModal: false,
         details: [],
       },
     },
@@ -76,6 +78,7 @@ const initialState = {
       },
       flowers: {
         showModal: false,
+        showFBModal: false,
         details: [],
       },
     },
@@ -99,6 +102,7 @@ const initialState = {
       },
       flowers: {
         showModal: false,
+        showFBModal: false,
         details: [],
       },
     },
@@ -140,6 +144,7 @@ const reducer = (state = initialState, action) => {
           flowers: {
             ...state.subjectData.flowers,
             showModal: action.showModal,
+            showFBModal: action.showFBModal,
             details: [
               ...state.subjectData.flowers.details,
               {
@@ -168,8 +173,14 @@ const reducer = (state = initialState, action) => {
           firstName: action.firstName,
           middleName: action.middleName,
           lastName: action.lastName,
+          maidenName: action.maidenName,
           birthYear: action.birthYear,
           deathYear: action.deathYear,
+          cemeteryName: action.cemeteryName,
+          graveInfo: {
+            ...state.subjectData.graveInfo,
+            stoneImg: action.stoneImg,
+          },
         },
       };
 

@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import { store } from "../store";
 import LocData from "./LocData";
 import DummyLocData from "./DummyLocData";
-import SearchDetails from "./views/SearchDetails";
+import SearchDetails from "./SearchDetails";
 import billionGravesService from "../../api/billionGraves/billionGravesService";
 
 class Search extends Component {
@@ -47,35 +47,39 @@ class Search extends Component {
       billionGravesService
         .retreiveSubject()
         .then((response) => {
-          let firstName =
-            response.data.items[0].given_names.split(" ")[0] || "";
-          let middleName =
-            response.data.items[0].given_names.split(" ")[1] || "";
-          // let maidenName =
-          //   response.data.items[0].maiden_names &&
-          //   ` (${response.data.items[0].maiden_names})`;
+          if (
+            response.data.items[0].lat.toFixed(7) ===
+            store.getState().deviceLocation.latitude
+          ) {
+            let firstName =
+              response.data.items[0].given_names.split(" ")[0] || "";
+            let middleName =
+              response.data.items[0].given_names.split(" ")[1] || "";
 
-          const subjectResponse = {
-            firstName: firstName,
-            middleName: middleName,
-            lastName: response.data.items[0].family_names,
-            maidenName: response.data.items[0].maiden_names,
-            birthYear: response.data.items[0].birth_year,
-            deathYear: response.data.items[0].death_year,
-            country: response.data.items[0].cemetery_country,
-            state: response.data.items[0].cemetery_state,
-            city: response.data.items[0].cemetery_city,
-            county: response.data.items[0].cemetery_county,
-            cemeteryName: response.data.items[0].cemetery_name,
-            graveInfo: {
-              stoneImg: response.data.items[0].thumbnail,
-              latitude: response.data.items[0].lat.toFixed(7),
-              longitude: response.data.items[0].lon.toFixed(7),
-            },
-            flowers: [],
-          };
-          console.log("went to network");
-          this.props.setSubjectInfo(subjectResponse);
+            const subjectResponse = {
+              firstName: firstName,
+              middleName: middleName,
+              lastName: response.data.items[0].family_names,
+              maidenName: response.data.items[0].maiden_names,
+              birthYear: response.data.items[0].birth_year,
+              deathYear: response.data.items[0].death_year,
+              country: response.data.items[0].cemetery_country,
+              state: response.data.items[0].cemetery_state,
+              city: response.data.items[0].cemetery_city,
+              county: response.data.items[0].cemetery_county,
+              cemeteryName: response.data.items[0].cemetery_name,
+              graveInfo: {
+                stoneImg: response.data.items[0].thumbnail,
+                latitude: response.data.items[0].lat.toFixed(7),
+                longitude: response.data.items[0].lon.toFixed(7),
+              },
+              flowers: [],
+            };
+            console.log("went to network");
+            console.log("Saving New Site");
+            //  this.props.saveNewSiteInfo(subjectResponse);
+            this.props.setSubjectInfo(subjectResponse);
+          }
         })
         .catch((response) => {
           console.log(response);
@@ -87,7 +91,6 @@ class Search extends Component {
     billionGravesService
       .retreiveSubject()
       .then((response) => {
-        let image = response.data.items[0].thumbnail;
         let found = false;
         for (let i = 0; i < store.getState().sitesData.length; i++) {
           if (
@@ -99,6 +102,7 @@ class Search extends Component {
               store.getState().subjectData.lastName
           ) {
             found = true;
+            let image = response.data.items[0].thumbnail;
             let siteDataResponse = { ...store.getState().sitesData[i] };
             this.props.setSubjectInfo(siteDataResponse, image);
             this.props.history.push("/view/main");
@@ -137,6 +141,22 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
+    saveNewSiteInfo: (subjectResponse, image) => {
+      const action = {
+        //   type: "SET_SUBJECT_INFO",
+        //   subjectData: {
+        //     ...subjectResponse,
+        //     flowers: subjectResponse.flowers,
+        //     graveInfo: {
+        //       ...subjectResponse.graveInfo,
+        //       stoneImg: image,
+        //       latitude: subjectResponse.graveInfo.latitude,
+        //       longitude: subjectResponse.graveInfo.longitude,
+        //     },
+        //   },
+      };
+      dispatch(action);
+    },
     setSubjectInfo: (subjectResponse, image) => {
       const action = {
         type: "SET_SUBJECT_INFO",

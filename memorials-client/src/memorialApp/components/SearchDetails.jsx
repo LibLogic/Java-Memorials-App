@@ -68,7 +68,8 @@ class SearchDetails extends Component {
               </fieldset>
             </div>
           </div>
-          {this.props.subjectData.lastName.length > 2 && (
+          {/* {this.props.subjectData.lastName.length > 2 && ( */}
+          {true && (
             <button
               type="button"
               className="btn btn-sm btn-success"
