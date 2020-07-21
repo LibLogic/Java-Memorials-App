@@ -1,8 +1,9 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 
-class Modal extends Component {
+class FlowerModal extends Component {
   render() {
+    console.log(this.props.leftBy);
     return (
       this.props.showModal && (
         <div id="flower-modal" className="input-group">
@@ -23,7 +24,7 @@ class Modal extends Component {
           <button
             className="btn btn-sm btn-success"
             type="submit"
-            onClick={this.props.processFlower}
+            onClick={() => this.props.processFlower(this.props.leftBy)}
           >
             OK
           </button>
@@ -39,4 +40,4 @@ const mapStateToProps = (state) => {
   };
 };
 
-export default connect(mapStateToProps)(Modal);
+export default connect(mapStateToProps)(FlowerModal);

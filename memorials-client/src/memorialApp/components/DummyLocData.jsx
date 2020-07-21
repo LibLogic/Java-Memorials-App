@@ -11,6 +11,7 @@ class DummyLocData extends Component {
       key: 0,
     };
   }
+
   render() {
     return (
       <div className="container" style={{ marginTop: "40px" }}>
@@ -24,6 +25,7 @@ class DummyLocData extends Component {
           <p>{`Device Longitude: ${
             this.props.sitesData[this.state.key].graveInfo.longitude
           }`}</p>
+          {this.state.key}
         </div>
       </div>
     );
@@ -31,6 +33,8 @@ class DummyLocData extends Component {
 
   incToNext = () => {
     let i = (this.state.key + 1) % store.getState().sitesData.length;
+    console.log(store.getState().sitesData);
+    console.log(this.state.key, store.getState().sitesData.length);
     this.setState({
       key: i,
     });

@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { store } from "../store";
 import Coords from "./Coords";
-import Modal from "./Modal";
+import FlowerModal from "./FlowerModal";
 import FBModal from "./FBModal";
 import SubjectDetails from "./SubjectDetails";
 
@@ -23,9 +23,9 @@ class MainView extends Component {
         <Coords store={store} />
         <div>
           <div className="full-window">
-            <Modal
+            <FlowerModal
               leftBy={this.state.leftBy}
-              processFlower={() => this.processFlower(this.state.leftBy)}
+              processFlower={this.processFlower}
               store={store}
               handleChange={this.handleChange}
             />
@@ -53,7 +53,7 @@ class MainView extends Component {
                 </div>
                 <Flowers store={store} />
               </div>
-            )) || <h3>Nothing Found Here</h3>}
+            )) || <h3>Cemetery Not Found Here</h3>}
           </div>
         </div>
       </div>
@@ -67,11 +67,16 @@ class MainView extends Component {
   };
 
   processFlower = (leftBy) => {
-    this.props.addFlower(leftBy);
-    this.setState({
-      leftBy: "",
-    });
-    console.log("saving flower");
+    let siteId = this.props.subjectData.siteId;
+    this.props.addFlower(leftBy, siteId);
+
+    console.log(
+      "siteId: " + this.props.subjectData.siteId + " leftBy: " + leftBy
+    );
+
+    // this.setState({
+    //   leftBy: "",
+    // });
   };
 }
 
@@ -79,6 +84,7 @@ const mapStateToProps = (state) => {
   return {
     subjectData: {
       ...state.subjectData,
+      siteId: state.subjectData.siteId,
       cemeteryName: state.subjectData.cemeteryName,
       city: state.subjectData.city,
       state: state.subjectData.state,
@@ -100,13 +106,15 @@ const mapDispatchToProps = (dispatch) => {
       };
       dispatch(action);
     },
-    addFlower: (leftBy) => {
+    addFlower: (leftBy, siteId) => {
+      console.log(leftBy, siteId);
       const action = {
         type: "ADD_FLOWER",
-        leftBy: leftBy,
+        leftBy: leftBy || "Anonymous",
         date: new Date().toLocaleDateString("en-US"),
         showModal: false,
         showFBModal: true,
+        siteId: siteId,
       };
       dispatch(action);
     },

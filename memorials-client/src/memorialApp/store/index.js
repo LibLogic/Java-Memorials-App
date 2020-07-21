@@ -14,15 +14,15 @@ const initialState = {
     county: "",
     country: "",
     cemeteryName: "",
-    graveInfo: {
-      stoneImg: "",
-      latitude: 0,
-      longitude: 0,
-    },
     showModal: false,
     showFBModal: false,
     flowers: {
       details: [],
+    },
+    graveInfo: {
+      stoneImg: "",
+      latitude: 0,
+      longitude: 0,
     },
   },
   deviceLocation: {
@@ -47,15 +47,15 @@ const initialState = {
       county: "Providence",
       country: "United States",
       cemeteryName: "Saint Ann Cemetery",
-      graveInfo: {
-        stoneImg: "",
-        latitude: 41.79794,
-        longitude: -71.4632739,
-      },
       showModal: false,
       showFBModal: false,
       flowers: {
         details: [],
+      },
+      graveInfo: {
+        stoneImg: "",
+        latitude: 41.79794,
+        longitude: -71.4632739,
       },
     },
     {
@@ -71,15 +71,15 @@ const initialState = {
       county: "Providence",
       country: "United States",
       cemeteryName: "Saint Ann Cemetery",
-      graveInfo: {
-        stoneImg: "",
-        latitude: 41.79794,
-        longitude: -71.4632739,
-      },
       showModal: false,
       showFBModal: false,
       flowers: {
         details: [],
+      },
+      graveInfo: {
+        stoneImg: "",
+        latitude: 41.79794,
+        longitude: -71.4632739,
       },
     },
     {
@@ -95,15 +95,14 @@ const initialState = {
       county: "Providence",
       country: "United States",
       cemeteryName: "Saint Ann Cemetery",
+      showModal: false,
+      flowers: {
+        details: [],
+      },
       graveInfo: {
         stoneImg: "",
         latitude: 41.79345,
         longitude: -71.4625964,
-      },
-      showModal: false,
-      showFBModal: false,
-      flowers: {
-        details: [],
       },
     },
   ],
@@ -154,12 +153,26 @@ const reducer = (state = initialState, action) => {
             details: [
               ...state.subjectData.flowers.details,
               {
-                leftBy: action.leftBy || "Anonymous",
+                leftBy: action.leftBy,
                 date: action.date,
               },
             ],
           },
         },
+        sitesData: [
+          ...state.sitesData.slice(0, action.siteId),
+          {
+            ...state.sitesData[action.siteId],
+            flowers: {
+              ...state.sitesData[action.siteId].flowers,
+              details: [
+                ...state.sitesData[action.siteId].flowers.details.slice(0),
+                { leftBy: action.leftBy, date: action.date },
+              ],
+            },
+          },
+          ...state.sitesData.slice(action.siteId + 1),
+        ],
       };
 
     case "SET_TO_DEVICE_LOCATION":
@@ -250,3 +263,20 @@ const reducer = (state = initialState, action) => {
 };
 
 export const store = createStore(reducer, initialState);
+
+//     {
+//       [action.siteId]: {
+//         ...state.sitesData[action.siteId],
+//         flowers: {
+//           ...state.sitesData[action.siteId].flowers,
+//           details: [
+//             {
+//               leftBy: action.leftBy,
+//               date: action.date,
+//             },
+//           ],
+//         },
+//       },
+//     },
+//   ],
+// };

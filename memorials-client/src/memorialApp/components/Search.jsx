@@ -47,39 +47,45 @@ class Search extends Component {
       billionGravesService
         .retreiveSubject()
         .then((response) => {
-          if (
-            response.data.items[0].lat.toFixed(7) ===
-            store.getState().deviceLocation.latitude
-          ) {
-            let firstName =
-              response.data.items[0].given_names.split(" ")[0] || "";
-            let middleName =
-              response.data.items[0].given_names.split(" ")[1] || "";
+          // if (
+          //   store.getState().deviceLocation.latitude ===
+          //     response.data.items[0].lat.toFixed(7) &&
+          //   store.getState().deviceLocation.longitude ===
+          //     response.data.items[0].lon.toFixed(7)
+          // ) {
+          let firstName =
+            response.data.items[0].given_names.split(" ")[0] || "";
+          let middleName =
+            response.data.items[0].given_names.split(" ")[1] || "";
 
-            const subjectResponse = {
-              firstName: firstName,
-              middleName: middleName,
-              lastName: response.data.items[0].family_names,
-              maidenName: response.data.items[0].maiden_names,
-              birthYear: response.data.items[0].birth_year,
-              deathYear: response.data.items[0].death_year,
-              country: response.data.items[0].cemetery_country,
-              state: response.data.items[0].cemetery_state,
-              city: response.data.items[0].cemetery_city,
-              county: response.data.items[0].cemetery_county,
-              cemeteryName: response.data.items[0].cemetery_name,
-              graveInfo: {
-                stoneImg: response.data.items[0].thumbnail,
-                latitude: response.data.items[0].lat.toFixed(7),
-                longitude: response.data.items[0].lon.toFixed(7),
-              },
-              flowers: [],
-            };
-            console.log("went to network");
-            console.log("Saving New Site");
-            //  this.props.saveNewSiteInfo(subjectResponse);
-            this.props.setSubjectInfo(subjectResponse);
-          }
+          const subjectResponse = {
+            siteId: store.getState().sitesData.length - 1,
+            firstName: firstName,
+            middleName: middleName,
+            lastName: response.data.items[0].family_names,
+            maidenName: response.data.items[0].maiden_names,
+            birthYear: response.data.items[0].birth_year,
+            deathYear: response.data.items[0].death_year,
+            country: response.data.items[0].cemetery_country,
+            state: response.data.items[0].cemetery_state,
+            city: response.data.items[0].cemetery_city,
+            county: response.data.items[0].cemetery_county,
+            cemeteryName: response.data.items[0].cemetery_name,
+            graveInfo: {
+              stoneImg: response.data.items[0].thumbnail,
+              latitude: response.data.items[0].lat.toFixed(7),
+              longitude: response.data.items[0].lon.toFixed(7),
+            },
+            flowers: {
+              details: [],
+            },
+          };
+          console.log("went to network");
+          console.log("Saving New Site");
+
+          //  this.props.saveNewSiteInfo(subjectResponse);
+          this.props.setSubjectInfo(subjectResponse);
+          // }
         })
         .catch((response) => {
           console.log(response);
@@ -102,9 +108,10 @@ class Search extends Component {
               store.getState().subjectData.lastName
           ) {
             found = true;
+            let siteId = i;
             let image = response.data.items[0].thumbnail;
             let siteDataResponse = { ...store.getState().sitesData[i] };
-            this.props.setSubjectInfo(siteDataResponse, image);
+            this.props.setSubjectInfo(siteDataResponse, image, siteId);
             this.props.history.push("/view/main");
           }
         }
@@ -157,11 +164,12 @@ const mapDispatchToProps = (dispatch) => {
       };
       dispatch(action);
     },
-    setSubjectInfo: (subjectResponse, image) => {
+    setSubjectInfo: (subjectResponse, image, siteId) => {
       const action = {
         type: "SET_SUBJECT_INFO",
         subjectData: {
           ...subjectResponse,
+          siteId: siteId,
           flowers: subjectResponse.flowers,
           graveInfo: {
             ...subjectResponse.graveInfo,
