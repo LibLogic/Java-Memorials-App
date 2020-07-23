@@ -44,10 +44,20 @@
   display: none;
 }
 
+.shutter-btn {
+  border-radius: 50%;
+  width: 35px;
+  height: 35px;
+  margin: 30% auto 0 auto;
+  border: 3px solid black;
+  background-color: red;
+}
+
 #flower-modal {
   width: 91%;
   justify-content: center;
   position: absolute;
+  z-index: 1;
 }
 
 #fb-modal {
@@ -117,32 +127,6 @@
   margin: 0;
 }
 
-.arrow {
-  width: 50px;
-  height: 25px;
-  color: white;
-  background-color: green;
-}
-
-.left-arrow {
-  display: inline-block;
-}
-
-.right-arrow {
-  display: inline-block;
-  transform: rotate(180deg);
-}
-
-.up-arrow {
-  margin: auto;
-  transform: rotate(90deg);
-}
-
-.down-arrow {
-  margin: auto;
-  transform: rotate(270deg);
-}
-
 .full-window {
   position: relative;
   display: inline-block;
@@ -176,13 +160,44 @@
   z-index: 1;
 }
 
+.image-box {
+  position: relative;
+  max-width: 88%;
+  margin: 0 auto;
+}
+
+.icon-box {
+  position: absolute;
+  top: 0;
+  right: 0;
+  /* opacity: 0.5; */
+  transform-origin: top right;
+  transform: scale(0.45);
+}
+
+.icon-box:hover {
+  transform: scale(0.6);
+}
+
+.headstone-img {
+  min-width: 100%;
+}
+
+.person-icon-box img,
+.headstone-icon-box img {
+  transform-origin: top right;
+  transform: scale(0.8);
+}
+
+/* .headstone-icon-box img {
+  display: none;
+} */
+
 #edit-form input {
   font-size: 9px;
 }
 
 .search-details {
-  /* display: none; */
-  /* margin-top: 35%; */
   position: absolute;
   bottom: 5%;
   padding: 9% 6% 6% 6%;
@@ -192,7 +207,6 @@
 }
 
 .display-detail {
-  /* display: none; */
   position: absolute;
   top: 0;
   left: 0;
@@ -203,26 +217,23 @@
 }
 
 .display-details {
-  /* display: none; */
   position: absolute;
   top: 0;
   left: 0;
   padding: 5%;
-  padding-top: 9%;
+  padding-top: 7%;
   background-color: rgba(49, 74, 156, 0.4);
-  min-height: 24%;
+  min-height: 22%;
   width: 100%;
 }
 
 .display-details-sm {
-  /* display: none; */
   position: absolute;
   top: 0;
   background-color: rgba(49, 74, 156, 0.4);
   padding: 5% 5%;
   height: 20%;
   width: 100%;
-  /* margin-left: 35px; */
 }
 
 #flower {
@@ -232,19 +243,19 @@
 
 #flower td {
   width: 20%;
-  height: 45px;
+  height: 37px;
 }
 
 #flower td img {
   max-width: 100%;
 }
 
-button.flower {
-  margin: -40px 0 0 0;
+.flower-btn {
+  margin: -3px 0 6px 0;
 }
 
 .loc-info {
-  margin-top: -12px;
+  margin-top: 4px;
 }
 
 .edit-details {

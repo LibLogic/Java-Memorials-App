@@ -23,7 +23,9 @@ class LocData extends Component {
             Actual Location (Reset)
           </button>
           <p>{`Device Latitude: ${this.props.deviceLocation.latitude}`}</p>
+          {/* <input type="text" value={this.props.deviceLocation.latitude} /> */}
           <p>{`Device Longitude: ${this.props.deviceLocation.longitude}`}</p>
+          {/* <input type="text" value={this.props.deviceLocation.longitude} /> */}
           <p>{`Country: ${this.props.deviceLocation.country}`}</p>
           <p>{`State: ${this.props.deviceLocation.state}`}</p>
           <p>{`City: ${this.props.deviceLocation.city}`}</p>

@@ -30,18 +30,18 @@ class FBModal extends Component {
           <div className="fb-prompt">
             <p className="fb-question">Post the above Facebook?</p>
             <p className="yes">
-              <input
-                type="radio"
-                id="yes"
-                name="fbshare"
-                value="Yes"
-                defaultChecked
-              />
+              <input type="radio" id="yes" name="fbshare" value="Yes" />
               {/* post to fb */}
               <label htmlFor="Yes">Yes</label>
             </p>
             <p className="no">
-              <input type="radio" id="no" name="fbshare" value="No" />
+              <input
+                type="radio"
+                id="no"
+                name="fbshare"
+                value="No"
+                defaultChecked
+              />
               {/* set showFBModal to false */}
               <label htmlFor="No">No</label>
             </p>

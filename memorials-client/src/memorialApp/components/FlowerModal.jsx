@@ -3,7 +3,6 @@ import { connect } from "react-redux";
 
 class FlowerModal extends Component {
   render() {
-    console.log(this.props.leftBy);
     return (
       this.props.showModal && (
         <div id="flower-modal" className="input-group">

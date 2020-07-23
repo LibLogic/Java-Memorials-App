@@ -5,8 +5,10 @@ import Coords from "./Coords";
 import FlowerModal from "./FlowerModal";
 import FBModal from "./FBModal";
 import SubjectDetails from "./SubjectDetails";
-
 import Flowers from "./Flowers";
+import person from "../images/person.png";
+import lgPerson from "../images/lg-person.png";
+import headstone from "../images/headstone.png";
 
 class MainView extends Component {
   constructor() {
@@ -14,6 +16,10 @@ class MainView extends Component {
 
     this.state = {
       leftBy: "",
+      pib: true,
+      hi: true,
+      hib: false,
+      pi: false,
     };
   }
 
@@ -32,24 +38,59 @@ class MainView extends Component {
             <FBModal store={store} />
             <SubjectDetails store={store} />
             {(this.props.subjectData.graveInfo.stoneImg && (
-              <div>
+              <div style={{ marginTop: "-14px" }}>
                 <div>
-                  <img
-                    style={{ marginBottom: "6px" }}
-                    src={this.props.subjectData.graveInfo.stoneImg}
-                    alt="Headstone"
-                  />
-                  <button
-                    className="btn btn-sm btn-success flower"
-                    onClick={this.props.showModal}
-                  >
-                    Leave a Virtual Flower
-                  </button>
-                  <h6 className="loc-info">
-                    {`${this.props.subjectData.cemeteryName}`}
-                    <br />
-                    {`${this.props.subjectData.city}, ${this.props.subjectData.state}`}
-                  </h6>
+                  <div className="image-box">
+                    {this.state.hi && (
+                      <img
+                        className="headstone-img"
+                        src={this.props.subjectData.graveInfo.stoneImg}
+                        alt="Headstone"
+                      />
+                    )}
+                    {this.state.pi && (
+                      <img
+                        className="subject-img"
+                        src={lgPerson}
+                        alt="person"
+                      />
+                    )}
+                    <div className="icon-box">
+                      {this.state.pib && (
+                        <div className="person-icon-box">
+                          <img
+                            onDoubleClick={this.swapMainView}
+                            className="person-icon"
+                            src={person}
+                            alt="Person"
+                          />
+                        </div>
+                      )}
+                      {this.state.hib && (
+                        <div className="headstone-icon-box">
+                          <img
+                            onDoubleClick={this.swapMainView}
+                            className="headstone-icon"
+                            src={headstone}
+                            alt="Headstone"
+                          />
+                        </div>
+                      )}
+                    </div>
+                  </div>
+                  <div>
+                    <h6 className="loc-info">
+                      {`${this.props.subjectData.cemeteryName}`}
+                      <br />
+                      {`${this.props.subjectData.city}, ${this.props.subjectData.state}`}
+                    </h6>
+                    <button
+                      className="btn btn-sm btn-success flower-btn"
+                      onClick={this.props.showModal}
+                    >
+                      Leave a Virtual Flower
+                    </button>
+                  </div>
                 </div>
                 <Flowers store={store} />
               </div>
@@ -59,6 +100,16 @@ class MainView extends Component {
       </div>
     );
   }
+
+  swapMainView = () => {
+    console.log("swapMainView ran");
+    this.setState({
+      pib: !this.state.pib,
+      hi: !this.state.hi,
+      hib: !this.state.hib,
+      pi: !this.state.pi,
+    });
+  };
 
   handleChange = (e) => {
     this.setState({
@@ -70,13 +121,9 @@ class MainView extends Component {
     let siteId = this.props.subjectData.siteId;
     this.props.addFlower(leftBy, siteId);
 
-    console.log(
-      "siteId: " + this.props.subjectData.siteId + " leftBy: " + leftBy
-    );
-
-    // this.setState({
-    //   leftBy: "",
-    // });
+    this.setState({
+      leftBy: "",
+    });
   };
 }
 
@@ -107,7 +154,6 @@ const mapDispatchToProps = (dispatch) => {
       dispatch(action);
     },
     addFlower: (leftBy, siteId) => {
-      console.log(leftBy, siteId);
       const action = {
         type: "ADD_FLOWER",
         leftBy: leftBy || "Anonymous",

@@ -22,6 +22,9 @@ class Search extends Component {
           <div id="camera-window" className="camera-window">
             Camera View
           </div>
+          {!this.props.subjectData.lastName && (
+            <div title="Take Photo" className="shutter-btn"></div>
+          )}
           <div className="display-detail">
             <h5>
               {`${this.props.subjectData.firstName} ${this.props.subjectData.middleName}
@@ -83,7 +86,7 @@ class Search extends Component {
           console.log("went to network");
           console.log("Saving New Site");
 
-          //  this.props.saveNewSiteInfo(subjectResponse);
+          this.props.saveNewSiteInfo(subjectResponse);
           this.props.setSubjectInfo(subjectResponse);
           // }
         })
@@ -148,19 +151,10 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    saveNewSiteInfo: (subjectResponse, image) => {
+    saveNewSiteInfo: (subjectResponse) => {
       const action = {
-        //   type: "SET_SUBJECT_INFO",
-        //   subjectData: {
-        //     ...subjectResponse,
-        //     flowers: subjectResponse.flowers,
-        //     graveInfo: {
-        //       ...subjectResponse.graveInfo,
-        //       stoneImg: image,
-        //       latitude: subjectResponse.graveInfo.latitude,
-        //       longitude: subjectResponse.graveInfo.longitude,
-        //     },
-        //   },
+        type: "SAVE_NEW_SITE",
+        sitesData: subjectResponse,
       };
       dispatch(action);
     },

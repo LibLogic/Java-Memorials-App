@@ -5,8 +5,11 @@ class SubjectDetails extends Component {
   render(props) {
     return (
       <div>
-        <div className="display-details">
-          {this.props.subjectData.city && (
+        <div
+          onDoubleClick={() => console.log("double clicked")}
+          className="display-details"
+        >
+          {this.props.subjectData.city && this.props.subjectData.lastName && (
             <div>
               <h5>
                 {`${this.props.subjectData.firstName} ${this.props.subjectData.middleName}

@@ -166,7 +166,7 @@ const reducer = (state = initialState, action) => {
             flowers: {
               ...state.sitesData[action.siteId].flowers,
               details: [
-                ...state.sitesData[action.siteId].flowers.details.slice(0),
+                ...state.sitesData[action.siteId].flowers.details,
                 { leftBy: action.leftBy, date: action.date },
               ],
             },
@@ -201,6 +201,12 @@ const reducer = (state = initialState, action) => {
             stoneImg: action.stoneImg,
           },
         },
+      };
+
+    case "SAVE_NEW_SITE":
+      return {
+        ...state,
+        sitesData: [...state.sitesData, action.sitesData],
       };
 
     case "SET_SUBJECT_INFO":
