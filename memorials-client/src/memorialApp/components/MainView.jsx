@@ -2,13 +2,14 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { store } from "../store";
 import Coords from "./Coords";
+// import { UpArrow } from "./Controls";
 import FlowerModal from "./FlowerModal";
 import FBModal from "./FBModal";
 import SubjectDetails from "./SubjectDetails";
 import Flowers from "./Flowers";
-import person from "../images/person.png";
-import lgPerson from "../images/lg-person.png";
-import headstone from "../images/headstone.png";
+import personIcon from "../images/personIcon.png";
+import Person from "../images/person.png";
+import headstoneIcon from "../images/headstoneIcon.png";
 
 class MainView extends Component {
   constructor() {
@@ -16,10 +17,10 @@ class MainView extends Component {
 
     this.state = {
       leftBy: "",
-      pib: true,
-      hi: true,
-      hib: false,
-      pi: false,
+      personInfoBox: true,
+      headstoneImage: true,
+      headstoneInfoBox: false,
+      personImage: false,
     };
   }
 
@@ -27,6 +28,7 @@ class MainView extends Component {
     return (
       <div className="container">
         <Coords store={store} />
+        {/* <UpArrow history={this.props.history} navTo={"/view/family"} /> */}
         <div>
           <div className="full-window">
             <FlowerModal
@@ -41,37 +43,33 @@ class MainView extends Component {
               <div style={{ marginTop: "-14px" }}>
                 <div>
                   <div className="image-box">
-                    {this.state.hi && (
+                    {this.state.headstoneImage && (
                       <img
                         className="headstone-img"
                         src={this.props.subjectData.graveInfo.stoneImg}
                         alt="Headstone"
                       />
                     )}
-                    {this.state.pi && (
-                      <img
-                        className="subject-img"
-                        src={lgPerson}
-                        alt="person"
-                      />
+                    {this.state.personImage && (
+                      <img className="person-img" src={Person} alt="person" />
                     )}
                     <div className="icon-box">
-                      {this.state.pib && (
+                      {this.state.personInfoBox && (
                         <div className="person-icon-box">
                           <img
                             onDoubleClick={this.swapMainView}
                             className="person-icon"
-                            src={person}
+                            src={personIcon}
                             alt="Person"
                           />
                         </div>
                       )}
-                      {this.state.hib && (
+                      {this.state.headstoneInfoBox && (
                         <div className="headstone-icon-box">
                           <img
                             onDoubleClick={this.swapMainView}
                             className="headstone-icon"
-                            src={headstone}
+                            src={headstoneIcon}
                             alt="Headstone"
                           />
                         </div>
@@ -102,12 +100,11 @@ class MainView extends Component {
   }
 
   swapMainView = () => {
-    console.log("swapMainView ran");
     this.setState({
-      pib: !this.state.pib,
-      hi: !this.state.hi,
-      hib: !this.state.hib,
-      pi: !this.state.pi,
+      personInfoBox: !this.state.personInfoBox,
+      headstoneImage: !this.state.headstoneImage,
+      headstoneInfoBox: !this.state.headstoneInfoBox,
+      personImage: !this.state.personImage,
     });
   };
 

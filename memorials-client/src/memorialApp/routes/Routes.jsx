@@ -4,6 +4,7 @@ import { store } from "../store";
 import AuthenticatedRoute from "./AuthenticatedRoute";
 import Header from "../components/Header";
 import MainView from "../components/MainView";
+// import FamilyView from "../components/FamilyView";
 import Search from "../components/Search";
 import Login from "../components/Login";
 import Logout from "../components/Logout";
@@ -37,6 +38,11 @@ class Routes extends Component {
             exact
             render={(props) => <MainView {...props} store={store} />}
           />
+          {/* <AuthenticatedRoute
+            path="/view/family"
+            exact
+            component={FamilyView}
+          /> */}
           <Route
             path="/login"
             exact
