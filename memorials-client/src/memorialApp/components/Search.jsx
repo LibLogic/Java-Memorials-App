@@ -6,11 +6,18 @@ import DummyLocData from "./DummyLocData";
 import SearchDetails from "./SearchDetails";
 import billionGravesService from "../api/billionGraves/billionGravesService";
 
+const SpeechRecognition =
+  window.SpeechRecognition || window.webkitSpeechRecognition;
+const recognition = new SpeechRecognition();
+recognition.interimResult = true;
+recognition.continuous = true;
+
 class Search extends Component {
   constructor(props) {
     super(props);
 
     this.doSearch = this.doSearch.bind(this);
+    this.getSpeech = this.getSpeech.bind(this);
   }
 
   render(props) {
@@ -39,10 +46,56 @@ class Search extends Component {
               <h6>{""}</h6>
             )}
           </div>
-          <SearchDetails store={store} doSearch={this.doSearch} />
+          <SearchDetails
+            store={store}
+            getSpeech={this.getSpeech}
+            doSearch={this.doSearch}
+          />
         </div>
       </div>
     );
+  }
+
+  getSpeech() {
+    recognition.start();
+    recognition.onresult = (e) => {
+      const speechToText = Array.from(e.results)
+        .map((result) => result[0])
+        .map((result) => result.transcript)[0]
+        .split(" ");
+      if (e.results[0].isFinal) {
+        recognition.stop();
+      }
+      let speech = speechToText.map((word) => {
+        return `${word[0].toUpperCase()}${word.slice(1)}`;
+      });
+      if (speech[speech.length - 2] === "To") {
+        speech.splice(speech.length - 2, 1);
+      }
+      if (speech.length === 4) {
+        speech.splice(1, 0, "");
+      }
+      if (speech.length === 3) {
+        speech.splice(speech.length, 0, "", "");
+      }
+      if (speech.length === 2 && isNaN(speech[1])) {
+        speech.splice(1, 0, null);
+        speech.splice(speech.length, 0, "", "");
+      }
+      if (speech.length === 2 && !isNaN(speech[1])) {
+        speech.splice(0, 0, "", "");
+        speech.splice(3, 0, "");
+      }
+
+      let speechSubject = {
+        firstName: speech[0],
+        middleName: speech[1],
+        lastName: speech[2],
+        birthYear: speech[3],
+        deathYear: speech[4],
+      };
+      this.props.setSpeechData(speechSubject);
+    };
   }
 
   doSearch() {
@@ -83,9 +136,6 @@ class Search extends Component {
               details: [],
             },
           };
-          console.log("went to network");
-          console.log("Saving New Site");
-
           this.props.saveNewSiteInfo(subjectResponse);
           this.props.setSubjectInfo(subjectResponse);
           // }
@@ -130,6 +180,13 @@ class Search extends Component {
 
 const mapStateToProps = (state) => {
   return {
+    speechData: {
+      firstName: state.speechData.firstName,
+      middleName: state.speechData.middleName,
+      lastName: state.speechData.lastName,
+      birthYear: state.speechData.birthYear,
+      deathYear: state.speechData.deathYear,
+    },
     subjectData: {
       firstName: state.subjectData.firstName,
       middleName: state.subjectData.middleName,
@@ -155,6 +212,13 @@ const mapDispatchToProps = (dispatch) => {
       const action = {
         type: "SAVE_NEW_SITE",
         sitesData: subjectResponse,
+      };
+      dispatch(action);
+    },
+    setSpeechData: (speechData) => {
+      const action = {
+        type: "SET_SPEECH_DATA",
+        speechData: speechData,
       };
       dispatch(action);
     },

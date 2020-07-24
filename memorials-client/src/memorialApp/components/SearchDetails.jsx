@@ -16,6 +16,7 @@ class SearchDetails extends Component {
                   placeholder="First Name"
                   value={this.props.subjectData.firstName}
                   onChange={this.props.handleChange}
+                  onClick={this.props.getSpeech}
                 />
               </fieldset>
             </div>
@@ -50,7 +51,7 @@ class SearchDetails extends Component {
                   type="text"
                   placeholder="Birth"
                   name="birthYear"
-                  value={this.props.subjectData.birthYear}
+                  value={this.props.speechData.birthYear}
                   onChange={this.props.handleChange}
                 />
               </fieldset>
@@ -62,7 +63,7 @@ class SearchDetails extends Component {
                   type="text"
                   placeholder="Death"
                   name="deathYear"
-                  value={this.props.subjectData.deathYear}
+                  value={this.props.speechData.deathYear}
                   onChange={this.props.handleChange}
                 />
               </fieldset>
@@ -93,6 +94,14 @@ const mapStateToProps = (state) => {
       state: state.deviceLocation.state,
       county: state.deviceLocation.county,
       country: state.deviceLocation.country,
+    },
+    speechData: {
+      ...state.speechData,
+      firstName: state.speechData.firstName,
+      middleName: state.speechData.middleName,
+      lastName: state.speechData.lastName,
+      birthYear: state.speechData.birthYear,
+      deathYear: state.speechData.deathYear,
     },
     subjectData: {
       ...state.subjectData,

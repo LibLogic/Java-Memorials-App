@@ -1,6 +1,13 @@
 import { createStore } from "redux";
 
 const initialState = {
+  speechData: {
+    firstName: "",
+    middleName: "",
+    lastName: "",
+    birthYear: "",
+    deathYear: "",
+  },
   subjectData: {
     siteId: null,
     firstName: "",
@@ -209,6 +216,19 @@ const reducer = (state = initialState, action) => {
         sitesData: [...state.sitesData, action.sitesData],
       };
 
+    case "SET_SPEECH_DATA":
+      return {
+        ...state,
+        subjectData: {
+          ...state.subjectData,
+          firstName: action.speechData.firstName,
+          middleName: action.speechData.middleName,
+          lastName: action.speechData.lastName,
+          birthYear: action.speechData.birthYear,
+          deathYear: action.speechData.deathYear,
+        },
+      };
+
     case "SET_SUBJECT_INFO":
       return {
         ...state,
@@ -269,20 +289,3 @@ const reducer = (state = initialState, action) => {
 };
 
 export const store = createStore(reducer, initialState);
-
-//     {
-//       [action.siteId]: {
-//         ...state.sitesData[action.siteId],
-//         flowers: {
-//           ...state.sitesData[action.siteId].flowers,
-//           details: [
-//             {
-//               leftBy: action.leftBy,
-//               date: action.date,
-//             },
-//           ],
-//         },
-//       },
-//     },
-//   ],
-// };
