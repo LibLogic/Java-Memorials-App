@@ -87,6 +87,7 @@ class Search extends Component {
         dates = speech.filter((word) => {
           return !isNaN(word);
         });
+<<<<<<< HEAD
       }
       speech.splice(3);
       console.log(speech);
@@ -104,6 +105,25 @@ class Search extends Component {
       if (names.length === 2) {
         speech = [names[0], "", names[1]];
       }
+=======
+      }
+      speech.splice(3);
+      console.log(speech);
+      let names = speech.filter((word) => {
+        return (
+          word !== "Born" &&
+          word !== "Died" &&
+          word !== "To" &&
+          word !== "Two" &&
+          word !== "On" &&
+          isNaN(word)
+        );
+      });
+      console.log(names);
+      if (names.length === 2) {
+        speech = [names[0], "", names[1]];
+      }
+>>>>>>> 365328f7be6aa31d6f485a7b69c6f6b04ded7fbf
       if (names.length === 1) {
         speech = ["", "", names[0]];
       }
