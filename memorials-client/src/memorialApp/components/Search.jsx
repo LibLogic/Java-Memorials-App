@@ -64,9 +64,19 @@ class Search extends Component {
       let speech = speechToText.map((word) => {
         return `${word[0].toUpperCase()}${word.slice(1)}`;
       });
-      // fix sometimes getting (1750-1850)
-      // also try to do something about when only a born date is provided
       let dates = [];
+      if (
+        speech[speech.length - 1].length === 9 &&
+        !isNaN(
+          speech[speech.length - 1].substring(0, 4) +
+            speech[speech.length - 1].substring(5)
+        )
+      ) {
+        dates[0] = speech[speech.length - 1].substring(0, 4);
+        dates[1] = speech[speech.length - 1].substring(5);
+        speech.pop();
+        speech = [...speech, ...dates];
+      }
       if (
         speech[speech.length - 2] === "Born" &&
         !isNaN(speech[speech.length - 1])
@@ -78,8 +88,8 @@ class Search extends Component {
           return !isNaN(word);
         });
       }
+
       speech.splice(3);
-      console.log(speech);
       let names = speech.filter((word) => {
         return (
           word !== "Born" &&
@@ -90,7 +100,6 @@ class Search extends Component {
           isNaN(word)
         );
       });
-      console.log(names);
       if (names.length === 2) {
         speech = [names[0], "", names[1]];
       }
