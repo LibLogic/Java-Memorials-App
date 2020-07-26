@@ -64,15 +64,9 @@ class Search extends Component {
       let speech = speechToText.map((word) => {
         return `${word[0].toUpperCase()}${word.slice(1)}`;
       });
-<<<<<<< HEAD
       let dates = [];
       if (
         speech[speech.length - 1].length === 9 &&
-=======
-
-      let dates = [];
-      if (
->>>>>>> master
         !isNaN(
           speech[speech.length - 1].substring(0, 4) +
             speech[speech.length - 1].substring(5)
