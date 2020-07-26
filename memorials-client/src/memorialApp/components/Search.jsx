@@ -89,7 +89,6 @@ class Search extends Component {
         });
       }
       speech.splice(3);
-      console.log(speech);
       let names = speech.filter((word) => {
         return (
           word !== "Born" &&
@@ -100,7 +99,6 @@ class Search extends Component {
           isNaN(word)
         );
       });
-      console.log(names);
       if (names.length === 2) {
         speech = [names[0], "", names[1]];
       }
