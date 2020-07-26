@@ -112,6 +112,30 @@ const initialState = {
         longitude: -71.4625964,
       },
     },
+    {
+      siteId: 3,
+      firstName: "Sarah",
+      middleName: "F",
+      lastName: "Hankinson",
+      maidenName: "Cahoone",
+      birthYear: "1889",
+      deathYear: "1978",
+      city: "West Warwick",
+      state: "Rhode Island",
+      county: "Kent County",
+      country: "United States",
+      cemeteryName: "Saint Mary Cemetery",
+      showModal: false,
+      showFBModal: false,
+      flowers: {
+        details: [],
+      },
+      graveInfo: {
+        stoneImg: "",
+        latitude: 41.68649,
+        longitude: -71.51888,
+      },
+    },
   ],
 };
 
