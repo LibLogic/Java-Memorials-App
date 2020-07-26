@@ -1,14 +1,23 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
+import flower from "../images/flower.png";
 
 class FBModal extends Component {
   render() {
     return (
       (this.props.showFBModal && (
-        <div id="fb-modal">
+        <div
+          id="fb-modal"
+          title={`Left on ${this.props.leftBy.date} 
+by ${this.props.leftBy.leftBy} `}
+        >
           <div>
             <br />
-            <p>Virtual Flower Left</p>
+            <p>
+              A Virtual Flower{"  "}
+              <img style={{ width: "22%" }} alt="Flower" src={flower}></img>
+            </p>
+
             <h6 className="fb-memorial">
               In Memory Of
               <br />
@@ -20,11 +29,11 @@ class FBModal extends Component {
               <br />
               {this.props.birthYear} - {this.props.deathYear}
             </h6>
-            <br />
             <p className="cemetery">
-              {this.props.cemeteryName}
               <br />
-              {this.props.city}, {this.props.state}
+              {this.props.cemeteryName}
+              {/* <br />
+              {this.props.city}, {this.props.state} */}
             </p>
           </div>
           <div className="fb-prompt">

@@ -4,7 +4,7 @@ import { store } from "../../store";
 const headers = {
   "Content-Type": "application/json",
   Authorization:
-    "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJkYXRlIjoiMjAyMC0wNy0yNFQxNzoxMjo0N1oiLCJjbGllbnQiOiI4MGZjZDg1NC0yYzc4LTQ2YjQtYjE0YS0zNDNmZjkyOGU1M2UiLCJwYXRoIjoiL2FwaS8xLjMvc2VhcmNoIn0.BrO7urgdUilkl_dhEoS2e0XDNbcpgvrja4kwE2HL0VxoqHheMQUUzG1dwJ4dM-Rw53Y5TsRJfOaicri66UsEHQ",
+    "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJkYXRlIjoiMjAyMC0wNy0yNVQxODoxOTo0OFoiLCJjbGllbnQiOiI4MGZjZDg1NC0yYzc4LTQ2YjQtYjE0YS0zNDNmZjkyOGU1M2UiLCJwYXRoIjoiL2FwaS8xLjMvc2VhcmNoIn0.065NSotD_wMACa7eDDobEys4uKneLshUZKw6xuaAyQHmIA9y25-h4uXsvSeEG5ia-sGFuKIG4weCsWR5HOz28A",
 };
 
 class billionGravesService {
@@ -26,7 +26,7 @@ class billionGravesService {
         branch: null,
         rank: null,
         start: 0,
-        size: 15,
+        size: 5,
       },
       {
         headers: headers,

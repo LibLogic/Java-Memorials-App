@@ -13,13 +13,6 @@ recognition.interimResult = true;
 recognition.continuous = true;
 
 class Search extends Component {
-  constructor(props) {
-    super(props);
-
-    this.doSearch = this.doSearch.bind(this);
-    this.getSpeech = this.getSpeech.bind(this);
-  }
-
   render(props) {
     return (
       <div className="container">
@@ -41,7 +34,9 @@ class Search extends Component {
             this.props.subjectData.deathYear ? (
               <h6>{`${this.props.subjectData.birthYear} — ${this.props.subjectData.deathYear}`}</h6>
             ) : this.props.subjectData.birthYear ? (
-              <h6>{`${this.props.subjectData.birthYear} — Living`}</h6>
+              <h6>{`${this.props.subjectData.birthYear} — ????`}</h6>
+            ) : this.props.subjectData.deathYear ? (
+              <h6>{`???? — ${this.props.subjectData.deathYear}`}</h6>
             ) : (
               <h6>{""}</h6>
             )}
@@ -56,7 +51,7 @@ class Search extends Component {
     );
   }
 
-  getSpeech() {
+  getSpeech = () => {
     recognition.start();
     recognition.onresult = (e) => {
       const speechToText = Array.from(e.results)
@@ -69,22 +64,47 @@ class Search extends Component {
       let speech = speechToText.map((word) => {
         return `${word[0].toUpperCase()}${word.slice(1)}`;
       });
-      if (speech[speech.length - 2] === "To") {
+      // fix sometimes getting (1750-1850)
+      // also try to do something about when only a born date is provided
+      let dates = [];
+      if (
+        speech[speech.length - 2] === "Born" &&
+        !isNaN(speech[speech.length - 1])
+      ) {
+        dates = [speech[speech.length - 1], ""];
         speech.splice(speech.length - 2, 1);
+      } else {
+        dates = speech.filter((word) => {
+          return !isNaN(word);
+        });
       }
-      if (speech.length === 4) {
-        speech.splice(1, 0, "");
+      speech.splice(3);
+      console.log(speech);
+      let names = speech.filter((word) => {
+        return (
+          word !== "Born" &&
+          word !== "Died" &&
+          word !== "To" &&
+          word !== "Two" &&
+          word !== "On" &&
+          isNaN(word)
+        );
+      });
+      console.log(names);
+      if (names.length === 2) {
+        speech = [names[0], "", names[1]];
       }
-      if (speech.length === 3) {
-        speech.splice(speech.length, 0, "", "");
+      if (names.length === 1) {
+        speech = ["", "", names[0]];
       }
-      if (speech.length === 2 && isNaN(speech[1])) {
-        speech.splice(1, 0, null);
-        speech.splice(speech.length, 0, "", "");
+      if (dates.length === 0) {
+        speech = [...speech, "", ""];
       }
-      if (speech.length === 2 && !isNaN(speech[1])) {
-        speech.splice(0, 0, "", "");
-        speech.splice(3, 0, "");
+      if (dates.length === 1) {
+        speech = [...speech, "", dates[0]];
+      }
+      if (dates.length === 2) {
+        speech = [...speech, ...dates];
       }
 
       let speechSubject = {
@@ -96,9 +116,9 @@ class Search extends Component {
       };
       this.props.setSpeechData(speechSubject);
     };
-  }
+  };
 
-  doSearch() {
+  doSearch = () => {
     let conductSearch = () => {
       billionGravesService
         .retreiveSubject()
@@ -109,16 +129,27 @@ class Search extends Component {
           //   store.getState().deviceLocation.longitude ===
           //     response.data.items[0].lon.toFixed(7)
           // ) {
-          let firstName =
-            response.data.items[0].given_names.split(" ")[0] || "";
-          let middleName =
-            response.data.items[0].given_names.split(" ")[1] || "";
+
+          let firstName = response.data.items[0].given_names.split(" ")[0];
+          firstName =
+            firstName[0][0].toUpperCase() +
+              firstName.substring(1).toLowerCase() || "";
+
+          let middleName = response.data.items[0].given_names.split(" ")[1];
+          middleName =
+            middleName[0][0].toUpperCase() +
+              middleName.substring(1).toLowerCase() || "";
+
+          let lastName = response.data.items[0].family_names;
+          lastName =
+            lastName[0][0].toUpperCase() +
+              lastName.substring(1).toLowerCase() || "";
 
           const subjectResponse = {
             siteId: store.getState().sitesData.length - 1,
             firstName: firstName,
             middleName: middleName,
-            lastName: response.data.items[0].family_names,
+            lastName: lastName,
             maidenName: response.data.items[0].maiden_names,
             birthYear: response.data.items[0].birth_year,
             deathYear: response.data.items[0].death_year,
@@ -175,7 +206,7 @@ class Search extends Component {
       .catch((response) => {
         console.log(response);
       });
-  }
+  };
 }
 
 const mapStateToProps = (state) => {

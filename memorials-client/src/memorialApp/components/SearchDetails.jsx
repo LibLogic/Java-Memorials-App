@@ -6,6 +6,14 @@ class SearchDetails extends Component {
     return (
       <div className="search-details">
         <form id="edit-form">
+          <div>
+            {/* <span className="rec-status">{"<------->"}</span> */}
+            <div
+              onClick={this.props.getSpeech}
+              title="Start Listening"
+              className="record-btn"
+            ></div>
+          </div>
           <div className="row">
             <div className="col">
               <fieldset className="form-group">
@@ -16,7 +24,6 @@ class SearchDetails extends Component {
                   placeholder="First Name"
                   value={this.props.subjectData.firstName}
                   onChange={this.props.handleChange}
-                  onClick={this.props.getSpeech}
                 />
               </fieldset>
             </div>
@@ -51,7 +58,7 @@ class SearchDetails extends Component {
                   type="text"
                   placeholder="Birth"
                   name="birthYear"
-                  value={this.props.speechData.birthYear}
+                  value={this.props.subjectData.birthYear}
                   onChange={this.props.handleChange}
                 />
               </fieldset>
@@ -63,14 +70,13 @@ class SearchDetails extends Component {
                   type="text"
                   placeholder="Death"
                   name="deathYear"
-                  value={this.props.speechData.deathYear}
+                  value={this.props.subjectData.deathYear}
                   onChange={this.props.handleChange}
                 />
               </fieldset>
             </div>
           </div>
-          {/* {this.props.subjectData.lastName.length > 2 && ( */}
-          {true && (
+          {this.props.subjectData.lastName.length > 2 && (
             <button
               type="button"
               className="btn btn-sm btn-success"
