@@ -1,6 +1,9 @@
 import { createStore } from "redux";
 
 const initialState = {
+  currentIndex: null,
+  showModal: false,
+  showFBModal: false,
   speechData: {
     firstName: "",
     middleName: "",
@@ -9,7 +12,6 @@ const initialState = {
     deathYear: "",
   },
   subjectData: {
-    siteId: null,
     firstName: "",
     middleName: "",
     lastName: "",
@@ -21,8 +23,11 @@ const initialState = {
     county: "",
     country: "",
     cemeteryName: "",
-    showModal: false,
-    showFBModal: false,
+    photos: {
+      main: "",
+      subject: [],
+      family: [],
+    },
     flowers: {
       details: [],
     },
@@ -42,31 +47,6 @@ const initialState = {
   },
   sitesData: [
     {
-      siteId: 0,
-      firstName: "David",
-      middleName: "Joseph",
-      lastName: "Hodgkinson",
-      maidenName: "",
-      birthYear: "1965",
-      deathYear: "1965",
-      city: "Cranston",
-      state: "Rhode Island",
-      county: "Providence",
-      country: "United States",
-      cemeteryName: "Saint Ann Cemetery",
-      showModal: false,
-      showFBModal: false,
-      flowers: {
-        details: [],
-      },
-      graveInfo: {
-        stoneImg: "",
-        latitude: 41.79794,
-        longitude: -71.4632739,
-      },
-    },
-    {
-      siteId: 1,
       firstName: "Elizabeth",
       middleName: "Constance",
       lastName: "Donnelly",
@@ -78,10 +58,38 @@ const initialState = {
       county: "Providence",
       country: "United States",
       cemeteryName: "Saint Ann Cemetery",
-      showModal: false,
-      showFBModal: false,
+      photos: {
+        main: "",
+        subject: [],
+        family: [],
+      },
       flowers: {
-        details: [],
+        details: [
+          {
+            leftBy: "Tommy Hodgkinson",
+            date: "07/26/2020",
+          },
+          {
+            leftBy: "Kelly Hodgkinson",
+            date: "07/26/2020",
+          },
+          {
+            leftBy: "Carlene Hodgkinson",
+            date: "07/26/2020",
+          },
+          {
+            leftBy: "Stephen Hodgkinson",
+            date: "07/26/2020",
+          },
+          {
+            leftBy: "Carleton Hodgkinson",
+            date: "07/26/2020",
+          },
+          {
+            leftBy: "David Hodgkinson",
+            date: "07/26/2020",
+          },
+        ],
       },
       graveInfo: {
         stoneImg: "",
@@ -90,7 +98,101 @@ const initialState = {
       },
     },
     {
-      siteId: 2,
+      firstName: "Thomas",
+      middleName: "Joseph",
+      lastName: "Hodgkinson",
+      maidenName: "",
+      birthYear: "1938",
+      deathYear: "2018",
+      city: "Providence",
+      state: "Rhode Island",
+      county: "Providence",
+      country: "United States",
+      cemeteryName: "North Burial Ground",
+      photos: {
+        main: "../dad.jpg",
+        subject: [],
+        family: [],
+      },
+      flowers: {
+        details: [
+          {
+            leftBy: "Dee Hodgkinson",
+            date: "07/26/2020",
+          },
+          {
+            leftBy: "Tommy Hodgkinson",
+            date: "07/26/2020",
+          },
+          {
+            leftBy: "Kelly Hodgkinson",
+            date: "07/26/2020",
+          },
+          {
+            leftBy: "Carlene Hodgkinson",
+            date: "07/26/2020",
+          },
+          {
+            leftBy: "Stephen Hodgkinson",
+            date: "07/26/2020",
+          },
+          {
+            leftBy: "Carleton Hodgkinson",
+            date: "07/26/2020",
+          },
+          {
+            leftBy: "David Hodgkinson",
+            date: "07/26/2020",
+          },
+        ],
+      },
+      graveInfo: {
+        stoneImg:
+          "https://images.findagrave.com/photos250/photos/2019/349/192908773_526275ae-d04f-4ef7-80af-fd80f6436bfc.jpeg",
+        latitude: 41.84918,
+        longitude: -71.40888,
+      },
+    },
+    {
+      firstName: "David",
+      middleName: "Joseph",
+      lastName: "Hodgkinson",
+      maidenName: "",
+      birthYear: "1965",
+      deathYear: "1965",
+      city: "Cranston",
+      state: "Rhode Island",
+      county: "Providence",
+      country: "United States",
+      cemeteryName: "Saint Ann Cemetery",
+      photos: {
+        main: "",
+        subject: [],
+        family: [],
+      },
+      flowers: {
+        details: [
+          {
+            leftBy: "Mom",
+            date: "07/26/2020",
+          },
+          {
+            leftBy: "Dad",
+            date: "07/26/2020",
+          },
+          {
+            leftBy: "The Hodgkinson Brothers & Sisters",
+            date: "07/26/2020",
+          },
+        ],
+      },
+      graveInfo: {
+        stoneImg: "",
+        latitude: 41.79794,
+        longitude: -71.4632739,
+      },
+    },
+    {
       firstName: "Amos",
       middleName: "H",
       lastName: "Kennedy",
@@ -102,7 +204,11 @@ const initialState = {
       county: "Providence",
       country: "United States",
       cemeteryName: "Saint Ann Cemetery",
-      showModal: false,
+      photos: {
+        main: "",
+        subject: [],
+        family: [],
+      },
       flowers: {
         details: [],
       },
@@ -113,7 +219,6 @@ const initialState = {
       },
     },
     {
-      siteId: 3,
       firstName: "Sarah",
       middleName: "F",
       lastName: "Hankinson",
@@ -125,10 +230,13 @@ const initialState = {
       county: "Kent County",
       country: "United States",
       cemeteryName: "Saint Mary Cemetery",
-      showModal: false,
-      showFBModal: false,
+      photos: {
+        main: "",
+        subject: [],
+        family: [],
+      },
       flowers: {
-        details: [],
+        details: [{ leftBy: "Robert Cahoone", date: "07/26/2020" }],
       },
       graveInfo: {
         stoneImg: "",
@@ -157,28 +265,25 @@ const reducer = (state = initialState, action) => {
     case "OPEN_MODAL":
       return {
         ...state,
-        subjectData: {
-          ...state.subjectData,
-          showModal: action.showModal,
-        },
+        showModal: action.showModal,
       };
 
     case "CLOSE_FB_MODAL":
       return {
         ...state,
+        showFBModal: action.showFBModal,
         subjectData: {
           ...state.subjectData,
-          showFBModal: action.showFBModal,
         },
       };
 
     case "ADD_FLOWER":
       return {
         ...state,
+        showModal: action.showModal,
+        showFBModal: action.showFBModal,
         subjectData: {
           ...state.subjectData,
-          showModal: action.showModal,
-          showFBModal: action.showFBModal,
           flowers: {
             ...state.subjectData.flowers,
             details: [
@@ -191,18 +296,18 @@ const reducer = (state = initialState, action) => {
           },
         },
         sitesData: [
-          ...state.sitesData.slice(0, action.siteId),
+          ...state.sitesData.slice(0, action.currentIndex),
           {
-            ...state.sitesData[action.siteId],
+            ...state.sitesData[action.currentIndex],
             flowers: {
-              ...state.sitesData[action.siteId].flowers,
+              ...state.sitesData[action.currentIndex].flowers,
               details: [
-                ...state.sitesData[action.siteId].flowers.details,
+                ...state.sitesData[action.currentIndex].flowers.details,
                 { leftBy: action.leftBy, date: action.date },
               ],
             },
           },
-          ...state.sitesData.slice(action.siteId + 1),
+          ...state.sitesData.slice(action.currentIndex + 1),
         ],
       };
 
@@ -256,10 +361,11 @@ const reducer = (state = initialState, action) => {
     case "SET_SUBJECT_INFO":
       return {
         ...state,
+        currentIndex: action.currentIndex,
         subjectData: {
           ...state.subjectData,
           flowers: action.subjectData.flowers,
-          siteId: action.subjectData.siteId,
+          photos: action.subjectData.photos,
           firstName: action.subjectData.firstName,
           middleName: action.subjectData.middleName,
           lastName: action.subjectData.lastName,

@@ -17,13 +17,13 @@ class MainView extends Component {
 
     this.state = {
       leftBy: "",
+      zoom: false,
       personInfoBox: true,
       headstoneImage: true,
       headstoneInfoBox: false,
       personImage: false,
     };
   }
-
   render() {
     return (
       <div className="container">
@@ -45,13 +45,23 @@ class MainView extends Component {
                   <div className="image-box">
                     {this.state.headstoneImage && (
                       <img
-                        className="headstone-img"
+                        className={`headstone-img ${
+                          this.state.zoom ? "image-zoom" : ""
+                        }`}
                         src={this.props.subjectData.graveInfo.stoneImg}
                         alt="Headstone"
+                        onDoubleClick={this.zoomImage}
                       />
                     )}
                     {this.state.personImage && (
-                      <img className="person-img" src={Person} alt="person" />
+                      <img
+                        className="person-img"
+                        src={
+                          process.env.PUBLIC_URL +
+                            this.props.subjectData.photos.main || Person
+                        }
+                        alt="person"
+                      />
                     )}
                     <div className="icon-box">
                       {this.state.personInfoBox && (
@@ -82,15 +92,13 @@ class MainView extends Component {
                       <br />
                       {`${this.props.subjectData.city}, ${this.props.subjectData.state}`}
                     </h6>
-                    <button
-                      className="btn btn-sm btn-success flower-btn"
-                      onClick={this.props.showModal}
-                    >
-                      Leave a Virtual Flower
-                    </button>
                   </div>
                 </div>
-                <Flowers store={store} />
+                <Flowers
+                  store={store}
+                  showModal={this.props.showModal}
+                  zoom={this.state.zoom}
+                />
               </div>
             )) || <h3>Cemetery Not Found Here</h3>}
           </div>
@@ -98,6 +106,12 @@ class MainView extends Component {
       </div>
     );
   }
+
+  zoomImage = () => {
+    this.setState({
+      zoom: !this.state.zoom,
+    });
+  };
 
   swapMainView = () => {
     this.setState({
@@ -115,8 +129,8 @@ class MainView extends Component {
   };
 
   processFlower = (leftBy) => {
-    let siteId = this.props.subjectData.siteId;
-    this.props.addFlower(leftBy, siteId);
+    let currentIndex = this.props.currentIndex;
+    this.props.addFlower(leftBy, currentIndex);
 
     this.setState({
       leftBy: "",
@@ -126,13 +140,18 @@ class MainView extends Component {
 
 const mapStateToProps = (state) => {
   return {
+    ...state,
+    currentIndex: state.currentIndex,
+    showModal: state.showModal,
     subjectData: {
       ...state.subjectData,
-      siteId: state.subjectData.siteId,
       cemeteryName: state.subjectData.cemeteryName,
       city: state.subjectData.city,
       state: state.subjectData.state,
-      showModal: state.subjectData.showModal,
+      photos: {
+        ...state.subjectData.photos,
+        main: state.subjectData.photos.main,
+      },
       graveInfo: {
         ...state.subjectData.graveInfo,
         stoneImg: state.subjectData.graveInfo.stoneImg,
@@ -150,14 +169,14 @@ const mapDispatchToProps = (dispatch) => {
       };
       dispatch(action);
     },
-    addFlower: (leftBy, siteId) => {
+    addFlower: (leftBy, currentIndex) => {
       const action = {
         type: "ADD_FLOWER",
+        currentIndex: currentIndex,
+        showModal: false,
         leftBy: leftBy || "Anonymous",
         date: new Date().toLocaleDateString("en-US"),
-        showModal: false,
         showFBModal: true,
-        siteId: siteId,
       };
       dispatch(action);
     },

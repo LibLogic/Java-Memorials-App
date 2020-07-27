@@ -34,7 +34,7 @@ class Search extends Component {
             this.props.subjectData.deathYear ? (
               <h6>{`${this.props.subjectData.birthYear} — ${this.props.subjectData.deathYear}`}</h6>
             ) : this.props.subjectData.birthYear ? (
-              <h6>{`${this.props.subjectData.birthYear} — ????`}</h6>
+              <h6>{`Born ${this.props.subjectData.birthYear} — ????`}</h6>
             ) : this.props.subjectData.deathYear ? (
               <h6>{`???? — ${this.props.subjectData.deathYear}`}</h6>
             ) : (
@@ -141,25 +141,37 @@ class Search extends Component {
 
           let firstName = response.data.items[0].given_names.split(" ")[0];
           firstName =
-            firstName[0][0].toUpperCase() +
-              firstName.substring(1).toLowerCase() || "";
+            (firstName &&
+              firstName[0][0].toUpperCase() +
+                firstName.substring(1).toLowerCase()) ||
+            "";
 
           let middleName = response.data.items[0].given_names.split(" ")[1];
           middleName =
-            middleName[0][0].toUpperCase() +
-              middleName.substring(1).toLowerCase() || "";
+            (middleName &&
+              middleName[0][0].toUpperCase() +
+                middleName.substring(1).toLowerCase()) ||
+            "";
 
           let lastName = response.data.items[0].family_names;
           lastName =
-            lastName[0][0].toUpperCase() +
-              lastName.substring(1).toLowerCase() || "";
+            (lastName &&
+              lastName[0][0].toUpperCase() +
+                lastName.substring(1).toLowerCase()) ||
+            "";
+
+          let maidenName = response.data.items[0].maiden_names;
+          maidenName =
+            (maidenName &&
+              maidenName[0][0].toUpperCase() +
+                maidenName.substring(1).toLowerCase()) ||
+            "";
 
           const subjectResponse = {
-            siteId: store.getState().sitesData.length - 1,
             firstName: firstName,
             middleName: middleName,
             lastName: lastName,
-            maidenName: response.data.items[0].maiden_names,
+            maidenName: maidenName,
             birthYear: response.data.items[0].birth_year,
             deathYear: response.data.items[0].death_year,
             country: response.data.items[0].cemetery_country,
@@ -176,6 +188,7 @@ class Search extends Component {
               details: [],
             },
           };
+
           this.props.saveNewSiteInfo(subjectResponse);
           this.props.setSubjectInfo(subjectResponse);
           // }
@@ -201,10 +214,12 @@ class Search extends Component {
               store.getState().subjectData.lastName
           ) {
             found = true;
-            let siteId = i;
-            let image = response.data.items[0].thumbnail;
+            let siteIndex = i;
+            let image =
+              store.getState().sitesData[i].graveInfo.stoneImg ||
+              response.data.items[0].thumbnail;
             let siteDataResponse = { ...store.getState().sitesData[i] };
-            this.props.setSubjectInfo(siteDataResponse, image, siteId);
+            this.props.setSubjectInfo(siteDataResponse, image, siteIndex);
             this.props.history.push("/view/main");
           }
         }
@@ -262,13 +277,19 @@ const mapDispatchToProps = (dispatch) => {
       };
       dispatch(action);
     },
-    setSubjectInfo: (subjectResponse, image, siteId) => {
+    setSubjectInfo: (subjectResponse, image, currentIndex) => {
+      console.log(subjectResponse);
+      console.log(subjectResponse.photos.main);
       const action = {
         type: "SET_SUBJECT_INFO",
+        currentIndex: currentIndex,
         subjectData: {
           ...subjectResponse,
-          siteId: siteId,
           flowers: subjectResponse.flowers,
+          photos: {
+            ...subjectResponse.photos,
+            main: subjectResponse.photos.main,
+          },
           graveInfo: {
             ...subjectResponse.graveInfo,
             stoneImg: image,

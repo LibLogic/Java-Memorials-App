@@ -35,7 +35,7 @@ class FlowerModal extends Component {
 
 const mapStateToProps = (state) => {
   return {
-    showModal: state.subjectData.showModal,
+    showModal: state.showModal,
   };
 };
 

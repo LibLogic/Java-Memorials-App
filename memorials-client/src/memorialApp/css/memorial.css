@@ -217,13 +217,18 @@
   transform-origin: top right;
   transform: scale(0.45);
 }
-
+/* 
 .icon-box:hover {
   transform: scale(0.6);
-}
+} */
 
 .headstone-img {
-  min-width: 100%;
+  height: 150px;
+}
+
+.image-zoom {
+  height: initial;
+  width: 100%;
 }
 
 .person-icon-box img,
@@ -262,11 +267,18 @@
   position: absolute;
   top: 0;
   left: 0;
-  padding: 5%;
-  padding-top: 7%;
   background-color: rgba(49, 74, 156, 0.4);
   min-height: 22%;
   width: 100%;
+}
+
+.display-details div {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  margin-top: 1%;
+  width: 84%;
 }
 
 .display-details-sm {
@@ -304,8 +316,9 @@
   border-color: #6090cc;
   background-color: #6090cc;
 }
+
 .loc-info {
-  margin-top: 4px;
+  margin-top: 7px;
 }
 
 .edit-details {

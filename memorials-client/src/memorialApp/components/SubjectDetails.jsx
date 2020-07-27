@@ -4,31 +4,31 @@ import { connect } from "react-redux";
 class SubjectDetails extends Component {
   render(props) {
     return (
-      <div>
-        <div
-          onDoubleClick={() => console.log("double clicked")}
-          className="display-details"
-        >
-          {this.props.subjectData.city && this.props.subjectData.lastName && (
-            <div>
-              <h5>
-                {`${this.props.subjectData.firstName} ${this.props.subjectData.middleName}
+      <div
+        onDoubleClick={() => console.log("double clicked")}
+        className="display-details"
+      >
+        {this.props.subjectData.city && this.props.subjectData.lastName && (
+          <div>
+            <h5>
+              {`${this.props.subjectData.firstName} ${this.props.subjectData.middleName}
           ${this.props.subjectData.lastName}`}
-                {this.props.subjectData.maidenName && (
-                  <span>{` (${this.props.subjectData.maidenName})`}</span>
-                )}
-              </h5>
-              {this.props.subjectData.birthYear &&
-              this.props.subjectData.deathYear ? (
-                <h6>{`${this.props.subjectData.birthYear} — ${this.props.subjectData.deathYear}`}</h6>
-              ) : this.props.subjectData.birthYear ? (
-                <h6>{`${this.props.subjectData.birthYear} — Living`}</h6>
-              ) : (
-                <h6>{""}</h6>
+              {this.props.subjectData.maidenName && (
+                <span>{` (${this.props.subjectData.maidenName})`}</span>
               )}
-            </div>
-          )}
-        </div>
+            </h5>
+            {this.props.subjectData.birthYear &&
+            this.props.subjectData.deathYear ? (
+              <h6>{`${this.props.subjectData.birthYear} — ${this.props.subjectData.deathYear}`}</h6>
+            ) : this.props.subjectData.birthYear ? (
+              <h6>{`${this.props.subjectData.birthYear} — ????`}</h6>
+            ) : this.props.subjectData.deathYear ? (
+              <h6>{`???? — ${this.props.subjectData.deathYear}`}</h6>
+            ) : (
+              <h6>{""}</h6>
+            )}
+          </div>
+        )}
       </div>
     );
   }
