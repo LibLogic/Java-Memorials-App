@@ -31,6 +31,7 @@ class DummyLocData extends Component {
   }
 
   incToNext = () => {
+    this.props.disableRecordButton();
     let i = (this.state.key + 1) % store.getState().sitesData.length;
     this.setState({
       key: i,

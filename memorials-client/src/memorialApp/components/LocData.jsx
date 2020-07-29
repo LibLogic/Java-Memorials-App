@@ -36,6 +36,7 @@ class LocData extends Component {
   }
 
   getWatch = () => {
+    this.props.enableRecordButton();
     navigator.geolocation.getCurrentPosition(this.showPosition);
     // navigator.geolocation.watchPosition(this.showPosition);
   };

@@ -32,15 +32,12 @@ by ${this.props.leftBy.leftBy} `}
             <p className="cemetery">
               <br />
               {this.props.cemeteryName}
-              {/* <br />
-              {this.props.city}, {this.props.state} */}
             </p>
           </div>
           <div className="fb-prompt">
             <p className="fb-question">Post the above Facebook?</p>
             <p className="yes">
               <input type="radio" id="yes" name="fbshare" value="Yes" />
-              {/* post to fb */}
               <label htmlFor="Yes">Yes</label>
             </p>
             <p className="no">
@@ -51,7 +48,6 @@ by ${this.props.leftBy.leftBy} `}
                 value="No"
                 defaultChecked
               />
-              {/* set showFBModal to false */}
               <label htmlFor="No">No</label>
             </p>
             <div>
@@ -81,7 +77,7 @@ const mapStateToProps = (state) => {
     cemeteryName: state.subjectData.cemeteryName,
     city: state.subjectData.city,
     state: state.subjectData.state,
-    showFBModal: state.subjectData.showFBModal,
+    showFBModal: state.showFBModal,
     leftBy:
       state.subjectData.flowers.details[
         state.subjectData.flowers.details.length - 1

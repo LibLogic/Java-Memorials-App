@@ -7,11 +7,13 @@ class SearchDetails extends Component {
       <div className="search-details">
         <form id="edit-form">
           <div>
-            {/* <span className="rec-status">{"<------->"}</span> */}
             <div
-              onClick={this.props.getSpeech}
+              onClick={!this.props.disabled ? this.props.getSpeech : undefined}
               title="Start Listening"
-              className="record-btn"
+              className={`record-btn ${
+                this.props.disabled ? "yellow-btn" : "green-btn"
+              }`}
+              disabled={this.props.disabled}
             ></div>
           </div>
           <div className="row">

@@ -13,11 +13,26 @@ recognition.interimResult = true;
 recognition.continuous = true;
 
 class Search extends Component {
+  constructor() {
+    super();
+
+    this.state = {
+      disabled: false,
+    };
+  }
   render(props) {
     return (
       <div className="container">
-        <LocData store={store} doSearch={this.doSearch} />
-        <DummyLocData store={store} />
+        <LocData
+          store={store}
+          doSearch={this.doSearch}
+          enableRecordButton={this.enableRecordButton}
+          color={this.state.color}
+        />
+        <DummyLocData
+          store={store}
+          disableRecordButton={this.disableRecordButton}
+        />
         <div className="full-window search">
           <div id="camera-window" className="camera-window">
             Camera View
@@ -34,9 +49,9 @@ class Search extends Component {
             this.props.subjectData.deathYear ? (
               <h6>{`${this.props.subjectData.birthYear} — ${this.props.subjectData.deathYear}`}</h6>
             ) : this.props.subjectData.birthYear ? (
-              <h6>{`Born ${this.props.subjectData.birthYear} — ????`}</h6>
+              <h6>{`Born ${this.props.subjectData.birthYear}`}</h6>
             ) : this.props.subjectData.deathYear ? (
-              <h6>{`???? — ${this.props.subjectData.deathYear}`}</h6>
+              <h6>{`Died ${this.props.subjectData.deathYear}`}</h6>
             ) : (
               <h6>{""}</h6>
             )}
@@ -45,6 +60,7 @@ class Search extends Component {
             store={store}
             getSpeech={this.getSpeech}
             doSearch={this.doSearch}
+            disabled={this.state.disabled}
           />
         </div>
       </div>
@@ -52,6 +68,7 @@ class Search extends Component {
   }
 
   getSpeech = () => {
+    this.disableRecordButton();
     recognition.start();
     recognition.onresult = (e) => {
       const speechToText = Array.from(e.results)
@@ -124,7 +141,20 @@ class Search extends Component {
         deathYear: speech[4],
       };
       this.props.setSpeechData(speechSubject);
+      this.enableRecordButton();
     };
+  };
+
+  disableRecordButton = () => {
+    this.setState({
+      disabled: true,
+    });
+  };
+
+  enableRecordButton = () => {
+    this.setState({
+      disabled: false,
+    });
   };
 
   doSearch = () => {
@@ -278,8 +308,6 @@ const mapDispatchToProps = (dispatch) => {
       dispatch(action);
     },
     setSubjectInfo: (subjectResponse, image, currentIndex) => {
-      console.log(subjectResponse);
-      console.log(subjectResponse.photos.main);
       const action = {
         type: "SET_SUBJECT_INFO",
         currentIndex: currentIndex,
