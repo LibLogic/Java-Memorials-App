@@ -214,6 +214,11 @@ class Search extends Component {
               latitude: response.data.items[0].lat.toFixed(7),
               longitude: response.data.items[0].lon.toFixed(7),
             },
+            photos: {
+              main: "",
+              subject: [],
+              family: [],
+            },
             flowers: {
               details: [],
             },
@@ -315,8 +320,15 @@ const mapDispatchToProps = (dispatch) => {
           ...subjectResponse,
           flowers: subjectResponse.flowers,
           photos: {
-            ...subjectResponse.photos,
+            ...subjectResponse.photo,
             main: subjectResponse.photos.main,
+            subject: [...subjectResponse.photos.subject],
+            family: [...subjectResponse.photos.family],
+          },
+          donors: {
+            ...subjectResponse.donors,
+            restHome: subjectResponse.donors.restHome,
+            individual: [...subjectResponse.donors.individual],
           },
           graveInfo: {
             ...subjectResponse.graveInfo,

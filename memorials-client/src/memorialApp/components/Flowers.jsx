@@ -173,6 +173,15 @@ by ${this.displayFlower14.leftBy} `}
             </tr>
           </tbody>
         </table>
+        <ul className="donors">
+          {this.props.individual.map((item, i) => {
+            return (
+              <li className="slide-up" key={i}>
+                {item}
+              </li>
+            );
+          })}
+        </ul>
       </div>
     );
   }
@@ -192,6 +201,7 @@ by ${this.displayFlower14.leftBy} `}
 const mapStateToProps = (state) => {
   return {
     details: state.subjectData.flowers.details,
+    individual: state.subjectData.donors.individual,
   };
 };
 

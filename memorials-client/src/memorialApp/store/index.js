@@ -1,6 +1,107 @@
 import { createStore } from "redux";
 
 const initialState = {
+  poems: [
+    {
+      title: "You'll Never Walk Alone",
+      poem: `  When you walk through the storm 
+Hold your head up high,
+And don’t be afraid of the dark.
+At the end of the storm Is a golden sky
+And the sweet silver song of a lark.
+
+Walk on through the wind, 
+Walk on through the rain,
+Though your dreams be tossed and blown.
+Walk on, walk on with hope in your heart
+And you’ll never walk alone`,
+      author: "Unknown",
+    },
+    {
+      title: "When Tomorrow Starts Without Me",
+      poem: `  When tomorrow starts without me
+And I’m not here to see
+If the sun should rise and find your eyes
+All filled with tears for me
+
+I wish you wouldn’t cry
+The way you did today
+While thinking of the many things
+We did not get to say
+
+I know how much you love me
+As much as I love you
+Each time that you think of me
+I know you will miss me too
+
+When tomorrow starts without me
+Please try to understand
+That an angel came and called my name
+And took me by the hand
+
+The angel said my place was ready
+In heaven far above
+And that I would have to leave behind
+All those I Dearly Love
+
+But when I walked through Heaven’s Gates
+I felt so much at home
+When God looked down and smiled at me
+From his golden throne
+
+He said this is eternity
+And all I promised you
+Today for life on earth is done
+But here it starts a new
+
+I promise no tomorrow
+For today will always last
+And since each day’s the exact same way
+There is no longing for the past
+
+So when Tomorrow starts without me
+Do not think we’re apart
+For every time you think of me
+Remember I’m right here in your heart`,
+      author: "",
+    },
+    {
+      title: "When God Saw You Getting Tired",
+      poem: `  When God saw you getting tired
+And a cure was not to be
+He put his arms around you
+And whispered come to me
+He didn’t like what you went through
+And he gave you rest
+His garden must be beautiful
+He only takes the best
+And when we saw you sleeping
+So peaceful and free from pain
+We wouldn’t wish you back
+To suffer that again
+Today we say goodbye
+And as you take your final rest
+That garden must be beautiful
+Because you are one of the best.`,
+      author: "",
+    },
+    {
+      title: "When I Must Leave You For A While",
+      poem: `  When I must leave you for a while
+Please do not grieve and shed wild tears
+And hug your sorrow to you through the years
+But start out bravely with a gallant smile
+And for my sake and in my name
+Live on and do all the things the same
+Feed not your lonliness on empty days
+But fill each working hour in useful ways
+Reach out your hand in comfort and in cheer
+And I in turn will comfort you and hold you near
+And never, never be afraid to die
+For I am waiting for you in the sky.`,
+      author: "",
+    },
+  ],
   currentIndex: null,
   showModal: false,
   showFBModal: false,
@@ -30,6 +131,10 @@ const initialState = {
     },
     flowers: {
       details: [],
+    },
+    donors: {
+      restHome: "",
+      individual: ["Thank You for helping to keep this site free"],
     },
     graveInfo: {
       stoneImg: "",
@@ -91,6 +196,10 @@ const initialState = {
           },
         ],
       },
+      donors: {
+        restHome: "",
+        individual: [],
+      },
       graveInfo: {
         stoneImg: "",
         latitude: 41.79794,
@@ -146,6 +255,17 @@ const initialState = {
           },
         ],
       },
+      donors: {
+        restHome: "",
+        individual: [
+          "Angelcloud Donations - Thank You!",
+          "Tommy Hodgkinson",
+          "Kelly Hodgkinson",
+          "Carlene Hodgkinson",
+          "Stephen Hodgkinson",
+          "Carleton Hodgkinson",
+        ],
+      },
       graveInfo: {
         stoneImg:
           "https://images.findagrave.com/photos250/photos/2019/349/192908773_526275ae-d04f-4ef7-80af-fd80f6436bfc.jpeg",
@@ -186,6 +306,10 @@ const initialState = {
           },
         ],
       },
+      donors: {
+        restHome: "",
+        individual: [],
+      },
       graveInfo: {
         stoneImg: "",
         latitude: 41.79794,
@@ -212,6 +336,10 @@ const initialState = {
       flowers: {
         details: [],
       },
+      donors: {
+        restHome: "",
+        individual: [],
+      },
       graveInfo: {
         stoneImg: "",
         latitude: 41.79345,
@@ -237,6 +365,10 @@ const initialState = {
       },
       flowers: {
         details: [{ leftBy: "Robert Cahoone", date: "07/26/2020" }],
+      },
+      donors: {
+        restHome: "",
+        individual: [],
       },
       graveInfo: {
         stoneImg: "",
@@ -366,6 +498,7 @@ const reducer = (state = initialState, action) => {
           ...state.subjectData,
           flowers: action.subjectData.flowers,
           photos: action.subjectData.photos,
+          donors: action.subjectData.donors,
           firstName: action.subjectData.firstName,
           middleName: action.subjectData.middleName,
           lastName: action.subjectData.lastName,

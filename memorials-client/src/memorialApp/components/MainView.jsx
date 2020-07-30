@@ -7,6 +7,7 @@ import FlowerModal from "./FlowerModal";
 import FBModal from "./FBModal";
 import SubjectDetails from "./SubjectDetails";
 import Flowers from "./Flowers";
+import Poems from "./Poems";
 import personIcon from "../images/personIcon.png";
 import Person from "../images/person.png";
 import headstoneIcon from "../images/headstoneIcon.png";
@@ -44,30 +45,53 @@ class MainView extends Component {
                 <div>
                   <div className="image-box">
                     {this.state.headstoneImage && (
-                      <img
-                        className={`headstone-img ${
-                          this.state.zoom ? "image-zoom" : ""
-                        }`}
-                        src={this.props.subjectData.graveInfo.stoneImg}
-                        alt="Headstone"
-                        onDoubleClick={this.zoomImage}
-                      />
+                      <div>
+                        <img
+                          className={`headstone-img ${
+                            this.state.zoom ? "image-zoom" : ""
+                          }`}
+                          src={this.props.subjectData.graveInfo.stoneImg}
+                          alt="Headstone"
+                          onClick={this.zoomImage}
+                        />
+                        <h6>
+                          {`${this.props.subjectData.cemeteryName}`}
+                          <br />
+                          {`${this.props.subjectData.city}, ${this.props.subjectData.state}`}
+                        </h6>
+                        <Flowers
+                          store={store}
+                          showModal={this.props.showModal}
+                          zoom={this.state.zoom}
+                        />
+                      </div>
                     )}
+
                     {this.state.personImage && (
-                      <img
-                        className="person-img"
-                        src={
-                          process.env.PUBLIC_URL +
-                            this.props.subjectData.photos.main || Person
-                        }
-                        alt="person"
-                      />
+                      <div
+                        style={{
+                          overflow: "hidden",
+                        }}
+                      >
+                        <div className="poem-scroll">
+                          <img
+                            className="person-img"
+                            src={
+                              process.env.PUBLIC_URL +
+                                this.props.subjectData.photos.main || Person
+                            }
+                            alt="person"
+                          />
+                          <Poems store={store} />
+                        </div>
+                      </div>
                     )}
+
                     <div className="icon-box">
                       {this.state.personInfoBox && (
                         <div className="person-icon-box">
                           <img
-                            onDoubleClick={this.swapMainView}
+                            onClick={this.swapMainView}
                             className="person-icon"
                             src={personIcon}
                             alt="Person"
@@ -77,7 +101,7 @@ class MainView extends Component {
                       {this.state.headstoneInfoBox && (
                         <div className="headstone-icon-box">
                           <img
-                            onDoubleClick={this.swapMainView}
+                            onClick={this.swapMainView}
                             className="headstone-icon"
                             src={headstoneIcon}
                             alt="Headstone"
@@ -86,19 +110,7 @@ class MainView extends Component {
                       )}
                     </div>
                   </div>
-                  <div>
-                    <h6 className="loc-info">
-                      {`${this.props.subjectData.cemeteryName}`}
-                      <br />
-                      {`${this.props.subjectData.city}, ${this.props.subjectData.state}`}
-                    </h6>
-                  </div>
                 </div>
-                <Flowers
-                  store={store}
-                  showModal={this.props.showModal}
-                  zoom={this.state.zoom}
-                />
               </div>
             )) || <h3>Cemetery Not Found Here</h3>}
           </div>
@@ -151,6 +163,11 @@ const mapStateToProps = (state) => {
       photos: {
         ...state.subjectData.photos,
         main: state.subjectData.photos.main,
+      },
+      donors: {
+        ...state.subjectData.donors,
+        restHome: state.subjectData.donors.restHome,
+        individual: [...state.subjectData.donors.individual],
       },
       graveInfo: {
         ...state.subjectData.graveInfo,

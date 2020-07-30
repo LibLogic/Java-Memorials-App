@@ -1,5 +1,24 @@
 @import url(https://unpkg.com/bootstrap@4.1.1/dist/css/bootstrap.min.css);
 
+.slide-up {
+  transform: translateY(100%);
+  animation: slide-up 40s linear infinite;
+}
+
+@keyframes slide-up {
+  0% {
+    transform: translateY(80%);
+  }
+
+  10% {
+    transform: translateY(0%);
+  }
+
+  100% {
+    transform: translateY(-600%);
+  }
+}
+
 .fade-in {
   animation: fadeIn ease 1.5s;
 }
@@ -10,33 +29,6 @@
   }
   100% {
     opacity: 1;
-  }
-}
-
-@-webkit-keyframes fadeIn {
-  0% {
-    opacity: 0;
-  }
-  100% {
-    opacity: 1;
-  }
-}
-
-@-o-keyframes fadeIn {
-  0% {
-    opacity: 0;
-  }
-  100% {
-    opacity: 1;
-  }
-}
-
-@-ms-keyframes fadeIn {
-  0% {
-    opacity: 0;
-  }
-  100% {
-    opacity: 0;
   }
 }
 
@@ -317,16 +309,49 @@
   margin: -0 0 6px 0;
   padding: 1px 6px 2px 6px;
   border-color: #6090cc;
-  background-color: #6090cc;
+  background-color: #2089c6;
 }
 
 .flower-btn:hover {
-  border-color: #6090cc;
-  background-color: #6090cc;
+  border-color: #2089c6;
+  background-color: #2089c6;
 }
 
-.loc-info {
+.donors {
+  border-top: solid 4px rgba(138, 63, 153);
+  overflow: hidden;
+  padding-left: 0;
+  margin: 0 -25px 0 -25px;
+  font-size: 0.8em;
+  list-style-type: none;
+  margin: 0 -25px 0 -25px;
+  background-color: rgb(138, 63, 153);
+  color: white;
+  height: 25px;
+  line-height: 5em;
+}
+
+.image-box h6 {
   margin-top: 6px;
+}
+
+.poem-scroll {
+  height: 355px;
+  width: 100%;
+  overflow-y: scroll;
+  padding-right: 17px;
+  box-sizing: content-box;
+}
+
+.poem {
+  white-space: pre-wrap;
+  font-size: 0.65em;
+  width: 100%;
+  margin-left: 8px;
+}
+
+.poem::-webkit-scrollbar {
+  display: none;
 }
 
 .edit-details {

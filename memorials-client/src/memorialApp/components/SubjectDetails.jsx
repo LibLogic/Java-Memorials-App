@@ -4,10 +4,7 @@ import { connect } from "react-redux";
 class SubjectDetails extends Component {
   render(props) {
     return (
-      <div
-        onDoubleClick={() => console.log("double clicked")}
-        className="display-details"
-      >
+      <div className="display-details">
         {this.props.subjectData.city && this.props.subjectData.lastName && (
           <div>
             <h5>
@@ -21,9 +18,9 @@ class SubjectDetails extends Component {
             this.props.subjectData.deathYear ? (
               <h6>{`${this.props.subjectData.birthYear} — ${this.props.subjectData.deathYear}`}</h6>
             ) : this.props.subjectData.birthYear ? (
-              <h6>{`${this.props.subjectData.birthYear} — ????`}</h6>
+              <h6>{`Born ${this.props.subjectData.birthYear}`}</h6>
             ) : this.props.subjectData.deathYear ? (
-              <h6>{`???? — ${this.props.subjectData.deathYear}`}</h6>
+              <h6>{`Died ${this.props.subjectData.deathYear}`}</h6>
             ) : (
               <h6>{""}</h6>
             )}
