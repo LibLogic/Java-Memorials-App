@@ -7,11 +7,11 @@
 
 @keyframes slide-up {
   0% {
-    transform: translateY(80%);
+    transform: translateY(-38%);
   }
 
-  10% {
-    transform: translateY(0%);
+  15% {
+    transform: translateY(-38%);
   }
 
   100% {
@@ -64,10 +64,10 @@
 
 .shutter-btn {
   border-radius: 50%;
-  width: 35px;
-  height: 35px;
+  width: 26px;
+  height: 26px;
   margin: 5% auto 0 auto;
-  border: 3px solid black;
+  border: 2px solid black;
   background-color: red;
 }
 
@@ -205,25 +205,25 @@
 }
 
 .image-box {
-  position: relative;
   max-width: 88%;
   margin: 0 auto;
 }
 
 .icon-box {
   position: absolute;
-  top: 0;
-  right: 0;
+  top: 12%;
+  right: 3%;
   transform-origin: top right;
   transform: scale(0.45);
 }
-/* 
-.icon-box:hover {
-  transform: scale(0.6);
-} */
 
 .headstone-img {
   height: 150px;
+}
+
+.person-img,
+.headstone-img {
+  border-radius: 6%;
 }
 
 .image-zoom {
@@ -324,7 +324,7 @@
   margin: 0 -25px 0 -25px;
   font-size: 0.8em;
   list-style-type: none;
-  margin: 0 -25px 0 -25px;
+  margin: 0 -25px 0 -24px;
   background-color: rgb(138, 63, 153);
   color: white;
   height: 25px;
@@ -346,12 +346,7 @@
 .poem {
   white-space: pre-wrap;
   font-size: 0.65em;
-  width: 100%;
-  margin-left: 8px;
-}
-
-.poem::-webkit-scrollbar {
-  display: none;
+  width: 107%;
 }
 
 .edit-details {

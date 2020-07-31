@@ -71,14 +71,17 @@ Remember I’m right here in your heart`,
 And a cure was not to be
 He put his arms around you
 And whispered come to me
+
 He didn’t like what you went through
 And he gave you rest
 His garden must be beautiful
 He only takes the best
+
 And when we saw you sleeping
 So peaceful and free from pain
 We wouldn’t wish you back
 To suffer that again
+
 Today we say goodbye
 And as you take your final rest
 That garden must be beautiful
@@ -86,19 +89,19 @@ Because you are one of the best.`,
       author: "",
     },
     {
-      title: "When I Must Leave You For A While",
-      poem: `  When I must leave you for a while
-Please do not grieve and shed wild tears
-And hug your sorrow to you through the years
-But start out bravely with a gallant smile
-And for my sake and in my name
-Live on and do all the things the same
-Feed not your lonliness on empty days
-But fill each working hour in useful ways
-Reach out your hand in comfort and in cheer
-And I in turn will comfort you and hold you near
-And never, never be afraid to die
-For I am waiting for you in the sky.`,
+      title: "The Clock of Life is Wound But Once",
+      poem: `  The clock of life is wound but once
+And no man has the power
+To tell just when the hands will stop
+At late or early hour
+To lose one’s wealth is sad indeed
+To lose one’s health is more,
+To lose one’s soul is such a loss
+That no man can restore.
+The present is our own,
+So live love, toil with a will
+Place no faith in “tomorrow,”
+For the clock may then be still.`,
       author: "",
     },
   ],
@@ -134,7 +137,7 @@ For I am waiting for you in the sky.`,
     },
     donors: {
       restHome: "",
-      individual: ["Thank You for helping to keep this site free"],
+      individual: ["Angelcloud Thanks You!"],
     },
     graveInfo: {
       stoneImg: "",
@@ -258,7 +261,7 @@ For I am waiting for you in the sky.`,
       donors: {
         restHome: "",
         individual: [
-          "Angelcloud Donations - Thank You!",
+          "Angelcloud Thanks Our Donors!",
           "Tommy Hodgkinson",
           "Kelly Hodgkinson",
           "Carlene Hodgkinson",

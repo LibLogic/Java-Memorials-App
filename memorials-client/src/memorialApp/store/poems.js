@@ -222,7 +222,8 @@ Until the hasting day
 Has run
 But to the evensong;
 And having pray’d together, we
-Will go with you along.We have short time to stay, as you,
+Will go with you along.
+We have short time to stay, as you,
 We have as short a spring;
 As quick a growth to meet decay,
 As you, or anything.

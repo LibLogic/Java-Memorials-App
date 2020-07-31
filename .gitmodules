@@ -1,0 +1,3 @@
+[submodule "memorials-client/cors-anywhere"]
+	path = memorials-client/cors-anywhere
+	url = https://github.com/Rob--W/cors-anywhere.git

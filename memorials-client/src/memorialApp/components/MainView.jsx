@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { store } from "../store";
 import Coords from "./Coords";
-// import { UpArrow } from "./Controls";
 import FlowerModal from "./FlowerModal";
 import FBModal from "./FBModal";
 import SubjectDetails from "./SubjectDetails";
@@ -29,7 +28,6 @@ class MainView extends Component {
     return (
       <div className="container">
         <Coords store={store} />
-        {/* <UpArrow history={this.props.history} navTo={"/view/family"} /> */}
         <div>
           <div className="full-window">
             <FlowerModal
