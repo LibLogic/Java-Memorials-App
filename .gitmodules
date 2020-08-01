@@ -1,1 +1,4 @@
 
+[submodule "memorials-client/cors-anywhere"]
+	path = memorials-client/cors-anywhere
+	url = git@github.com:LibLogic/cors-anywhere.git
