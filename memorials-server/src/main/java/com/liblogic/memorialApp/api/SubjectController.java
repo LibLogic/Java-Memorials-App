@@ -12,6 +12,6 @@ public class SubjectController {
     }
 
     public void insertSubject(Subject subject) {
-        subjectService.insertSubject(subject)
+        subjectService.insertSubject(subject);
     }
 }

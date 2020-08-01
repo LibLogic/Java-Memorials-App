@@ -9,6 +9,6 @@ public interface SubjectDAO {
 
     default int insertSubject(Subject subject) {
         UUID id = UUID.randomUUID();
-        return insertSubject(id, subject)
+        return insertSubject(id, subject);
     }
 }
