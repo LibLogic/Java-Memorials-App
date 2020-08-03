@@ -151,6 +151,7 @@ class MainView extends Component {
 const mapStateToProps = (state) => {
   return {
     ...state,
+    individual: state.subjectData.donors.individual,
     currentIndex: state.currentIndex,
     showModal: state.showModal,
     subjectData: {

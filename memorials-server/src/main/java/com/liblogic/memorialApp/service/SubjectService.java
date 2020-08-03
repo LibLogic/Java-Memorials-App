@@ -1,17 +1,22 @@
 package com.liblogic.memorialApp.service;
 
-import com.liblogic.memorialApp.dao.SubjectDAO;
+import com.liblogic.memorialApp.dao.SubjectDao;
 import com.liblogic.memorialApp.model.Subject;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.stereotype.Service;
 
+@Service
 public class SubjectService {
 
-    private final SubjectDAO subjectDAO;
+    private final SubjectDao subjectDao;
 
-    public SubjectService(SubjectDAO subjectDAO) {
-        this.subjectDAO = subjectDAO;
+    @Autowired
+    public SubjectService(@Qualifier("fakeDao") SubjectDao subjectDao) {
+        this.subjectDao = subjectDao;
     }
 
-    public int insertSubject(Subject subject) {
-        return subjectDAO.insertSubject(subject);
+    public int addSubject(Subject subject) {
+        return subjectDao.insertSubject(subject);
     }
 }

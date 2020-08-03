@@ -261,7 +261,6 @@ For the clock may then be still.`,
       donors: {
         restHome: "",
         individual: [
-          "Angelcloud Thanks Our Donors!",
           "Tommy Hodgkinson",
           "Kelly Hodgkinson",
           "Carlene Hodgkinson",

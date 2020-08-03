@@ -60,8 +60,6 @@ public class JWTWebSecurityConfig extends WebSecurityConfigurerAdapter {
             .exceptionHandling().authenticationEntryPoint(jwtUnAuthorizedResponseAuthenticationEntryPoint).and()
             .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS).and()
             .authorizeRequests()
-            .antMatchers("/search/**")
-            .permitAll()
             .anyRequest().authenticated();
 
        httpSecurity
@@ -86,7 +84,7 @@ public class JWTWebSecurityConfig extends WebSecurityConfigurerAdapter {
             .ignoring()
             .antMatchers(
                 HttpMethod.GET,
-                "/" //Other Stuff You want to Ignore
+                "/"  //Other Stuff You want to Ignore
             )
             .and()
             .ignoring()

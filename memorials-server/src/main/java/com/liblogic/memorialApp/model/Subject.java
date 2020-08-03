@@ -1,5 +1,7 @@
 package com.liblogic.memorialApp.model;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import java.util.UUID;
 
 public class Subject {
@@ -7,9 +9,13 @@ public class Subject {
     private final UUID id;
     private final String firstName;
 
-    public Subject(UUID id, String firstName) {
+    public Subject(@JsonProperty("id") UUID id, @JsonProperty("firstName") String firstName) {
         this.id = id;
         this.firstName = firstName;
+    }
+
+    public UUID getId() {
+        return id;
     }
 
     public String getFirstName() {

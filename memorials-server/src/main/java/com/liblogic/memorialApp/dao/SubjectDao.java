@@ -4,7 +4,8 @@ import com.liblogic.memorialApp.model.Subject;
 
 import java.util.UUID;
 
-public interface SubjectDAO {
+
+public interface SubjectDao {
     int insertSubject(UUID id, Subject subject);
 
     default int insertSubject(Subject subject) {
