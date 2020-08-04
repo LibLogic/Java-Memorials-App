@@ -8,12 +8,12 @@ class Flowers extends Component {
     return (
       <>
         <div className={`flower-box ${this.props.zoom ? "hidden" : ""}`}>
-          <button
+          {/* <button
             className="btn btn-sm btn-success flower-btn"
             onClick={this.props.showModal}
           >
             Leave a Virtual Flower
-          </button>
+          </button> */}
           <table id="flower">
             <tbody>
               <tr>
@@ -67,8 +67,6 @@ by ${this.displayFlower4.leftBy} `}
                     />
                   )}
                 </td>
-              </tr>
-              <tr>
                 <td>
                   {this.displayFlower5 && (
                     <img
@@ -79,6 +77,8 @@ by ${this.displayFlower5.leftBy} `}
                     />
                   )}
                 </td>
+              </tr>
+              <tr>
                 <td>
                   {this.displayFlower6 && (
                     <img
@@ -119,13 +119,11 @@ by ${this.displayFlower9.leftBy} `}
                     />
                   )}
                 </td>
-              </tr>
-              {/* <tr>
                 <td>
                   {this.displayFlower10 && (
                     <img
-                      title={`Left on ${this.displayFlower10.date} 
-by ${this.displayFlower10.leftBy} `}
+                      title={`Left on ${this.displayFlower9.date} 
+by ${this.displayFlower9.leftBy} `}
                       alt={"Flower"}
                       src={flower}
                     />
@@ -134,64 +132,44 @@ by ${this.displayFlower10.leftBy} `}
                 <td>
                   {this.displayFlower11 && (
                     <img
-                      title={`Left on ${this.displayFlower11.date} 
-by ${this.displayFlower11.leftBy} `}
+                      title={`Left on ${this.displayFlower9.date} 
+by ${this.displayFlower9.leftBy} `}
                       alt={"Flower"}
                       src={flower}
                     />
                   )}
                 </td>
-                <td>
-                  {this.displayFlower12 && (
-                    <img
-                      title={`Left on ${this.displayFlower12.date} 
-by ${this.displayFlower12.leftBy} `}
-                      alt={"Flower"}
-                      src={flower}
-                    />
-                  )}
-                </td>
-                <td>
-                  {this.displayFlower13 && (
-                    <img
-                      title={`Left on ${this.displayFlower13.date} 
-by ${this.displayFlower13.leftBy} `}
-                      alt={"Flower"}
-                      src={flower}
-                    />
-                  )}
-                </td>
-                <td>
-                  {this.displayFlower14 && (
-                    <img
-                      title={`Left on ${this.displayFlower14.date} 
-by ${this.displayFlower14.leftBy} `}
-                      alt={"Flower"}
-                      src={flower}
-                    />
-                  )}
-                </td>
-              </tr> */}
+              </tr>
             </tbody>
           </table>
         </div>
-        <div>
-          <p className="donor-header">Angelcloud Site Sponsors</p>
+        <div className="donor-box">
+          <p className="donor-header">
+            {`(${this.props.firstInitial}. ${this.props.lastName}) Site Sponsors`}
+          </p>
           <ul className="donors">
-            {this.props.individual.map((item, i) => {
-              return (
-                <>
-                  <li className="slide-up" key={i}>
-                    {item}
-                  </li>
-                </>
-              );
-            })}
+            {this.donorLoop()}
+            {/* <li className="slide-up">{this.props.individual[0]}</li>
+            <li className="slide-up">{this.props.individual[1]}</li>
+            <li className="slide-up">{this.props.individual[2]}</li>
+            <li className="slide-up">{this.props.individual[3]}</li>
+            <li className="slide-up">{this.props.individual[4]}</li> */}
           </ul>
         </div>
       </>
     );
   }
+
+  donorLoop = () => {
+    while (true) {
+      let list = this.props.individual.map((item, i) => {
+        return <li className="slide-up">{item}</li>;
+      });
+      return list.map((item) => {
+        return item;
+      });
+    }
+  };
 
   getFlowers = () => {
     for (let i = 0; i < 15; i++) {
@@ -209,6 +187,8 @@ const mapStateToProps = (state) => {
   return {
     details: state.subjectData.flowers.details,
     individual: state.subjectData.donors.individual,
+    lastName: state.subjectData.lastName,
+    firstInitial: state.subjectData.firstName[0],
   };
 };
 

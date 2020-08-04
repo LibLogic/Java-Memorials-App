@@ -39,11 +39,19 @@ class MainView extends Component {
             <FBModal store={store} />
             <SubjectDetails store={store} />
             {(this.props.subjectData.graveInfo.stoneImg && (
-              <div style={{ marginTop: "-14px" }}>
+              <div style={{ marginTop: "-22px" }}>
                 <div>
                   <div className="image-box">
                     {this.state.headstoneImage && (
                       <div>
+                        {!this.state.zoom && (
+                          <button
+                            className="btn btn-sm btn-success flower-btn"
+                            onClick={this.props.showModal}
+                          >
+                            Leave a Virtual Flower
+                          </button>
+                        )}
                         <img
                           className={`headstone-img ${
                             this.state.zoom ? "image-zoom" : ""
