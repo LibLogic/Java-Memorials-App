@@ -148,28 +148,16 @@ by ${this.displayFlower9.leftBy} `}
             {`(${this.props.firstInitial}. ${this.props.lastName}) Site Sponsors`}
           </p>
           <ul className="donors">
-            {this.donorLoop()}
-            {/* <li className="slide-up">{this.props.individual[0]}</li>
+            <li className="slide-up">{this.props.individual[0]}</li>
             <li className="slide-up">{this.props.individual[1]}</li>
             <li className="slide-up">{this.props.individual[2]}</li>
             <li className="slide-up">{this.props.individual[3]}</li>
-            <li className="slide-up">{this.props.individual[4]}</li> */}
+            <li className="slide-up">{this.props.individual[4]}</li>
           </ul>
         </div>
       </>
     );
   }
-
-  donorLoop = () => {
-    while (true) {
-      let list = this.props.individual.map((item, i) => {
-        return <li className="slide-up">{item}</li>;
-      });
-      return list.map((item) => {
-        return item;
-      });
-    }
-  };
 
   getFlowers = () => {
     for (let i = 0; i < 15; i++) {

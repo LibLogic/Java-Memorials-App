@@ -37,22 +37,16 @@ by ${this.props.leftBy.leftBy} `}
           <div className="fb-prompt">
             <p className="fb-question">Post the above Facebook?</p>
             <p className="yes">
-              <input type="radio" id="yes" name="fbshare" value="Yes" />
-              <label htmlFor="Yes">Yes</label>
+              <input type="radio" name="fbshare" value="yes" defaultChecked />{" "}
+              <label htmlFor="Yes">Yes</label>{" "}
             </p>
             <p className="no">
-              <input
-                type="radio"
-                id="no"
-                name="fbshare"
-                value="No"
-                defaultChecked
-              />
-              <label htmlFor="No">No</label>
+              <input type="radio" name="fbshare" value="no" />{" "}
+              <label htmlFor="No">No</label>{" "}
             </p>
             <div>
               <button
-                onClick={this.props.closeFBModal}
+                onClick={this.FBPostChoice}
                 className="btn btn-sm btn-success"
               >
                 Submit
@@ -64,6 +58,27 @@ by ${this.props.leftBy.leftBy} `}
       null
     );
   }
+
+  FBPostChoice = () => {
+    const radioBtns = document.querySelectorAll('input[name="fbshare"]');
+    let selectedValue;
+    for (const radioBtn of radioBtns) {
+      if (radioBtn.checked) {
+        selectedValue = radioBtn.value;
+        break;
+      }
+    }
+    if (selectedValue === "yes") {
+      this.postToFaceBook();
+    } else {
+      this.props.closeFBModal();
+    }
+  };
+
+  postToFaceBook = () => {
+    console.log("posting to facebook");
+    this.props.closeFBModal();
+  };
 }
 
 const mapStateToProps = (state) => {
