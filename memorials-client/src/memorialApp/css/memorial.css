@@ -1,7 +1,7 @@
 @import url(https://unpkg.com/bootstrap@4.1.1/dist/css/bootstrap.min.css);
 
 .slide-up {
-  animation: slide-up 16s linear 0s infinite;
+  animation: slide-up 8s linear 0s infinite;
 }
 
 @keyframes slide-up {
@@ -190,6 +190,17 @@
   z-index: 1;
 }
 
+.family-view-window {
+  position: relative;
+  display: inline-block;
+  padding: 1%;
+  background-color: rgb(230, 172, 172);
+  height: 500px;
+  width: 250px;
+  vertical-align: middle;
+  z-index: 1;
+}
+
 .full-window.search {
   padding: 2% 1% 1% 1%;
 }
@@ -217,12 +228,20 @@
   margin: 0 auto;
 }
 
-.icon-box {
+.icon-box-right {
   position: absolute;
-  top: 12%;
+  top: 13%;
   right: 3%;
   transform-origin: top right;
-  transform: scale(0.45);
+  transform: scale(0.25);
+}
+
+.icon-box-left {
+  position: absolute;
+  top: 2%;
+  left: 3%;
+  transform-origin: top left;
+  transform: scale(0.25);
 }
 
 .headstone-img {
@@ -231,18 +250,13 @@
 
 .person-img,
 .headstone-img {
+  max-width: 109%;
   border-radius: 6%;
 }
 
 .image-zoom {
   height: initial;
   width: 100%;
-}
-
-.person-icon-box img,
-.headstone-icon-box img {
-  transform-origin: top right;
-  transform: scale(0.6);
 }
 
 #edit-form input {
@@ -372,6 +386,10 @@
   white-space: pre-wrap;
   font-size: 0.65em;
   width: 107%;
+}
+
+.poem h6 {
+  margin: 7px 7px 5px 7px;
 }
 
 .edit-details {

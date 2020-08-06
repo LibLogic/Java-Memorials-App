@@ -143,18 +143,20 @@ by ${this.displayFlower9.leftBy} `}
             </tbody>
           </table>
         </div>
-        <div className="donor-box">
-          <p className="donor-header">
-            {`(${this.props.firstInitial}. ${this.props.lastName}) Site Sponsors`}
-          </p>
-          <ul className="donors">
-            <li className="slide-up">{this.props.individual[0]}</li>
-            <li className="slide-up">{this.props.individual[1]}</li>
-            <li className="slide-up">{this.props.individual[2]}</li>
-            <li className="slide-up">{this.props.individual[3]}</li>
-            <li className="slide-up">{this.props.individual[4]}</li>
-          </ul>
-        </div>
+        {this.props.individual.length > 0 && (
+          <div className="donor-box">
+            <p className="donor-header">
+              {`(${this.props.firstInitial}. ${this.props.lastName}) Site Sponsors`}
+            </p>
+            <ul className="donors">
+              <li className="slide-up">{this.props.individual[0]}</li>
+              <li className="slide-up">{this.props.individual[1]}</li>
+              <li className="slide-up">{this.props.individual[2]}</li>
+              <li className="slide-up">{this.props.individual[3]}</li>
+              <li className="slide-up">{this.props.individual[4]}</li>
+            </ul>
+          </div>
+        )}
       </>
     );
   }

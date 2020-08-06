@@ -17,7 +17,7 @@ class LocData extends Component {
 
   render() {
     return (
-      <div className="container" style={{ marginTop: "40px" }}>
+      <div className="container">
         <div className="location-data">
           <button className="btn btn-sm btn-success" onClick={this.getWatch}>
             Actual Location (Reset)

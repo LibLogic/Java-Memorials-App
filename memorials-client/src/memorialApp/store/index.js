@@ -94,10 +94,12 @@ Because you are one of the best.`,
 And no man has the power
 To tell just when the hands will stop
 At late or early hour
+
 To lose one’s wealth is sad indeed
 To lose one’s health is more,
 To lose one’s soul is such a loss
 That no man can restore.
+
 The present is our own,
 So live love, toil with a will
 Place no faith in “tomorrow,”
@@ -137,7 +139,7 @@ For the clock may then be still.`,
     },
     donors: {
       restHome: "",
-      individual: ["Angelcloud Thanks You!"],
+      individual: "",
     },
     graveInfo: {
       stoneImg: "",
@@ -276,6 +278,70 @@ For the clock may then be still.`,
       },
     },
     {
+      firstName: "Carleton",
+      middleName: "Everett",
+      lastName: "Hodgkinson",
+      maidenName: "",
+      birthYear: "1906",
+      deathYear: "1962",
+      city: "Providence",
+      state: "Rhode Island",
+      county: "Providence",
+      country: "United States",
+      cemeteryName: "North Burial Ground",
+      photos: {
+        main:
+          "https://images.findagrave.com/photos250/photos/2018/243/135313964_cdf44529-09c7-42f3-b56f-992dbcf6ddf0.jpeg",
+        subject: [],
+        family: [],
+      },
+      flowers: {
+        details: [],
+      },
+      donors: {
+        restHome: "",
+        individual: [],
+      },
+      graveInfo: {
+        stoneImg:
+          "https://images.findagrave.com/photos250/photos/2014/244/135314050_1409668942.jpg",
+        latitude: 41.84918,
+        longitude: -71.40888,
+      },
+    },
+    {
+      firstName: "Catherine",
+      middleName: "R",
+      lastName: "Hodgkinson",
+      maidenName: "Kelly",
+      birthYear: "1908",
+      deathYear: "2005",
+      city: "Providence",
+      state: "Rhode Island",
+      county: "Providence",
+      country: "United States",
+      cemeteryName: "North Burial Ground",
+      photos: {
+        main:
+          "https://images.findagrave.com/photos250/photos/2018/243/135314050_db5cb082-a5bb-45e7-b5a6-58f78a4f7ecd.jpeg",
+        subject: [],
+        family: [],
+      },
+      flowers: {
+        details: [],
+      },
+      donors: {
+        restHome: "",
+        individual: [],
+      },
+      graveInfo: {
+        stoneImg:
+          "https://images.findagrave.com/photos250/photos/2014/244/135314050_1409668942.jpg",
+        latitude: 41.84918,
+        longitude: -71.40888,
+      },
+    },
+    {
       firstName: "David",
       middleName: "Joseph",
       lastName: "Hodgkinson",
@@ -346,6 +412,37 @@ For the clock may then be still.`,
         stoneImg: "",
         latitude: 41.79345,
         longitude: -71.4625964,
+      },
+    },
+    {
+      firstName: "Mercy",
+      middleName: "L",
+      lastName: "Brown",
+      maidenName: "",
+      birthYear: "1873",
+      deathYear: "1892",
+      city: "Exeter",
+      state: "Rhode Island",
+      county: "Washington",
+      country: "US",
+      cemeteryName: "Chestnut Hill Cemetery",
+      photos: {
+        main: "",
+        subject: [],
+        family: [],
+      },
+      flowers: {
+        details: [],
+      },
+      donors: {
+        restHome: "",
+        individual: "",
+      },
+      graveInfo: {
+        stoneImg:
+          "https://s3.amazonaws.com/images.billiongraves.com/headstones/images/20200524/30460054.jpg?t=2020-06-07+20%3A10%3A51",
+        latitude: 41.581507469566,
+        longitude: -71.558361612327,
       },
     },
     {

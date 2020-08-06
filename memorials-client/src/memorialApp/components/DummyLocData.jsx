@@ -14,7 +14,7 @@ class DummyLocData extends Component {
 
   render() {
     return (
-      <div className="container" style={{ marginTop: "40px" }}>
+      <div className="container">
         <div className="saved-data">
           <button className="btn btn-sm btn-success" onClick={this.incToNext}>
             Get Saved User Coordinates

@@ -22,7 +22,7 @@ class Search extends Component {
   }
   render(props) {
     return (
-      <div className="container">
+      <div className="container" style={{ marginTop: "40px" }}>
         <LocData
           store={store}
           doSearch={this.doSearch}
@@ -246,7 +246,9 @@ class Search extends Component {
             store.getState().deviceLocation.longitude ===
               store.getState().sitesData[i].graveInfo.longitude &&
             store.getState().sitesData[i].lastName ===
-              store.getState().subjectData.lastName
+              store.getState().subjectData.lastName &&
+            store.getState().sitesData[i].firstName ===
+              store.getState().subjectData.firstName
           ) {
             found = true;
             let siteIndex = i;

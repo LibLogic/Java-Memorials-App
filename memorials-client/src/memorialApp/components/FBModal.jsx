@@ -38,11 +38,11 @@ by ${this.props.leftBy.leftBy} `}
             <p className="fb-question">Post the above Facebook?</p>
             <p className="yes">
               <input type="radio" name="fbshare" value="yes" defaultChecked />{" "}
-              <label htmlFor="Yes">Yes</label>{" "}
+              <label htmlFor="yes">Yes</label>{" "}
             </p>
             <p className="no">
               <input type="radio" name="fbshare" value="no" />{" "}
-              <label htmlFor="No">No</label>{" "}
+              <label htmlFor="no">No</label>{" "}
             </p>
             <div>
               <button

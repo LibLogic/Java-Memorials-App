@@ -7,6 +7,7 @@ import FBModal from "./FBModal";
 import SubjectDetails from "./SubjectDetails";
 import Flowers from "./Flowers";
 import Poems from "./Poems";
+import treeIcon from "../images/treeIcon.png";
 import personIcon from "../images/personIcon.png";
 import Person from "../images/person.png";
 import headstoneIcon from "../images/headstoneIcon.png";
@@ -79,21 +80,34 @@ class MainView extends Component {
                           overflow: "hidden",
                         }}
                       >
-                        <div className="poem-scroll">
-                          <img
-                            className="person-img"
-                            src={
-                              process.env.PUBLIC_URL +
-                                this.props.subjectData.photos.main || Person
-                            }
-                            alt="person"
-                          />
-                          <Poems store={store} />
-                        </div>
+                        {(this.props.subjectData.photos.main || Person) && (
+                          <div
+                            style={{ position: "relative" }}
+                            className="poem-scroll"
+                          >
+                            <div className="icon-box-left">
+                              <img
+                                src={treeIcon}
+                                alt="Tree"
+                                onClick={() => {
+                                  this.props.history.push("/view/family");
+                                }}
+                              />
+                            </div>
+                            <img
+                              className="person-img"
+                              src={
+                                process.env.PUBLIC_URL +
+                                  this.props.subjectData.photos.main || Person
+                              }
+                              alt="person"
+                            />
+                            <Poems store={store} />
+                          </div>
+                        )}
                       </div>
                     )}
-
-                    <div className="icon-box">
+                    <div className="icon-box-right">
                       {this.state.personInfoBox && (
                         <div className="person-icon-box">
                           <img
