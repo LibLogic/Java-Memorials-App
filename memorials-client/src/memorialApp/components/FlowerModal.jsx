@@ -5,29 +5,32 @@ class FlowerModal extends Component {
   render() {
     return (
       this.props.showModal && (
-        <div id="flower-modal" className="input-group">
-          <div className="input-group-append">
+        <form id="flower-modal" className="input-group">
+          <div className="input-group-append flower-modal-content">
             <input
-              style={{
-                width: 160,
-                margin: "0 auto",
-                fontSize: ".8em",
-              }}
+              style={{ fontSize: ".8em" }}
               className="form-control"
               type="text"
               placeholder="Your First & Last Name"
               onChange={this.props.handleChange}
               value={this.props.leftBy}
             />
+            <button
+              className="btn btn-sm btn-ok"
+              type="submit"
+              onClick={() => this.props.processFlower(this.props.leftBy)}
+            >
+              OK
+            </button>
+            <button
+              type="button"
+              className="btn btn-sm btn-close"
+              onClick={this.props.hideModal}
+            >
+              <span>X</span>
+            </button>
           </div>
-          <button
-            className="btn btn-sm btn-success"
-            type="submit"
-            onClick={() => this.props.processFlower(this.props.leftBy)}
-          >
-            OK
-          </button>
-        </div>
+        </form>
       )
     );
   }
@@ -39,4 +42,16 @@ const mapStateToProps = (state) => {
   };
 };
 
-export default connect(mapStateToProps)(FlowerModal);
+const mapDispatchToProps = (dispatch) => {
+  return {
+    hideModal: () => {
+      const action = {
+        type: "CLOSE_MODAL",
+        showModal: false,
+      };
+      dispatch(action);
+    },
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(FlowerModal);

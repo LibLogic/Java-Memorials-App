@@ -60,7 +60,7 @@ class Login extends Component {
           response.data.token
         );
         this.props.setLoggedInStatus(true);
-        this.props.history.push(`/search`);
+        this.props.history.push(`/browse`);
       })
       .catch(() => {
         this.setState({ validLogin: false });

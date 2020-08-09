@@ -14,7 +14,12 @@ public class FakeSubjectDAOService implements SubjectDao {
 
     @Override
     public int insertSubject(UUID id, Subject subject) {
-        DB.add(new Subject(id, subject.getFirstName()));
+        DB.add(new Subject(id, subject.getFirstName(), subject.getMiddleName(), subject.getLastName(), subject.getMaidenName(), subject.getBirthYear(), subject.getDeathYear(), subject.getCity(), subject.getState(), subject.getCounty(), subject.getCountry(), subject.getCemeteryName()));
         return 1;
+    }
+
+    @Override
+    public List<Subject> selectAllSubjects() {
+        return DB;
     }
 }

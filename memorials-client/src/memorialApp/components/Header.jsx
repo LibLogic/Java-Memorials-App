@@ -12,8 +12,8 @@ class Header extends Component {
           <ul className="navbar-nav">
             {this.props.loggedInStatus && (
               <li>
-                <Link className="nav-link" to="/search">
-                  Search
+                <Link className="nav-link" to="/browse">
+                  Browse
                 </Link>
               </li>
             )}

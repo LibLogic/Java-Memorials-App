@@ -4,8 +4,9 @@ import { store } from "../store";
 import AuthenticatedRoute from "./AuthenticatedRoute";
 import Header from "../components/Header";
 import MainView from "../components/MainView";
+import Browse from "../components/Browse";
 import FamilyView from "../components/FamilyView";
-import Search from "../components/Search";
+// import Search from "../components/Search";
 import Login from "../components/Login";
 import Logout from "../components/Logout";
 import Error from "../components/Error";
@@ -27,10 +28,16 @@ class Routes extends Component {
         <Switch>
           <AuthenticatedRoute path="/" exact component={Login} />
 
-          <AuthenticatedRoute
+          {/* <AuthenticatedRoute
             path="/search"
             exact
             render={(props) => <Search {...props} store={store} />}
+          /> */}
+
+          <AuthenticatedRoute
+            path="/browse"
+            exact
+            render={(props) => <Browse {...props} store={store} />}
           />
 
           <AuthenticatedRoute

@@ -3,10 +3,10 @@ package com.liblogic.memorialApp.api;
 import com.liblogic.memorialApp.model.Subject;
 import com.liblogic.memorialApp.service.SubjectService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
+
 @RequestMapping("/api/v1/subject")
 @RestController
 public class SubjectController {
@@ -22,4 +22,10 @@ public class SubjectController {
     public void addSubject(@RequestBody Subject subject) {
         subjectService.addSubject(subject);
     }
+
+    @GetMapping
+    public List<Subject> getAllSubjects() {
+        return subjectService.getAllSubjects();
+    }
+
 }

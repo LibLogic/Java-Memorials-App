@@ -11,8 +11,16 @@ class FBModal extends Component {
           title={`Left on ${this.props.leftBy.date} 
 by ${this.props.leftBy.leftBy} `}
         >
-          <div>
-            <br />
+          <div className="fb-modal-content">
+            <p
+              style={{
+                height: "37px",
+                backgroundColor: "rgb(206, 202, 180)",
+                padding: "3%",
+              }}
+            >
+              Optional Facebook Post
+            </p>
             <p>
               A Virtual Flower{"  "}
               <img style={{ width: "22%" }} alt="Flower" src={flower}></img>
@@ -33,24 +41,21 @@ by ${this.props.leftBy.leftBy} `}
               <br />
               {this.props.cemeteryName}
             </p>
-          </div>
-          <div className="fb-prompt">
-            <p className="fb-question">Post the above Facebook?</p>
-            <p className="yes">
-              <input type="radio" name="fbshare" value="yes" defaultChecked />{" "}
-              <label htmlFor="yes">Yes</label>{" "}
-            </p>
-            <p className="no">
-              <input type="radio" name="fbshare" value="no" />{" "}
-              <label htmlFor="no">No</label>{" "}
-            </p>
-            <div>
-              <button
-                onClick={this.FBPostChoice}
-                className="btn btn-sm btn-success"
-              >
-                Submit
-              </button>
+            <div className="fb-prompt">
+              <p className="fb-question">Post the above on Facebook?</p>
+              <p className="yes">
+                <input type="radio" name="fbshare" value="yes" defaultChecked />{" "}
+                <label htmlFor="yes">Yes</label>{" "}
+              </p>
+              <p className="no">
+                <input type="radio" name="fbshare" value="no" />{" "}
+                <label htmlFor="no">No</label>{" "}
+              </p>
+              <div>
+                <button onClick={this.FBPostChoice} className="btn btn-sm">
+                  Submit
+                </button>
+              </div>
             </div>
           </div>
         </div>

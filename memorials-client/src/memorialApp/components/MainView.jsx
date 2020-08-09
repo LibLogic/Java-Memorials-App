@@ -9,7 +9,8 @@ import Flowers from "./Flowers";
 import Poems from "./Poems";
 import treeIcon from "../images/treeIcon.png";
 import personIcon from "../images/personIcon.png";
-import Person from "../images/person.png";
+import Person from "../images/defaultPerson.png";
+import Headstone from "../images/defaultHeadstone.png";
 import headstoneIcon from "../images/headstoneIcon.png";
 
 class MainView extends Component {
@@ -27,7 +28,7 @@ class MainView extends Component {
   }
   render() {
     return (
-      <div className="container">
+      <div>
         <Coords store={store} />
         <div>
           <div className="full-window">
@@ -39,61 +40,64 @@ class MainView extends Component {
             />
             <FBModal store={store} />
             <SubjectDetails store={store} />
-            {(this.props.subjectData.graveInfo.stoneImg && (
-              <div style={{ marginTop: "-22px" }}>
-                <div>
-                  <div className="image-box">
-                    {this.state.headstoneImage && (
-                      <div>
-                        {!this.state.zoom && (
-                          <button
-                            className="btn btn-sm btn-success flower-btn"
-                            onClick={this.props.showModal}
-                          >
-                            Leave a Virtual Flower
-                          </button>
-                        )}
-                        <img
-                          className={`headstone-img ${
-                            this.state.zoom ? "image-zoom" : ""
-                          }`}
-                          src={this.props.subjectData.graveInfo.stoneImg}
-                          alt="Headstone"
-                          onClick={this.zoomImage}
-                        />
-                        <h6>
-                          {`${this.props.subjectData.cemeteryName}`}
-                          <br />
-                          {`${this.props.subjectData.city}, ${this.props.subjectData.state}`}
-                        </h6>
-                        <Flowers
-                          store={store}
-                          showModal={this.props.showModal}
-                          zoom={this.state.zoom}
-                        />
-                      </div>
-                    )}
+            <div style={{ marginTop: "-54px" }}>
+              <div>
+                <div className="image-box">
+                  {this.state.headstoneImage && (
+                    <div>
+                      {!this.state.zoom && (
+                        <button
+                          className="btn btn-sm btn-success flower-btn"
+                          onClick={this.props.showModal}
+                        >
+                          Leave a Virtual Flower
+                        </button>
+                      )}
+                      <img
+                        className={`headstone-img ${
+                          this.state.zoom ? "image-zoom" : ""
+                        }`}
+                        src={
+                          process.env.PUBLIC_URL +
+                            this.props.subjectData.graveInfo.stoneImg ||
+                          Headstone
+                        }
+                        alt="Headstone"
+                        onClick={this.zoomImage}
+                      />
+                      <h6>
+                        {`${this.props.subjectData.cemeteryName}`}
+                        <br />
+                        {`${this.props.subjectData.city}, ${this.props.subjectData.state}`}
+                      </h6>
+                      <Flowers
+                        store={store}
+                        showModal={this.props.showModal}
+                        zoom={this.state.zoom}
+                      />
+                    </div>
+                  )}
 
-                    {this.state.personImage && (
-                      <div
-                        style={{
-                          overflow: "hidden",
-                        }}
-                      >
-                        {(this.props.subjectData.photos.main || Person) && (
-                          <div
-                            style={{ position: "relative" }}
-                            className="poem-scroll"
-                          >
-                            <div className="icon-box-left">
-                              <img
-                                src={treeIcon}
-                                alt="Tree"
-                                onClick={() => {
-                                  this.props.history.push("/view/family");
-                                }}
-                              />
-                            </div>
+                  {this.state.personImage && (
+                    <div
+                      style={{
+                        overflow: "hidden",
+                      }}
+                    >
+                      {Person && (
+                        <div
+                          style={{ position: "relative" }}
+                          className="poem-scroll"
+                        >
+                          <div className="icon-box-left">
+                            <img
+                              className="tree-img"
+                              src={treeIcon}
+                              alt="Tree"
+                              onClick={() => {
+                                this.props.history.push("/view/family");
+                              }}
+                            />
                             <img
                               className="person-img"
                               src={
@@ -102,37 +106,38 @@ class MainView extends Component {
                               }
                               alt="person"
                             />
-                            <Poems store={store} />
                           </div>
-                        )}
-                      </div>
-                    )}
-                    <div className="icon-box-right">
-                      {this.state.personInfoBox && (
-                        <div className="person-icon-box">
-                          <img
-                            onClick={this.swapMainView}
-                            className="person-icon"
-                            src={personIcon}
-                            alt="Person"
-                          />
-                        </div>
-                      )}
-                      {this.state.headstoneInfoBox && (
-                        <div className="headstone-icon-box">
-                          <img
-                            onClick={this.swapMainView}
-                            className="headstone-icon"
-                            src={headstoneIcon}
-                            alt="Headstone"
-                          />
+
+                          <Poems store={store} />
                         </div>
                       )}
                     </div>
+                  )}
+                  <div className="icon-box-right">
+                    {this.state.personInfoBox && (
+                      <div className="person-icon-box">
+                        <img
+                          onClick={this.swapMainView}
+                          className="person-icon"
+                          src={personIcon}
+                          alt="Person"
+                        />
+                      </div>
+                    )}
+                    {this.state.headstoneInfoBox && (
+                      <div className="headstone-icon-box">
+                        <img
+                          onClick={this.swapMainView}
+                          className="headstone-icon"
+                          src={headstoneIcon}
+                          alt="Headstone"
+                        />
+                      </div>
+                    )}
                   </div>
                 </div>
               </div>
-            )) || <h3>Cemetery Not Found Here</h3>}
+            </div>
           </div>
         </div>
       </div>

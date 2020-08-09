@@ -8,12 +8,6 @@ class Flowers extends Component {
     return (
       <>
         <div className={`flower-box ${this.props.zoom ? "hidden" : ""}`}>
-          {/* <button
-            className="btn btn-sm btn-success flower-btn"
-            onClick={this.props.showModal}
-          >
-            Leave a Virtual Flower
-          </button> */}
           <table id="flower">
             <tbody>
               <tr>
@@ -145,21 +139,51 @@ by ${this.displayFlower9.leftBy} `}
         </div>
         {this.props.individual.length > 0 && (
           <div className="donor-box">
-            <p className="donor-header">
-              {`(${this.props.firstInitial}. ${this.props.lastName}) Site Sponsors`}
-            </p>
-            <ul className="donors">
-              <li className="slide-up">{this.props.individual[0]}</li>
-              <li className="slide-up">{this.props.individual[1]}</li>
-              <li className="slide-up">{this.props.individual[2]}</li>
-              <li className="slide-up">{this.props.individual[3]}</li>
-              <li className="slide-up">{this.props.individual[4]}</li>
-            </ul>
+            <b>
+              {" "}
+              <p className="slide-in donor-header">
+                CONTRIBUTIONS - THANK YOU!
+              </p>
+              <ul className="donors">
+                <li className="slide-up"></li>
+              </ul>{" "}
+            </b>
           </div>
         )}
       </>
     );
   }
+
+  componentDidMount = () => {
+    const whichAnimationEvent = () => {
+      let a;
+      let el = document.createElement("fakeElement");
+      var animations = {
+        animation: "animationiteration",
+        OAnimation: "oAnimationIteration",
+        MozAnimation: "animationIteration",
+        WebkitAnimation: "webkitAnimationIteration",
+      };
+
+      for (a in animations) {
+        if (el.style[a] !== undefined) {
+          return animations[a];
+        }
+      }
+    };
+
+    let elem = 1;
+    let animationEvent = whichAnimationEvent();
+    let scroll = document.querySelector(".slide-up");
+    scroll && (scroll.innerText = this.props.individual[0]);
+    scroll &&
+      scroll.addEventListener(animationEvent, () => {
+        scroll.innerText = this.props.individual[
+          elem % this.props.individual.length
+        ];
+        elem++;
+      });
+  };
 
   getFlowers = () => {
     for (let i = 0; i < 15; i++) {

@@ -17,20 +17,16 @@ class LocData extends Component {
 
   render() {
     return (
-      <div className="container">
-        <div className="location-data">
-          <button className="btn btn-sm btn-success" onClick={this.getWatch}>
-            Actual Location (Reset)
-          </button>
-          <p>{`Device Latitude: ${this.props.deviceLocation.latitude}`}</p>
-          {/* <input type="text" value={this.props.deviceLocation.latitude} /> */}
-          <p>{`Device Longitude: ${this.props.deviceLocation.longitude}`}</p>
-          {/* <input type="text" value={this.props.deviceLocation.longitude} /> */}
-          <p>{`Country: ${this.props.deviceLocation.country}`}</p>
-          <p>{`State: ${this.props.deviceLocation.state}`}</p>
-          <p>{`City: ${this.props.deviceLocation.city}`}</p>
-          <p>{`County: ${this.props.deviceLocation.county}`}</p>
-        </div>
+      <div className="location-data">
+        <button className="btn btn-sm btn-success" onClick={this.getWatch}>
+          Actual Location (Reset)
+        </button>
+        <p>{`Device Latitude: ${this.props.deviceLocation.latitude}`}</p>
+        <p>{`Device Longitude: ${this.props.deviceLocation.longitude}`}</p>
+        <p>{`Country: ${this.props.deviceLocation.country}`}</p>
+        <p>{`State: ${this.props.deviceLocation.state}`}</p>
+        <p>{`City: ${this.props.deviceLocation.city}`}</p>
+        <p>{`County: ${this.props.deviceLocation.county}`}</p>
       </div>
     );
   }

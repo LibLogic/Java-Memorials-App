@@ -14,18 +14,10 @@ class DummyLocData extends Component {
 
   render() {
     return (
-      <div className="container">
-        <div className="saved-data">
-          <button className="btn btn-sm btn-success" onClick={this.incToNext}>
-            Get Saved User Coordinates
-          </button>
-          <p>{`Device Latitude: ${
-            this.props.sitesData[this.state.key].graveInfo.latitude
-          }`}</p>
-          <p>{`Device Longitude: ${
-            this.props.sitesData[this.state.key].graveInfo.longitude
-          }`}</p>
-        </div>
+      <div className="saved-data">
+        <button className="btn btn-sm btn-success" onClick={this.incToNext}>
+          Browse Saved Users
+        </button>
       </div>
     );
   }
@@ -48,6 +40,12 @@ class DummyLocData extends Component {
         response.data.countryName === "United States of America"
           ? "United States"
           : response.data.countryName;
+
+      let county = "";
+      if (response.data.localityInfo.informative[2]) {
+        county = response.data.localityInfo.informative[2].name;
+      }
+
       let dummyLocationResponse = {
         latitude: this.props.sitesData[key].graveInfo.latitude,
         longitude: this.props.sitesData[key].graveInfo.longitude,
@@ -58,7 +56,7 @@ class DummyLocData extends Component {
         deathYear: this.props.sitesData[key].deathYear,
         city: response.data.city,
         state: response.data.principalSubdivision,
-        county: response.data.localityInfo.informative[2].name,
+        county: county,
         country: country,
       };
       this.props.setLocArea(dummyLocationResponse);

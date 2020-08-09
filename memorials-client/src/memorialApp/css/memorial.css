@@ -1,7 +1,29 @@
 @import url(https://unpkg.com/bootstrap@4.1.1/dist/css/bootstrap.min.css);
 
+.slide-in {
+  animation: slide-in 20s linear 0s 1;
+}
+
+@keyframes slide-in {
+  0% {
+    opacity: 0;
+  }
+
+  5% {
+    opacity: 1;
+  }
+
+  95% {
+    opacity: 1;
+  }
+
+  100% {
+    opacity: 1;
+  }
+}
+
 .slide-up {
-  animation: slide-up 8s linear 0s infinite;
+  animation: slide-up 14s linear 4s infinite;
 }
 
 @keyframes slide-up {
@@ -96,28 +118,66 @@
   margin: -11px auto 11px auto;
 }
 
-/* .rec-status {
-  position: absolute;
-  font-size: 1.3em;
-  top: 8px;
-  left: 0;
-  right: 0;
-  z-index: -1;
-} */
-
 #flower-modal {
-  width: 91%;
-  justify-content: center;
-  position: absolute;
+  /* display: none; */
+  position: fixed;
   z-index: 1;
+  padding-top: 100px;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgb(0, 0, 0);
+  background-color: rgba(0, 0, 0, 0.4);
+  justify-content: center;
+}
+
+.flower-modal-content {
+  height: 35px;
+  width: 225px;
+  margin: 12% auto 0 auto;
+}
+
+.btn-ok {
+  background-color: #2089c6;
+  color: white;
+}
+
+.btn-close {
+  background-color: red;
+  color: white;
+}
+
+.modal-content {
+  height: 50px;
 }
 
 #fb-modal {
-  background-color: rgb(235, 229, 199);
-  width: 92%;
-  position: absolute;
-  top: 100px;
+  /* display: none; */
+  position: fixed;
   z-index: 1;
+  padding-top: 100px;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgb(0, 0, 0);
+  background-color: rgba(0, 0, 0, 0.4);
+  justify-content: center;
+
+  /* background-color: rgb(235, 229, 199);
+  width: 89%;
+  position: absolute;
+  top: 80px;
+  z-index: 1; */
+}
+
+.fb-modal-content {
+  background-color: rgb(235, 229, 199);
+  margin: 4% auto 0 auto;
+  width: 16%;
 }
 
 .cemetery {
@@ -183,7 +243,7 @@
   position: relative;
   display: inline-block;
   padding: 13% 1% 1% 1%;
-  background-color: rgb(230, 172, 172);
+  background-color: rgb(239 213 213);
   height: 500px;
   width: 250px;
   vertical-align: middle;
@@ -194,7 +254,7 @@
   position: relative;
   display: inline-block;
   padding: 1%;
-  background-color: rgb(230, 172, 172);
+  background-color: rgb(239 213 213);
   height: 500px;
   width: 250px;
   vertical-align: middle;
@@ -224,7 +284,7 @@
 }
 
 .image-box {
-  max-width: 88%;
+  max-width: 100%;
   margin: 0 auto;
 }
 
@@ -237,26 +297,35 @@
 }
 
 .icon-box-left {
-  position: absolute;
+  /* position: absolute;
   top: 2%;
   left: 3%;
   transform-origin: top left;
-  transform: scale(0.25);
+  transform: scale(0.25); */
 }
 
 .headstone-img {
-  height: 150px;
+  height: 158px;
 }
 
-.person-img,
 .headstone-img {
-  max-width: 109%;
+  max-width: 220px;
   border-radius: 6%;
 }
 
+.person-img {
+  max-width: 90%;
+  border-radius: 6%;
+}
+
+.tree-img {
+  position: absolute;
+  width: 17%;
+  margin: 2% 0 0 2%;
+}
 .image-zoom {
   height: initial;
-  width: 100%;
+  width: 90%;
 }
 
 #edit-form input {
@@ -267,7 +336,7 @@
   position: absolute;
   bottom: 5%;
   padding: 8% 6% 0% 6%;
-  background-color: rgba(49, 74, 156, 0.4);
+  background-color: rgb(192 168 195);
   height: 215px;
   width: 91%;
 }
@@ -289,7 +358,7 @@
   position: absolute;
   top: 0;
   left: 0;
-  background-color: rgba(49, 74, 156, 0.4);
+  background-color: rgb(151 179 183);
   min-height: 22%;
   width: 100%;
 }
@@ -313,7 +382,7 @@
 }
 
 #flower {
-  width: 100%;
+  width: 90%;
   margin: 0 auto;
 }
 
@@ -328,7 +397,7 @@
 
 .flower-btn {
   font-size: 0.9em;
-  margin: 0 0 12px 0;
+  margin: 4px 0 7px 0;
   padding: 1px 6px 2px 6px;
   border-color: #6090cc;
   background-color: #2089c6;
@@ -340,56 +409,66 @@
 }
 
 .donor-box {
-  right: 25px;
+  background-color: rgb(232 190 241);
   position: absolute;
-  left: 25px;
-  bottom: 0;
+  left: 0;
+  bottom: 9px;
+  height: 3em;
+  width: 100%;
 }
 
 .donor-header {
   font-size: 0.8em;
-  margin: 0 -25px 0 -24px;
-  padding-top: 5px;
-  background-color: rgb(138, 63, 153);
-  color: white;
+  color: black;
   height: 25px;
+  margin: 0;
+  padding-top: 5px;
 }
 
 .donors {
-  border-top: solid 6px rgb(138, 63, 153);
-  border-bottom: solid 8px rgb(138, 63, 153);
+  border-top: solid 6px rgb(232 190 241);
+  border-bottom: solid 8px rgb(232 190 241);
   overflow: hidden;
   padding-left: 0;
-  margin: 0 -25px 0 -25px;
   font-size: 0.8em;
   list-style-type: none;
-  margin: 0 -25px 0 -24px;
-  background-color: rgb(138, 63, 153);
-  color: white;
+  background-color: rgb(232 190 241);
+  color: black;
   height: 30px;
-  line-height: 4em;
+  line-height: 5em;
 }
 
 .image-box h6 {
   margin-top: 6px;
 }
 
+/* Hide scrollbar for Chrome, Safari and Opera */
+.poem-scroll::-webkit-scrollbar {
+  display: none;
+}
+
+/* Hide scrollbar for IE, Edge and Firefox */
+.poem-scroll {
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
+}
+
 .poem-scroll {
   height: 355px;
   width: 100%;
+  margin-top: 10px;
   overflow-y: scroll;
-  padding-right: 17px;
   box-sizing: content-box;
 }
 
 .poem {
   white-space: pre-wrap;
   font-size: 0.65em;
-  width: 107%;
+  width: 100%;
 }
 
 .poem h6 {
-  margin: 7px 7px 5px 7px;
+  margin: 7px 16px 9px 16px;
 }
 
 .edit-details {

@@ -6,6 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class SubjectService {
 
@@ -18,5 +20,9 @@ public class SubjectService {
 
     public int addSubject(Subject subject) {
         return subjectDao.insertSubject(subject);
+    }
+
+    public List<Subject> getAllSubjects() {
+        return subjectDao.selectAllSubjects();
     }
 }

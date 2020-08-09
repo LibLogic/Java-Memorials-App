@@ -135,11 +135,16 @@ For the clock may then be still.`,
       family: [],
     },
     flowers: {
-      details: [],
+      details: [
+        {
+          leftBy: "",
+          date: "",
+        },
+      ],
     },
     donors: {
       restHome: "",
-      individual: "",
+      individual: [],
     },
     graveInfo: {
       stoneImg: "",
@@ -206,7 +211,7 @@ For the clock may then be still.`,
         individual: [],
       },
       graveInfo: {
-        stoneImg: "",
+        stoneImg: "../hodgkinson-donnelly.jpg",
         latitude: 41.79794,
         longitude: -71.4632739,
       },
@@ -296,7 +301,12 @@ For the clock may then be still.`,
         family: [],
       },
       flowers: {
-        details: [],
+        details: [
+          {
+            leftBy: "Tommy Hodgkinson",
+            date: "08/08/2020",
+          },
+        ],
       },
       donors: {
         restHome: "",
@@ -311,7 +321,7 @@ For the clock may then be still.`,
     },
     {
       firstName: "Catherine",
-      middleName: "R",
+      middleName: "Rita",
       lastName: "Hodgkinson",
       maidenName: "Kelly",
       birthYear: "1908",
@@ -328,7 +338,12 @@ For the clock may then be still.`,
         family: [],
       },
       flowers: {
-        details: [],
+        details: [
+          {
+            leftBy: "Tommy Hodgkinson",
+            date: "08/08/2020",
+          },
+        ],
       },
       donors: {
         restHome: "",
@@ -379,7 +394,7 @@ For the clock may then be still.`,
         individual: [],
       },
       graveInfo: {
-        stoneImg: "",
+        stoneImg: "../hodgkinson-donnelly.jpg",
         latitude: 41.79794,
         longitude: -71.4632739,
       },
@@ -441,8 +456,8 @@ For the clock may then be still.`,
       graveInfo: {
         stoneImg:
           "https://s3.amazonaws.com/images.billiongraves.com/headstones/images/20200524/30460054.jpg?t=2020-06-07+20%3A10%3A51",
-        latitude: 41.581507469566,
-        longitude: -71.558361612327,
+        latitude: 41.581507,
+        longitude: -71.558361,
       },
     },
     {
@@ -494,6 +509,12 @@ const reducer = (state = initialState, action) => {
       };
 
     case "OPEN_MODAL":
+      return {
+        ...state,
+        showModal: action.showModal,
+      };
+
+    case "CLOSE_MODAL":
       return {
         ...state,
         showModal: action.showModal,
