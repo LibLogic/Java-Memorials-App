@@ -40,7 +40,7 @@ class MainView extends Component {
             />
             <FBModal store={store} />
             <SubjectDetails store={store} />
-            <div style={{ marginTop: "-54px" }}>
+            <div className="flower-container">
               <div>
                 <div className="image-box">
                   {this.state.headstoneImage && (
@@ -102,7 +102,8 @@ class MainView extends Component {
                               className="person-img"
                               src={
                                 process.env.PUBLIC_URL +
-                                  this.props.subjectData.photos.main || Person
+                                  this.props.subjectData.photos.mainPhoto ||
+                                Person
                               }
                               alt="person"
                             />
@@ -188,7 +189,7 @@ const mapStateToProps = (state) => {
       state: state.subjectData.state,
       photos: {
         ...state.subjectData.photos,
-        main: state.subjectData.photos.main,
+        mainPhoto: state.subjectData.photos.mainPhoto,
       },
       donors: {
         ...state.subjectData.donors,

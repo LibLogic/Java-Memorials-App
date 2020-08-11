@@ -3,6 +3,7 @@ package com.liblogic.memorialApp.dao;
 import com.liblogic.memorialApp.model.Subject;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.UUID;
 
 
@@ -15,4 +16,12 @@ public interface SubjectDao {
     }
 
     List<Subject> selectAllSubjects();
+
+    Optional<Subject> selectSubjectById(UUID id);
+
+    int deleteSubjectById(UUID id);
+
+    int updateSubjectById(UUID id, Subject subject);
+
+
 }

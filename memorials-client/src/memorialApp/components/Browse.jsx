@@ -271,6 +271,7 @@ class Browse extends Component {
             firstName: store.getState().subjectData.firstName,
             middleName: store.getState().subjectData.middleName,
             lastName: store.getState().subjectData.lastName,
+            maidenName: store.getState().subjectData.maidenName,
             birthYear: store.getState().subjectData.birthYear,
             deathYear: store.getState().subjectData.deathYear,
             city: store.getState().deviceLocation.city,
@@ -279,9 +280,9 @@ class Browse extends Component {
             country: store.getState().deviceLocation.country,
             cemeteryName: "",
             photos: {
-              main: "",
-              subject: [],
-              family: [],
+              mainPhoto: "",
+              subjectPhotos: [],
+              familyPhotos: [],
             },
             flowers: {
               details: [],
@@ -359,10 +360,10 @@ const mapDispatchToProps = (dispatch) => {
           ...subjectResponse,
           flowers: subjectResponse.flowers,
           photos: {
-            ...subjectResponse.photo,
-            main: subjectResponse.photos.main,
-            subject: [...subjectResponse.photos.subject],
-            family: [...subjectResponse.photos.family],
+            ...subjectResponse.photos,
+            mainPhoto: subjectResponse.photos.mainPhoto,
+            subjectPhotos: [...subjectResponse.photos.subjectPhotos],
+            familyPhotos: [...subjectResponse.photos.familyPhotos],
           },
           donors: {
             ...subjectResponse.donors,

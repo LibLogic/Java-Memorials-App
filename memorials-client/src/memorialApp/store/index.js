@@ -130,9 +130,15 @@ For the clock may then be still.`,
     country: "",
     cemeteryName: "",
     photos: {
-      main: "",
-      subject: [],
-      family: [],
+      mainPhoto: "",
+      subjectPhotos: [],
+      familyPhotos: [],
+    },
+    parents: {
+      mother: "",
+      father: "",
+      fullChildren: [],
+      halfChildren: [],
     },
     flowers: {
       details: [
@@ -174,9 +180,15 @@ For the clock may then be still.`,
       country: "United States",
       cemeteryName: "Saint Ann Cemetery",
       photos: {
-        main: "",
-        subject: [],
-        family: [],
+        mainPhoto: "",
+        subjectPhotos: [],
+        familyPhotos: [],
+      },
+      parents: {
+        mother: "",
+        father: "",
+        fullChildren: [],
+        halfChildren: [],
       },
       flowers: {
         details: [
@@ -229,9 +241,15 @@ For the clock may then be still.`,
       country: "United States",
       cemeteryName: "North Burial Ground",
       photos: {
-        main: "../dad.jpg",
-        subject: [],
-        family: [],
+        mainPhoto: "../dad.jpg",
+        subjectPhotos: [],
+        familyPhotos: [],
+      },
+      parents: {
+        mother: "",
+        father: "",
+        fullChildren: [],
+        halfChildren: [],
       },
       flowers: {
         details: [
@@ -295,10 +313,16 @@ For the clock may then be still.`,
       country: "United States",
       cemeteryName: "North Burial Ground",
       photos: {
-        main:
+        mainPhoto:
           "https://images.findagrave.com/photos250/photos/2018/243/135313964_cdf44529-09c7-42f3-b56f-992dbcf6ddf0.jpeg",
-        subject: [],
-        family: [],
+        subjectPhotos: [],
+        familyPhotos: [],
+      },
+      parents: {
+        mother: "",
+        father: "",
+        fullChildren: [],
+        halfChildren: [],
       },
       flowers: {
         details: [
@@ -332,10 +356,16 @@ For the clock may then be still.`,
       country: "United States",
       cemeteryName: "North Burial Ground",
       photos: {
-        main:
+        mainPhoto:
           "https://images.findagrave.com/photos250/photos/2018/243/135314050_db5cb082-a5bb-45e7-b5a6-58f78a4f7ecd.jpeg",
-        subject: [],
-        family: [],
+        subjectPhotos: [],
+        familyPhotos: [],
+      },
+      parents: {
+        mother: "",
+        father: "",
+        fullChildren: [],
+        halfChildren: [],
       },
       flowers: {
         details: [
@@ -369,9 +399,15 @@ For the clock may then be still.`,
       country: "United States",
       cemeteryName: "Saint Ann Cemetery",
       photos: {
-        main: "",
-        subject: [],
-        family: [],
+        mainPhoto: "",
+        subjectPhotos: [],
+        familyPhotos: [],
+      },
+      parents: {
+        mother: "",
+        father: "",
+        fullChildren: [],
+        halfChildren: [],
       },
       flowers: {
         details: [
@@ -412,9 +448,15 @@ For the clock may then be still.`,
       country: "United States",
       cemeteryName: "Saint Ann Cemetery",
       photos: {
-        main: "",
-        subject: [],
-        family: [],
+        mainPhoto: "",
+        subjectPhotos: [],
+        familyPhotos: [],
+      },
+      parents: {
+        mother: "",
+        father: "",
+        fullChildren: [],
+        halfChildren: [],
       },
       flowers: {
         details: [],
@@ -442,9 +484,15 @@ For the clock may then be still.`,
       country: "US",
       cemeteryName: "Chestnut Hill Cemetery",
       photos: {
-        main: "",
-        subject: [],
-        family: [],
+        mainPhoto: "",
+        subjectPhotos: [],
+        familyPhotos: [],
+      },
+      parents: {
+        mother: "",
+        father: "",
+        fullChildren: [],
+        halfChildren: [],
       },
       flowers: {
         details: [],
@@ -473,9 +521,15 @@ For the clock may then be still.`,
       country: "United States",
       cemeteryName: "Saint Mary Cemetery",
       photos: {
-        main: "",
-        subject: [],
-        family: [],
+        mainPhoto: "",
+        subjectPhotos: [],
+        familyPhotos: [],
+      },
+      parents: {
+        mother: "",
+        father: "",
+        fullChildren: [],
+        halfChildren: [],
       },
       flowers: {
         details: [{ leftBy: "Robert Cahoone", date: "07/26/2020" }],

@@ -96,6 +96,24 @@ public class JWTWebSecurityConfig extends WebSecurityConfigurerAdapter {
             .ignoring()
             .antMatchers(
                     HttpMethod.GET,
+                    "/api/v1/subject/**"  //Other Stuff You want to Ignore
+            )
+            .and()
+            .ignoring()
+            .antMatchers(
+                    HttpMethod.PUT,
+                    "/api/v1/subject/**"  //Other Stuff You want to Ignore
+            )
+            .and()
+            .ignoring()
+            .antMatchers(
+                    HttpMethod.DELETE,
+                    "/api/v1/subject/**"  //Other Stuff You want to Ignore
+            )
+            .and()
+            .ignoring()
+            .antMatchers(
+                    HttpMethod.GET,
                     "/api/v1/subject"  //Other Stuff You want to Ignore
             )
             .and()

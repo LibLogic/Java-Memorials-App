@@ -141,9 +141,7 @@ by ${this.displayFlower9.leftBy} `}
           <div className="donor-box">
             <b>
               {" "}
-              <p className="slide-in donor-header">
-                CONTRIBUTIONS - THANK YOU!
-              </p>
+              <p className="slide-in donor-header">CONTRIBUTORS - THANK YOU!</p>
               <ul className="donors">
                 <li className="slide-up"></li>
               </ul>{" "}
