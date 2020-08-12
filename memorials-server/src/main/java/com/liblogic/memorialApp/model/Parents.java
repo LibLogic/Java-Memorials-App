@@ -1,23 +1,21 @@
 package com.liblogic.memorialApp.model;
 
+import lombok.AllArgsConstructor;
+import lombok.Data;
+
+import javax.persistence.Embeddable;
+import javax.persistence.Embedded;
+
+@Data
+@AllArgsConstructor
+@Embeddable
 public class Parents {
+    private String mother;
+    private String father;
+    @Embedded
+    private FullChildren fullChildren;
+    @Embedded
+    private HalfChildren halfChildren;
 
-    public static String mother;
-    public static String father;
-
-    public static String getMother() {
-        return mother;
-    }
-
-    public static void setMother(String mother) {
-        Parents.mother = mother;
-    }
-
-    public static String getFather() {
-        return father;
-    }
-
-    public static void setFather(String father) {
-        Parents.father = father;
-    }
+    public Parents(){}
 }

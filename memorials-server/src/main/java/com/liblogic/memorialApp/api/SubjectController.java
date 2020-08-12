@@ -6,7 +6,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.UUID;
 
 @RequestMapping("/api/v1/subject")
 @RestController
@@ -30,18 +29,18 @@ public class SubjectController {
     }
 
     @GetMapping(path = "{id}")
-    public Subject getSubjectById(@PathVariable("id") UUID id) {
+    public Subject getSubjectById(@PathVariable("id") Long id) {
         return subjectService.selectSubjectById(id)
                 .orElse(null);
     }
 
     @DeleteMapping(path = "{id}")
-    public void deleteSubjectById(@PathVariable("id") UUID id) {
+    public void deleteSubjectById(@PathVariable("id") Long id) {
         subjectService.deleteSubject(id);
     }
 
     @PutMapping(path = "{id}")
-    public void updateSubject(@PathVariable("id") UUID id, @Valid @NonNull @RequestBody Subject subjectToUpdate) {
+    public void updateSubject(@PathVariable("id") Long id, @Valid @NonNull @RequestBody Subject subjectToUpdate) {
         subjectService.updateSubject(id, subjectToUpdate);
     }
 }

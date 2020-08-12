@@ -1,0 +1,72 @@
+{
+  "firstName": "Thomas",
+  "middleName": "Joseph",
+  "lastName": "Hodgkinson",
+  "maidenName": "",
+  "birthYear": "1938",
+  "deathYear": "2018",
+  "city": "Providence",
+  "state": "Rhode Island",
+  "county": "Providence",
+  "country": "United States",
+  "cemeteryName": "North Burial Ground",
+  "photos": {
+    "mainPhoto": "../dad.jpg",
+    "subjectPhotos": [],
+    "familyPhotos": []
+  },
+  "parents": {
+    "mother": "",
+    "father": "",
+    "fullChildren": [],
+    "halfChildren": []
+  },
+  "flowers": {
+    "details": [
+      {
+        "leftBy": "Dee Hodgkinson",
+        "date": "07/26/2020"
+      },
+      {
+        "leftBy": "Tommy Hodgkinson",
+        "date": "07/26/2020"
+      },
+      {
+        "leftBy": "Kelly Hodgkinson",
+        "date": "07/26/2020"
+      },
+      {
+        "leftBy": "Carlene Hodgkinson",
+        "date": "07/26/2020"
+      },
+      {
+        "leftBy": "Stephen Hodgkinson",
+        "date": "07/26/2020"
+      },
+      {
+        "leftBy": "Carleton Hodgkinson",
+        "date": "07/26/2020"
+      },
+      {
+        "leftBy": "David Hodgkinson",
+        "date": "07/26/2020"
+      }
+    ]
+  },
+  "donors": {
+    "restHome": "",
+    "individual": [
+      "Tommy Hodgkinson",
+      "Kelly Hodgkinson",
+      "Carlene Hodgkinson",
+      "Stephen Hodgkinson",
+      "Carleton Hodgkinson"
+    ]
+  },
+  "graveInfo": {
+    "stoneImg":
+    "https://images.findagrave.com/photos250/photos/2019/349/192908773_526275ae-d04f-4ef7-80af-fd80f6436bfc.jpeg",
+    "latitude": 41.84918,
+    "longitude": -71.40888
+  }
+}

@@ -6,7 +6,6 @@ import org.springframework.stereotype.Repository;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
-import java.util.UUID;
 
 @Repository("fakeDao")
 public class FakeSubjectDAOService implements SubjectDao {
@@ -14,7 +13,7 @@ public class FakeSubjectDAOService implements SubjectDao {
     private static List<Subject> DB = new ArrayList<>();
 
     @Override
-    public int insertSubject(UUID id, Subject subject) {
+    public int insertSubject(Long id, Subject subject) {
         DB.add(new Subject(id, subject.getFirstName(), subject.getMiddleName(), subject.getLastName(), subject.getMaidenName(), subject.getBirthYear(), subject.getDeathYear(), subject.getCity(), subject.getState(), subject.getCounty(), subject.getCountry(), subject.getCemeteryName()));
         return 1;
     }
@@ -25,14 +24,14 @@ public class FakeSubjectDAOService implements SubjectDao {
     }
 
     @Override
-    public Optional<Subject> selectSubjectById(UUID id) {
+    public Optional<Subject> selectSubjectById(Long id) {
         return DB.stream()
                 .filter(person -> person.getId().equals(id))
                 .findFirst();
     }
 
     @Override
-    public int deleteSubjectById(UUID id) {
+    public int deleteSubjectById(Long id) {
         Optional<Subject> subjectMaybe = selectSubjectById(id);
         if(subjectMaybe.isEmpty()) {
             return 0;
@@ -42,7 +41,7 @@ public class FakeSubjectDAOService implements SubjectDao {
     }
 
     @Override
-    public int updateSubjectById(UUID id, Subject update) {
+    public int updateSubjectById(Long id, Subject update) {
         return selectSubjectById(id)
                 .map(subject -> {
                     int indexOfSubjectToUpdate = DB.indexOf(subject);

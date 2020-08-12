@@ -8,7 +8,6 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
-import java.util.UUID;
 
 @Service
 public class SubjectService {
@@ -20,23 +19,23 @@ public class SubjectService {
         this.subjectDao = subjectDao;
     }
 
-    public int addSubject(Subject subject) {
-        return subjectDao.insertSubject(subject);
+    public int addSubject(Long id, Subject subject) {
+        return subjectDao.insertSubject(id, subject);
     }
 
     public List<Subject> getAllSubjects() {
         return subjectDao.selectAllSubjects();
     }
 
-    public Optional<Subject> selectSubjectById(UUID id) {
+    public Optional<Subject> selectSubjectById(Long id) {
         return subjectDao.selectSubjectById(id);
     }
 
-    public int deleteSubject(UUID id) {
+    public int deleteSubject(Long id) {
         return subjectDao.deleteSubjectById(id);
     }
 
-    public int updateSubject(UUID id, Subject newSubject) {
+    public int updateSubject(Long id, Subject newSubject) {
         return subjectDao.updateSubjectById(id, newSubject);
     }
 }
