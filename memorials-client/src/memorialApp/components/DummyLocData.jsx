@@ -24,7 +24,7 @@ class DummyLocData extends Component {
 
   incToNext = () => {
     this.props.disableRecordButton();
-    let i = (this.state.key + 1) % store.getState().sitesData.length;
+    let i = (this.state.key + 1) % store.getState().sites.length;
     this.setState({
       key: i,
     });
@@ -33,8 +33,8 @@ class DummyLocData extends Component {
 
   getLocArea = (key) => {
     LocationService.getLocationInfo(
-      this.props.sitesData[key].graveInfo.latitude,
-      this.props.sitesData[key].graveInfo.longitude
+      this.props.sites[key].graveInfo.latitude,
+      this.props.sites[key].graveInfo.longitude
     ).then((response) => {
       let country =
         response.data.countryName === "United States of America"
@@ -47,13 +47,13 @@ class DummyLocData extends Component {
       }
 
       let dummyLocationResponse = {
-        latitude: this.props.sitesData[key].graveInfo.latitude,
-        longitude: this.props.sitesData[key].graveInfo.longitude,
-        firstName: this.props.sitesData[key].firstName,
-        middleName: this.props.sitesData[key].middleName,
-        lastName: this.props.sitesData[key].lastName,
-        birthYear: this.props.sitesData[key].birthYear,
-        deathYear: this.props.sitesData[key].deathYear,
+        latitude: this.props.sites[key].graveInfo.latitude,
+        longitude: this.props.sites[key].graveInfo.longitude,
+        firstName: this.props.sites[key].firstName,
+        middleName: this.props.sites[key].middleName,
+        lastName: this.props.sites[key].lastName,
+        birthYear: this.props.sites[key].birthYear,
+        deathYear: this.props.sites[key].deathYear,
         city: response.data.city,
         state: response.data.principalSubdivision,
         county: county,
@@ -66,7 +66,7 @@ class DummyLocData extends Component {
 
 const mapStateToProps = (state) => {
   return {
-    sitesData: state.sitesData,
+    sites: state.sites,
   };
 };
 

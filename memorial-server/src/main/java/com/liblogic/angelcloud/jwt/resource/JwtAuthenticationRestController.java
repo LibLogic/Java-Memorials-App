@@ -53,6 +53,8 @@ public class JwtAuthenticationRestController {
     String username = jwtTokenUtil.getUsernameFromToken(token);
     JwtUserDetails user = (JwtUserDetails) jwtInMemoryUserDetailsService.loadUserByUsername(username);
 
+    System.out.println(user);
+    
     if (jwtTokenUtil.canTokenBeRefreshed(token)) {
       String refreshedToken = jwtTokenUtil.refreshToken(token);
       return ResponseEntity.ok(new com.liblogic.angelcloud.jwt.resource.JwtTokenResponse(refreshedToken));

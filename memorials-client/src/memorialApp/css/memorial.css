@@ -23,7 +23,7 @@
 }
 
 .slide-up {
-  animation: slide-up 14s linear 4s infinite;
+  animation: slide-up 10s linear 4s infinite;
 }
 
 @keyframes slide-up {
@@ -401,7 +401,7 @@
 }
 
 .flower-container {
-  margin-top: -54px;
+  margin-top: -74px;
 }
 
 .donor-box {

@@ -4,7 +4,7 @@ import { store } from "../../store";
 const headers = {
   "Content-Type": "application/json",
   Authorization:
-    "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJkYXRlIjoiMjAyMC0wOC0yNVQyMzo1NToyN1oiLCJjbGllbnQiOiI4MGZjZDg1NC0yYzc4LTQ2YjQtYjE0YS0zNDNmZjkyOGU1M2UiLCJwYXRoIjoiL2FwaS8xLjMvc2VhcmNoIn0.EwifO4r7byEXGstrgd6SDlRBGQhdWa-FNAidXRauLCVWizBH1klQYRqZhF-I13i0y8lPaBDsfIYKGHxp0LJHyw",
+    "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJkYXRlIjoiMjAyMC0wOC0yOVQxNToyODowMVoiLCJjbGllbnQiOiI4MGZjZDg1NC0yYzc4LTQ2YjQtYjE0YS0zNDNmZjkyOGU1M2UiLCJwYXRoIjoiL2FwaS8xLjMvc2VhcmNoIn0.9mhARQ-b9hBygU7_JK1WBPZdL4ndf81WjIBue5FohSR4lxsFSYRYTDTo4MeLyokDt5Kj_Jg4Lb-iyVZFzRRlnw",
 };
 
 class billionGravesService {

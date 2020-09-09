@@ -245,22 +245,22 @@ class Browse extends Component {
       .retreiveSubject()
       .then((response) => {
         let found = false;
-        for (let i = 0; i < store.getState().sitesData.length; i++) {
+        for (let i = 0; i < store.getState().sites.length; i++) {
           if (
             store.getState().deviceLocation.latitude ===
-              store.getState().sitesData[i].graveInfo.latitude &&
+              store.getState().sites[i].graveInfo.latitude &&
             store.getState().deviceLocation.longitude ===
-              store.getState().sitesData[i].graveInfo.longitude &&
-            store.getState().sitesData[i].lastName ===
+              store.getState().sites[i].graveInfo.longitude &&
+            store.getState().sites[i].lastName ===
               store.getState().subjectData.lastName &&
-            store.getState().sitesData[i].firstName ===
+            store.getState().sites[i].firstName ===
               store.getState().subjectData.firstName
           ) {
             found = true;
             let siteIndex = i;
-            let image = store.getState().sitesData[i].graveInfo.stoneImg;
+            let image = store.getState().sites[i].graveInfo.stoneImg;
             // || response.data.items[0].thumbnail;
-            let siteDataResponse = { ...store.getState().sitesData[i] };
+            let siteDataResponse = { ...store.getState().sites[i] };
             this.props.setSubjectInfo(siteDataResponse, image, siteIndex);
             this.props.history.push("/view/main");
           }
@@ -299,7 +299,7 @@ class Browse extends Component {
           };
           this.props.saveNewSiteInfo(subjectData);
           // conductSearch(); // this will not be needed in the future
-          console.log(store.getState().sitesData);
+          console.log(store.getState().sites);
         }
       })
       .catch((response) => {
@@ -341,7 +341,7 @@ const mapDispatchToProps = (dispatch) => {
     saveNewSiteInfo: (subjectResponse) => {
       const action = {
         type: "SAVE_NEW_SITE",
-        sitesData: subjectResponse,
+        sites: subjectResponse,
       };
       dispatch(action);
     },

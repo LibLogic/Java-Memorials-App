@@ -166,8 +166,13 @@ For the clock may then be still.`,
     county: 0,
     country: 0,
   },
-  sitesData: [
+  sites: [
     {
+      graveInfo: {
+        stoneImg: "../hodgkinson-donnelly.jpg",
+        latitude: 41.79794,
+        longitude: -71.4632739,
+      },
       firstName: "Elizabeth",
       middleName: "Constance",
       lastName: "Donnelly",
@@ -222,13 +227,14 @@ For the clock may then be still.`,
         restHome: "",
         individual: [],
       },
-      graveInfo: {
-        stoneImg: "../hodgkinson-donnelly.jpg",
-        latitude: 41.79794,
-        longitude: -71.4632739,
-      },
     },
     {
+      graveInfo: {
+        stoneImg:
+          "https://images.findagrave.com/photos250/photos/2019/349/192908773_526275ae-d04f-4ef7-80af-fd80f6436bfc.jpeg",
+        latitude: 41.84918,
+        longitude: -71.40888,
+      },
       firstName: "Thomas",
       middleName: "Joseph",
       lastName: "Hodgkinson",
@@ -293,14 +299,14 @@ For the clock may then be still.`,
           "Carleton Hodgkinson",
         ],
       },
+    },
+    {
       graveInfo: {
         stoneImg:
-          "https://images.findagrave.com/photos250/photos/2019/349/192908773_526275ae-d04f-4ef7-80af-fd80f6436bfc.jpeg",
+          "https://images.findagrave.com/photos250/photos/2014/244/135314050_1409668942.jpg",
         latitude: 41.84918,
         longitude: -71.40888,
       },
-    },
-    {
       firstName: "Carleton",
       middleName: "Everett",
       lastName: "Hodgkinson",
@@ -336,14 +342,14 @@ For the clock may then be still.`,
         restHome: "",
         individual: [],
       },
+    },
+    {
       graveInfo: {
         stoneImg:
           "https://images.findagrave.com/photos250/photos/2014/244/135314050_1409668942.jpg",
         latitude: 41.84918,
         longitude: -71.40888,
       },
-    },
-    {
       firstName: "Catherine",
       middleName: "Rita",
       lastName: "Hodgkinson",
@@ -379,14 +385,13 @@ For the clock may then be still.`,
         restHome: "",
         individual: [],
       },
-      graveInfo: {
-        stoneImg:
-          "https://images.findagrave.com/photos250/photos/2014/244/135314050_1409668942.jpg",
-        latitude: 41.84918,
-        longitude: -71.40888,
-      },
     },
     {
+      graveInfo: {
+        stoneImg: "../hodgkinson-donnelly.jpg",
+        latitude: 41.79794,
+        longitude: -71.4632739,
+      },
       firstName: "David",
       middleName: "Joseph",
       lastName: "Hodgkinson",
@@ -429,13 +434,13 @@ For the clock may then be still.`,
         restHome: "",
         individual: [],
       },
-      graveInfo: {
-        stoneImg: "../hodgkinson-donnelly.jpg",
-        latitude: 41.79794,
-        longitude: -71.4632739,
-      },
     },
     {
+      graveInfo: {
+        stoneImg: "",
+        latitude: 41.79345,
+        longitude: -71.4625964,
+      },
       firstName: "Amos",
       middleName: "H",
       lastName: "Kennedy",
@@ -465,13 +470,13 @@ For the clock may then be still.`,
         restHome: "",
         individual: [],
       },
-      graveInfo: {
-        stoneImg: "",
-        latitude: 41.79345,
-        longitude: -71.4625964,
-      },
     },
     {
+      graveInfo: {
+        stoneImg: "",
+        latitude: 41.581507,
+        longitude: -71.558361,
+      },
       firstName: "Mercy",
       middleName: "L",
       lastName: "Brown",
@@ -501,14 +506,13 @@ For the clock may then be still.`,
         restHome: "",
         individual: "",
       },
-      graveInfo: {
-        stoneImg:
-          "https://s3.amazonaws.com/images.billiongraves.com/headstones/images/20200524/30460054.jpg?t=2020-06-07+20%3A10%3A51",
-        latitude: 41.581507,
-        longitude: -71.558361,
-      },
     },
     {
+      graveInfo: {
+        stoneImg: "",
+        latitude: 41.68649,
+        longitude: -71.51888,
+      },
       firstName: "Sarah",
       middleName: "F",
       lastName: "Hankinson",
@@ -537,11 +541,6 @@ For the clock may then be still.`,
       donors: {
         restHome: "",
         individual: [],
-      },
-      graveInfo: {
-        stoneImg: "",
-        latitude: 41.68649,
-        longitude: -71.51888,
       },
     },
   ],
@@ -601,19 +600,19 @@ const reducer = (state = initialState, action) => {
             ],
           },
         },
-        sitesData: [
-          ...state.sitesData.slice(0, action.currentIndex),
+        sites: [
+          ...state.sites.slice(0, action.currentIndex),
           {
-            ...state.sitesData[action.currentIndex],
+            ...state.sites[action.currentIndex],
             flowers: {
-              ...state.sitesData[action.currentIndex].flowers,
+              ...state.sites[action.currentIndex].flowers,
               details: [
-                ...state.sitesData[action.currentIndex].flowers.details,
+                ...state.sites[action.currentIndex].flowers.details,
                 { leftBy: action.leftBy, date: action.date },
               ],
             },
           },
-          ...state.sitesData.slice(action.currentIndex + 1),
+          ...state.sites.slice(action.currentIndex + 1),
         ],
       };
 
@@ -648,7 +647,7 @@ const reducer = (state = initialState, action) => {
     case "SAVE_NEW_SITE":
       return {
         ...state,
-        sitesData: [...state.sitesData, action.sitesData],
+        sites: [...state.sites, action.sites],
       };
 
     case "SET_SPEECH_DATA":

@@ -1,4 +1,4 @@
-package memorialApp;
+package com.liblogic.angelcloud;
 
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
