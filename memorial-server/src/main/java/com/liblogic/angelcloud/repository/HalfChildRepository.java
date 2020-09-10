@@ -7,5 +7,5 @@ import com.liblogic.angelcloud.model.HalfChildren;
 
 @Repository
 public interface HalfChildRepository extends PagingAndSortingRepository<HalfChildren, Long> {
-//	public List<HalfChildren> findByHalfChildrenId(Long halfChildId);
+	public List<HalfChildren> findByParentsId(Long parentId);
 }

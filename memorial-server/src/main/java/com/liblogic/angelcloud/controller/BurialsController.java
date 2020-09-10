@@ -30,12 +30,17 @@ public class BurialsController {
         return burialRepository.findAll();
     }
     
+    @GetMapping("/burials/{burialId}")
+    public Optional<Burial> getBurialById(@PathVariable Long burialId) {
+        return burialRepository.findById(burialId);
+    }
+    
     @GetMapping("/sites/{siteId}/burials")
     public Iterable<Burial> getBurialsBySite(@PathVariable Long siteId) {
         return burialRepository.findBySiteId(siteId);
     }
 
-    @PostMapping("/sites/{siteId}/burials")
+    @PostMapping("/sites/{siteId}/addBurial")
     public ResponseEntity<Object> addBurial(@RequestBody Burial newBurial, @PathVariable Long siteId) {
     	Optional<Site> site = siteRepository.findById(siteId);
 		newBurial.setSite(site.get());

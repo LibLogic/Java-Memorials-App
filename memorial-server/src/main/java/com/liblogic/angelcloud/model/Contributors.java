@@ -9,24 +9,24 @@ import javax.persistence.ManyToOne;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
-public class Individuals {
+public class Contributors {
 	
 	@Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Long id;
 	
-	private String donor;
+	private String donorName;
 	
 	@ManyToOne
 	@JsonIgnore
 	private Donors donors;
 	
-	public Individuals() {}
+	public Contributors() {}
 	
-	public Individuals(Long id, String donor, Donors donors) {
+	public Contributors(Long id, String donorName, Donors donors) {
 		super();
 		this.id = id;
-		this.donor = donor;
+		this.donorName = donorName;
 		this.donors = donors;
 	}
 
@@ -38,12 +38,12 @@ public class Individuals {
 		this.id = id;
 	}
 
-	public String getDonor() {
-		return donor;
+	public String getDonorName() {
+		return donorName;
 	}
 
-	public void setDonor(String donor) {
-		this.donor = donor;
+	public void setDonorName(String donorName) {
+		this.donorName = donorName;
 	}
 
 	public Donors getDonors() {

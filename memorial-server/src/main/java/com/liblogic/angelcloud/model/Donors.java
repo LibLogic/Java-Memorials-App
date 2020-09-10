@@ -23,7 +23,7 @@ public class Donors {
 	private String restHome;
 	
 	@OneToMany(mappedBy="donors", cascade=CascadeType.ALL)
-	private List<Individuals> individuals;
+	private List<Contributors> individuals;
 	
 	@ManyToOne
 	@JoinColumn(name="burial_id")
@@ -32,7 +32,7 @@ public class Donors {
 	
 	public Donors() {}
 	
-	public Donors(Long id, String restHome, List<Individuals> individuals, Burial burial) {
+	public Donors(Long id, String restHome, List<Contributors> individuals, Burial burial) {
 		super();
 		this.id = id;
 		this.restHome = restHome;
@@ -44,6 +44,10 @@ public class Donors {
 		return id;
 	}
 
+	public void setId(Long id) {
+		this.id = id;
+	}
+
 	public String getRestHome() {
 		return restHome;
 	}
@@ -52,11 +56,11 @@ public class Donors {
 		this.restHome = restHome;
 	}
 
-	public List<Individuals> getIndividuals() {
+	public List<Contributors> getIndividuals() {
 		return individuals;
 	}
 
-	public void setIndividuals(List<Individuals> individuals) {
+	public void setIndividuals(List<Contributors> individuals) {
 		this.individuals = individuals;
 	}
 

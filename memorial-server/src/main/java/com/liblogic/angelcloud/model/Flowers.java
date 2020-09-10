@@ -1,15 +1,11 @@
 package com.liblogic.angelcloud.model;
 
-import java.util.List;
-
-import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
@@ -20,20 +16,22 @@ public class Flowers {
     @GeneratedValue(strategy=GenerationType.IDENTITY)
 	Long id;
 	
-	@OneToMany(mappedBy="flowers", cascade=CascadeType.ALL)
-	List<Details> details;
+	private String leftBy;
+	private String date;
 	
 	@ManyToOne
 	@JoinColumn(name="burial_id")
 	@JsonIgnore
-    private Burial burial;
-
-	public Flowers() {}
+	private Burial burial;
 	
-	public Flowers(Long id, List<Details> details, Burial burial) {
+	
+	public Flowers() {}
+
+	public Flowers(Long id, String leftBy, String date, Burial burial) {
 		super();
 		this.id = id;
-		this.details = details;
+		this.leftBy = leftBy;
+		this.date = date;
 		this.burial = burial;
 	}
 
@@ -41,12 +39,26 @@ public class Flowers {
 		return id;
 	}
 
-	public List<Details> getDetails() {
-		return details;
+	public void setId(Long id) {
+		this.id = id;
 	}
 
-	public void setDetails(List<Details> details) {
-		this.details = details;
+	public String getLeftBy() {
+		return leftBy;
+	}
+
+	public void setLeftBy(String leftBy) {
+		this.leftBy = leftBy;
+	}
+
+
+	public String getDate() {
+		return date;
+	}
+
+
+	public void setDate(String date) {
+		this.date = date;
 	}
 
 	public Burial getBurial() {

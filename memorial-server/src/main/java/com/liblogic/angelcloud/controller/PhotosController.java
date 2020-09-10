@@ -26,14 +26,19 @@ public class PhotosController {
     public Iterable<Photos> getAllPhotos() {
         return photoRepository.findAll();
     }
+    
+    @GetMapping("/photos/{photoId}")
+    public Optional<Photos> getPhotoById(@PathVariable Long photoId) {
+        return photoRepository.findById(photoId);
+    }
 
     @GetMapping("/burials/{burialId}/photos")
     public Photos getPhotosByBurial(@PathVariable Long burialId) {
         return photoRepository.findByBurialId(burialId);
     }
 	
-	@PutMapping("burials/{burialId}/photos/{photoId}")
-	public ResponseEntity<?> updatePhoto(@RequestBody Photos newPhoto, @PathVariable Long burialId, @PathVariable Long photoId) {
+	@PutMapping("burials/{burialId}/addMainPhoto")
+	public ResponseEntity<?> updatePhoto(@RequestBody Photos newPhoto, @PathVariable Long burialId) {
 		Optional<Burial> burial = burialRepository.findById(burialId);
 		newPhoto.setBurial(burial.get());
 		newPhoto.setId(burial.get().getId());

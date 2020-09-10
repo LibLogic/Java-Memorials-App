@@ -30,7 +30,7 @@ public class SitesController {
         return siteRepository.findById(id);
     }
 
-    @PostMapping("/sites")
+    @PostMapping("/addSite")
     public ResponseEntity<Void> addSite(@RequestBody Site newSite) {
         Site site = siteRepository.save(newSite);
         URI location = ServletUriComponentsBuilder.fromCurrentRequest()
