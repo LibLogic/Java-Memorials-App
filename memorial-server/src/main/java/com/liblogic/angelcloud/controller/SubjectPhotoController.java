@@ -12,13 +12,20 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
+
+import com.liblogic.angelcloud.model.Burial;
 import com.liblogic.angelcloud.model.Photos;
 import com.liblogic.angelcloud.model.SubjectPhoto;
+import com.liblogic.angelcloud.repository.BurialRepository;
 import com.liblogic.angelcloud.repository.PhotoRepository;
 import com.liblogic.angelcloud.repository.SubjectPhotoRepository;
 
 @RestController
 public class SubjectPhotoController {
+    
+	
+    @Autowired
+    private BurialRepository burialRepository;
     
     @Autowired
     private PhotoRepository photoRepository;
@@ -32,12 +39,12 @@ public class SubjectPhotoController {
     }
     
     @GetMapping("/subjectPhotos/{subjectId}")
-    public Optional<SubjectPhoto> getSubjectsByPhotoId(@PathVariable Long subjectId) {
+    public Optional<SubjectPhoto> getSubjectPhotosById(@PathVariable Long subjectId) {
         return subjectPhotoRepository.findById(subjectId);
     }
     
     @GetMapping("/burials/{burialId}/subjectPhotos")
-    public List<SubjectPhoto> getSubjectsByBurialId(@PathVariable Long burialId) {
+    public List<SubjectPhoto> getSubjectPhotosByBurialId(@PathVariable Long burialId) {
     	Photos photo = photoRepository.findByBurialId(burialId);
     	Long photoId = photo.getId();
         return subjectPhotoRepository.findByPhotosId(photoId);
@@ -46,6 +53,12 @@ public class SubjectPhotoController {
     @PostMapping("/burials/{burialId}/addSubjectPhoto")
     public ResponseEntity<Object> addSubjectPhoto(@RequestBody SubjectPhoto newSubjectPhoto, @PathVariable Long burialId) {
     	Photos photo = photoRepository.findByBurialId(burialId);
+    	 if(photo == null){
+    		 Optional<Burial> burialTemp = burialRepository.findById(burialId);
+    		 Photos photoTemp = new Photos(burialTemp.get().getId(), burialTemp.get());
+    		 photo = photoTemp;
+    		 photoRepository.save(photoTemp);
+    	}
     	newSubjectPhoto.setPhotos(photo);
     	SubjectPhoto subject = subjectPhotoRepository.save(newSubjectPhoto);
         URI location = ServletUriComponentsBuilder.fromCurrentRequest()
@@ -55,7 +68,7 @@ public class SubjectPhotoController {
     } 
     
     @DeleteMapping("/subjectPhotos/{subjectId}")
-    public void deleteSubjectsByPhotoId(@PathVariable Long subjectId) {
+    public void deleteSubjectsPhotoById(@PathVariable Long subjectId) {
         subjectPhotoRepository.deleteById(subjectId);
     }
 }

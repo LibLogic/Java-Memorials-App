@@ -1,15 +1,10 @@
 package com.liblogic.angelcloud.model;
 
-import java.util.List;
-
-import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
@@ -20,24 +15,19 @@ public class Donors {
     @GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Long id;
 	
-	private String restHome;
-	
-	@OneToMany(mappedBy="donors", cascade=CascadeType.ALL)
-	private List<Contributors> individuals;
+	private String donor;
 	
 	@ManyToOne
-	@JoinColumn(name="burial_id")
 	@JsonIgnore
-    private Burial burial;
+	private Sponsors sponsors;
 	
 	public Donors() {}
 	
-	public Donors(Long id, String restHome, List<Contributors> individuals, Burial burial) {
+	public Donors(Long id, String donor, Sponsors sponsors) {
 		super();
 		this.id = id;
-		this.restHome = restHome;
-		this.individuals = individuals;
-		this.burial = burial;
+		this.donor = donor;
+		this.sponsors = sponsors;
 	}
 
 	public Long getId() {
@@ -48,28 +38,19 @@ public class Donors {
 		this.id = id;
 	}
 
-	public String getRestHome() {
-		return restHome;
+	public String getDonor() {
+		return donor;
 	}
 
-	public void setRestHome(String restHome) {
-		this.restHome = restHome;
+	public void setDonor(String donor) {
+		this.donor = donor;
 	}
 
-	public List<Contributors> getIndividuals() {
-		return individuals;
+	public Sponsors getSponsors() {
+		return sponsors;
 	}
 
-	public void setIndividuals(List<Contributors> individuals) {
-		this.individuals = individuals;
+	public void setSponsors(Sponsors sponsors) {
+		this.sponsors = sponsors;
 	}
-
-	public Burial getBurial() {
-		return burial;
-	}
-
-	public void setBurial(Burial burial) {
-		this.burial = burial;
-	}
-
 }

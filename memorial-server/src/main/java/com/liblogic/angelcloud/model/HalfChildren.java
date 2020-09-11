@@ -15,7 +15,7 @@ public class HalfChildren {
     @GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Long id;
 	
-	private String halfChild;
+	private String child;
 	
 	@ManyToOne
 	@JsonIgnore
@@ -23,10 +23,10 @@ public class HalfChildren {
 	
 	public HalfChildren() {}
 
-	public HalfChildren(Long id, String halfChild, Parents parents) {
+	public HalfChildren(Long id, String child, Parents parents) {
 		super();
 		this.id = id;
-		this.halfChild = halfChild;
+		this.child = child;
 		this.parents = parents;
 	}
 
@@ -38,12 +38,12 @@ public class HalfChildren {
 		this.id = id;
 	}
 
-	public String getHalfChild() {
-		return halfChild;
+	public String getChild() {
+		return child;
 	}
 
-	public void setHalfChild(String halfChild) {
-		this.halfChild = halfChild;
+	public void secChild(String child) {
+		this.child = child;
 	}
 
 	public Parents getParents() {

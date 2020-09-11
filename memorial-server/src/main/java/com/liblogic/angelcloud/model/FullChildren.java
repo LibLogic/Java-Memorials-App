@@ -15,7 +15,7 @@ public class FullChildren {
     @GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Long id;
 	
-	private String fullChild;
+	private String child;
 	
 	@ManyToOne
 	@JsonIgnore
@@ -23,14 +23,12 @@ public class FullChildren {
 	
 	public FullChildren() {}
 
-	public FullChildren(Long id, String fullChild, Parents parents) {
+	public FullChildren(Long id, String child, Parents parents) {
 		super();
 		this.id = id;
-		this.fullChild = fullChild;
+		this.child = child;
 		this.parents = parents;
 	}
-
-
 
 	public Long getId() {
 		return id;
@@ -40,12 +38,12 @@ public class FullChildren {
 		this.id = id;
 	}
 
-	public String getFullChild() {
-		return fullChild;
+	public String getChild() {
+		return child;
 	}
 
-	public void setFullChild(String fullChild) {
-		this.fullChild = fullChild;
+	public void setChild(String child) {
+		this.child = child;
 	}
 
 	public Parents getParents() {

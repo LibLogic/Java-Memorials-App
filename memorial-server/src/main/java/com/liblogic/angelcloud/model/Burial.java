@@ -1,20 +1,15 @@
 package com.liblogic.angelcloud.model;
 
-import java.util.ArrayList;
 import java.util.List;
-
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
-
-
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
-
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
@@ -44,7 +39,7 @@ public class Burial {
     private Parents parents = new Parents();
     
     @OneToOne(cascade=CascadeType.ALL)
-    private Donors donors = new Donors();
+    private Sponsors sponsors = new Sponsors();
     
     @OneToMany(mappedBy="burial", cascade=CascadeType.ALL)
     private List<Flowers> flowers;
@@ -57,7 +52,7 @@ public class Burial {
 
 	public Burial(Long id, String firstName, String middleName, String lastName, String maidenName, String birthYear,
 			String deathYear, String city, String state, String county, String country, String cemeteryName,
-			Photos photos, Parents parents, Donors donors, List<Flowers> flowers, Site site) {
+			Photos photos, Parents parents, Sponsors sponsors, List<Flowers> flowers, Site site) {
 		super();
 		this.id = id;
 		this.firstName = firstName;
@@ -73,7 +68,7 @@ public class Burial {
 		this.cemeteryName = cemeteryName;
 		this.photos = photos;
 		this.parents = parents;
-		this.donors = donors;
+		this.sponsors = sponsors;
 		this.flowers = flowers;
 		this.site = site;
 	}
@@ -190,12 +185,12 @@ public class Burial {
 		this.parents = parents;
 	}
 
-	public Donors getDonors() {
-		return donors;
+	public Sponsors getSponsors() {
+		return sponsors;
 	}
 
-	public void setDonors(Donors donors) {
-		this.donors = donors;
+	public void setSponsors(Sponsors sponsors) {
+		this.sponsors = sponsors;
 	}
 
 	public List<Flowers> getFlowers() {

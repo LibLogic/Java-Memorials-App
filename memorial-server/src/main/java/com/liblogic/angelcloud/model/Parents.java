@@ -36,6 +36,11 @@ public class Parents {
 
 	public Parents() {}
 	
+	public Parents(Long id, Burial burial) {
+		this.id = id;
+		this.burial = burial;
+	}
+	
 	public Parents(Long id, String mother, String father, List<FullChildren> fullChildren,
 			List<HalfChildren> halfChildren, Burial burial) {
 		super();

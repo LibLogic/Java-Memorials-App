@@ -1,7 +1,6 @@
 package com.liblogic.angelcloud.model;
 
 import java.util.List;
-
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -10,7 +9,6 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
-
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
@@ -20,7 +18,7 @@ public class Photos {
     @GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Long id;
 	
-	private String mainPhoto;
+	private String photo;
 	
 	@OneToMany(mappedBy="photos", cascade=CascadeType.ALL)
 	private List<SubjectPhoto> subjectPhotos;
@@ -35,11 +33,16 @@ public class Photos {
 	
 	public Photos() {}
 
-	public Photos(Long id, String mainPhoto, List<SubjectPhoto> subjectPhotos, List<FamilyPhoto> familyPhotos,
+	public Photos(Long id, Burial burial) {
+		this.id = id;
+		this.burial = burial;
+	}
+	
+	public Photos(long id, String photo, List<SubjectPhoto> subjectPhotos, List<FamilyPhoto> familyPhotos,
 			Burial burial) {
 		super();
 		this.id = id;
-		this.mainPhoto = mainPhoto;
+		this.photo = photo;
 		this.subjectPhotos = subjectPhotos;
 		this.familyPhotos = familyPhotos;
 		this.burial = burial;
@@ -53,12 +56,12 @@ public class Photos {
 		this.id = id;
 	}
 
-	public String getMainPhoto() {
-		return mainPhoto;
+	public String getPhoto() {
+		return photo;
 	}
 
-	public void setMainPhoto(String mainPhoto) {
-		this.mainPhoto = mainPhoto;
+	public void setPhoto(String photo) {
+		this.photo = photo;
 	}
 
 	public List<SubjectPhoto> getSubjectPhotos() {

@@ -12,14 +12,20 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
+
+import com.liblogic.angelcloud.model.Burial;
 import com.liblogic.angelcloud.model.FamilyPhoto;
 import com.liblogic.angelcloud.model.Photos;
+import com.liblogic.angelcloud.repository.BurialRepository;
 import com.liblogic.angelcloud.repository.FamilyPhotoRepository;
 import com.liblogic.angelcloud.repository.PhotoRepository;
 
 @RestController
 public class FamilyPhotoController {
 	
+    @Autowired
+    private BurialRepository burialRepository;
+    
     @Autowired
     private PhotoRepository photoRepository;
     
@@ -32,12 +38,12 @@ public class FamilyPhotoController {
     }
     
     @GetMapping("/familyPhotos/{familyId}")
-    public Optional<FamilyPhoto> getFamilysByPhotoId(@PathVariable Long familyId) {
+    public Optional<FamilyPhoto> getFamilyPhotosByPhotoId(@PathVariable Long familyId) {
         return familyPhotoRepository.findById(familyId);
     }
     
     @GetMapping("/burials/{burialId}/familyPhotos")
-    public List<FamilyPhoto> getFamilysByBurialId(@PathVariable Long burialId) {
+    public List<FamilyPhoto> getFamilyPhotosByBurialId(@PathVariable Long burialId) {
     	Photos photo = photoRepository.findByBurialId(burialId);
     	Long photoId = photo.getId();
         return familyPhotoRepository.findByPhotosId(photoId);
@@ -46,6 +52,12 @@ public class FamilyPhotoController {
     @PostMapping("/burials/{burialId}/addFamilyPhoto")
     public ResponseEntity<Object> addFamilyPhoto(@RequestBody FamilyPhoto newFamilyPhoto, @PathVariable Long burialId) {
     	Photos photo = photoRepository.findByBurialId(burialId);
+	   	 if(photo == null){
+			 Optional<Burial> burialTemp = burialRepository.findById(burialId);
+			 Photos photoTemp = new Photos(burialTemp.get().getId(), burialTemp.get());
+			 photo = photoTemp;
+			 photoRepository.save(photoTemp);
+		}
     	newFamilyPhoto.setPhotos(photo);
     	FamilyPhoto family = familyPhotoRepository.save(newFamilyPhoto);
         URI location = ServletUriComponentsBuilder.fromCurrentRequest()
@@ -55,7 +67,7 @@ public class FamilyPhotoController {
     }
     
     @DeleteMapping("/familyPhotos/{familyId}")
-    public void deleteSubjectsByPhotoId(@PathVariable Long familyId) {
+    public void deleteFamilyPhotoById(@PathVariable Long familyId) {
         familyPhotoRepository.deleteById(familyId);
     }
 }
