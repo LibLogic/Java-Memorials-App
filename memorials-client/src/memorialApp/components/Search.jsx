@@ -1,10 +1,11 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { store } from "../store";
-import LocData from "./LocData";
-import DummyLocData from "./DummyLocData";
+// import LocData from "./LocData";
+// import DummyLocData from "./DummyLocData";
 import SearchDetails from "./SearchDetails";
 import billionGravesService from "../api/billionGraves/billionGravesService";
+import AngelCloudService from "../api/angelCloud/AngelCloudService";
 
 const SpeechRecognition =
   window.SpeechRecognition || window.webkitSpeechRecognition;
@@ -29,10 +30,10 @@ class Search extends Component {
           enableRecordButton={this.enableRecordButton}
           color={this.state.color}
         />
-        <DummyLocData
+        {/* <DummyLocData
           store={store}
           disableRecordButton={this.disableRecordButton}
-        />
+        /> */}
         <div className="full-window search">
           <div id="camera-window" className="camera-window">
             Camera View
@@ -159,9 +160,11 @@ class Search extends Component {
 
   doSearch = () => {
     let conductSearch = () => {
-      billionGravesService
-        .retreiveSubject()
+      // billionGravesService
+      //   .retreiveSubject()
+      AngelCloudService.getAllBurials()
         .then((response) => {
+          console.log(response);
           // if (
           //   store.getState().deviceLocation.latitude ===
           //     response.data.items[0].lat.toFixed(7) &&
@@ -235,8 +238,9 @@ class Search extends Component {
       this.props.history.push("/view/main");
     };
 
-    billionGravesService
-      .retreiveSubject()
+    // billionGravesService
+    //   .retreiveSubject()
+    AngelCloudService.getAllBurials()
       .then((response) => {
         let found = false;
         for (let i = 0; i < store.getState().sites.length; i++) {

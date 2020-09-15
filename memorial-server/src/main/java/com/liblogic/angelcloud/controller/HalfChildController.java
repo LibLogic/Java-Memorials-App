@@ -5,6 +5,7 @@ import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -15,11 +16,11 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 import com.liblogic.angelcloud.model.Burial;
 import com.liblogic.angelcloud.model.HalfChildren;
 import com.liblogic.angelcloud.model.Parents;
-import com.liblogic.angelcloud.model.SubjectPhoto;
 import com.liblogic.angelcloud.repository.BurialRepository;
 import com.liblogic.angelcloud.repository.HalfChildRepository;
 import com.liblogic.angelcloud.repository.ParentRepository;
 
+@CrossOrigin(origins = "*", allowedHeaders = "*")
 @RestController
 public class HalfChildController {
 	

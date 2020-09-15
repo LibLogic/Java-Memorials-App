@@ -40,105 +40,105 @@ class MainView extends Component {
             />
             <FBModal store={store} />
             <SubjectDetails store={store} />
+
             <div className="flower-container">
-              <div>
-                <div className="image-box">
-                  {this.state.headstoneImage && (
-                    <div>
-                      {!this.state.zoom && (
-                        <button
-                          className="btn btn-sm btn-success flower-btn"
-                          onClick={this.props.showModal}
-                        >
-                          Leave a Virtual Flower
-                        </button>
-                      )}
-                      <img
-                        className={`headstone-img ${
-                          this.state.zoom ? "image-zoom" : ""
-                        }`}
-                        src={
-                          process.env.PUBLIC_URL +
-                            this.props.subjectData.graveInfo.stoneImg ||
-                          Headstone
-                        }
-                        alt="Headstone"
-                        onClick={this.zoomImage}
-                      />
-                      <h6>
-                        {`${this.props.subjectData.cemeteryName}`}
-                        <br />
-                        {`${this.props.subjectData.city}, ${this.props.subjectData.state}`}
-                      </h6>
-                      <Flowers
-                        store={store}
-                        showModal={this.props.showModal}
-                        zoom={this.state.zoom}
-                      />
-                    </div>
-                  )}
+              {/* <div> */}
+              {/* <div className="image-box"> */}
 
-                  {this.state.personImage && (
-                    <div
-                      style={{
-                        overflow: "hidden",
-                      }}
+              {this.state.headstoneImage && (
+                <div>
+                  {!this.state.zoom && (
+                    <button
+                      className="btn btn-sm btn-success flower-btn"
+                      onClick={this.props.showModal}
                     >
-                      {Person && (
-                        <div
-                          style={{ position: "relative" }}
-                          className="poem-scroll"
-                        >
-                          <div className="icon-box-left">
-                            <img
-                              className="tree-img"
-                              src={treeIcon}
-                              alt="Tree"
-                              onClick={() => {
-                                this.props.history.push("/view/family");
-                              }}
-                            />
-                            <img
-                              className="person-img"
-                              src={
-                                process.env.PUBLIC_URL +
-                                  this.props.subjectData.photos.mainPhoto ||
-                                Person
-                              }
-                              alt="person"
-                            />
-                          </div>
+                      Leave a Virtual Flower
+                    </button>
+                  )}
+                  <img
+                    className={`headstone-img ${
+                      this.state.zoom ? "image-zoom" : ""
+                    }`}
+                    src={
+                      process.env.PUBLIC_URL + this.props.headStonePhoto ||
+                      Headstone
+                    }
+                    alt="Headstone"
+                    onClick={this.zoomImage}
+                  />
+                  <h6>
+                    {`${this.props.subjectData.cemeteryName}`}
+                    <br />
+                    {`${this.props.subjectData.cemeteryCity}, ${this.props.subjectData.cemeteryState}`}
+                  </h6>
+                  <Flowers
+                    store={store}
+                    showModal={this.props.showModal}
+                    zoom={this.state.zoom}
+                  />
+                </div>
+              )}
 
-                          <Poems store={store} />
-                        </div>
-                      )}
+              {this.state.personImage && (
+                <div
+                  style={{
+                    overflow: "hidden",
+                  }}
+                >
+                  {Person && (
+                    <div
+                      style={{ position: "relative" }}
+                      className="poem-scroll"
+                    >
+                      <div className="icon-box-left">
+                        <img
+                          className="tree-img"
+                          src={treeIcon}
+                          alt="Tree"
+                          onClick={() => {
+                            this.props.history.push("/view/family");
+                          }}
+                        />
+                        <img
+                          className="person-img"
+                          src={
+                            process.env.PUBLIC_URL +
+                              this.props.subjectData.photos.photo || Person
+                          }
+                          alt="person"
+                        />
+                      </div>
+
+                      <Poems store={store} />
                     </div>
                   )}
-                  <div className="icon-box-right">
-                    {this.state.personInfoBox && (
-                      <div className="person-icon-box">
-                        <img
-                          onClick={this.swapMainView}
-                          className="person-icon"
-                          src={personIcon}
-                          alt="Person"
-                        />
-                      </div>
-                    )}
-                    {this.state.headstoneInfoBox && (
-                      <div className="headstone-icon-box">
-                        <img
-                          onClick={this.swapMainView}
-                          className="headstone-icon"
-                          src={headstoneIcon}
-                          alt="Headstone"
-                        />
-                      </div>
-                    )}
-                  </div>
                 </div>
+              )}
+              <div className="icon-box-right">
+                {this.state.personInfoBox && (
+                  <div className="person-icon-box">
+                    <img
+                      onClick={this.swapMainView}
+                      className="person-icon"
+                      src={personIcon}
+                      alt="Person"
+                    />
+                  </div>
+                )}
+                {this.state.headstoneInfoBox && (
+                  <div className="headstone-icon-box">
+                    <img
+                      onClick={this.swapMainView}
+                      className="headstone-icon"
+                      src={headstoneIcon}
+                      alt="Headstone"
+                    />
+                  </div>
+                )}
               </div>
             </div>
+            {/* </div> */}
+            {/* </div> */}
           </div>
         </div>
       </div>
@@ -168,6 +168,9 @@ class MainView extends Component {
 
   processFlower = (leftBy) => {
     let currentIndex = this.props.currentIndex;
+
+    console.log(leftBy, currentIndex);
+
     this.props.addFlower(leftBy, currentIndex);
 
     this.setState({
@@ -179,27 +182,28 @@ class MainView extends Component {
 const mapStateToProps = (state) => {
   return {
     ...state,
-    individual: state.subjectData.donors.individual,
+    // individual: state.subjectData.donors.individual,
+    headStonePhoto: state.headStonePhoto,
     currentIndex: state.currentIndex,
     showModal: state.showModal,
     subjectData: {
       ...state.subjectData,
       cemeteryName: state.subjectData.cemeteryName,
-      city: state.subjectData.city,
-      state: state.subjectData.state,
+      cemeteryCity: state.subjectData.cemeteryCity,
+      cemeteryState: state.subjectData.cemeteryState,
       photos: {
         ...state.subjectData.photos,
-        mainPhoto: state.subjectData.photos.mainPhoto,
+        photo: state.subjectData.photos.photo,
       },
-      donors: {
-        ...state.subjectData.donors,
-        restHome: state.subjectData.donors.restHome,
-        individual: [...state.subjectData.donors.individual],
+      sponsors: {
+        ...state.subjectData.sponsors,
+        sponsor: state.subjectData.sponsors.sponsor,
+        donors: [...state.subjectData.sponsors.donors],
       },
-      graveInfo: {
-        ...state.subjectData.graveInfo,
-        stoneImg: state.subjectData.graveInfo.stoneImg,
-      },
+      // graveInfo: {
+      //   ...state.subjectData.graveInfo,
+      //   stoneImg: state.subjectData.graveInfo.stoneImg,
+      // },
     },
   };
 };

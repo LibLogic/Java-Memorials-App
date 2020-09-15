@@ -14,6 +14,7 @@ public class Flowers {
 	
 	@Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)
+	@JsonIgnore
 	Long id;
 	
 	private String leftBy;

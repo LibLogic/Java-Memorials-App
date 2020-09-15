@@ -10,6 +10,7 @@ import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
+
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
@@ -18,6 +19,7 @@ public class Burial {
     @Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)
     @Column(name = "burial_id")
+    @JsonIgnore
     private Long id;
     
     private String firstName;
@@ -26,10 +28,10 @@ public class Burial {
     private String maidenName;
     private String birthYear;
     private String deathYear;
-    private String city;
-    private String state;
-    private String county;
-    private String country;
+    private String cemeteryCity;
+    private String cemeteryState;
+    private String cemeteryCounty;
+    private String cemeteryCountry;
     private String cemeteryName;
         
     @OneToOne(cascade=CascadeType.ALL)
@@ -50,9 +52,10 @@ public class Burial {
     
 	public Burial() {}
 
+
 	public Burial(Long id, String firstName, String middleName, String lastName, String maidenName, String birthYear,
-			String deathYear, String city, String state, String county, String country, String cemeteryName,
-			Photos photos, Parents parents, Sponsors sponsors, List<Flowers> flowers, Site site) {
+			String deathYear, String cemeteryCity, String cemeteryState, String cemeteryCounty, String cemeteryCountry,
+			String cemeteryName, Photos photos, Parents parents, Sponsors sponsors, List<Flowers> flowers, Site site) {
 		super();
 		this.id = id;
 		this.firstName = firstName;
@@ -61,10 +64,10 @@ public class Burial {
 		this.maidenName = maidenName;
 		this.birthYear = birthYear;
 		this.deathYear = deathYear;
-		this.city = city;
-		this.state = state;
-		this.county = county;
-		this.country = country;
+		this.cemeteryCity = cemeteryCity;
+		this.cemeteryState = cemeteryState;
+		this.cemeteryCounty = cemeteryCounty;
+		this.cemeteryCountry = cemeteryCountry;
 		this.cemeteryName = cemeteryName;
 		this.photos = photos;
 		this.parents = parents;
@@ -72,6 +75,7 @@ public class Burial {
 		this.flowers = flowers;
 		this.site = site;
 	}
+
 
 	public Long getId() {
 		return id;
@@ -129,36 +133,36 @@ public class Burial {
 		this.deathYear = deathYear;
 	}
 
-	public String getCity() {
-		return city;
+	public String getCemeteryCity() {
+		return cemeteryCity;
 	}
 
-	public void setCity(String city) {
-		this.city = city;
+	public void setCemeteryCity(String cemeteryCity) {
+		this.cemeteryCity = cemeteryCity;
 	}
 
-	public String getState() {
-		return state;
+	public String getCemeteryState() {
+		return cemeteryState;
 	}
 
-	public void setState(String state) {
-		this.state = state;
+	public void setCemeteryState(String cemeteryState) {
+		this.cemeteryState = cemeteryState;
 	}
 
-	public String getCounty() {
-		return county;
+	public String getCemeteryCounty() {
+		return cemeteryCounty;
 	}
 
-	public void setCounty(String county) {
-		this.county = county;
+	public void setCemeteryCounty(String cemeteryCounty) {
+		this.cemeteryCounty = cemeteryCounty;
 	}
 
-	public String getCountry() {
-		return country;
+	public String getCemeteryCountry() {
+		return cemeteryCountry;
 	}
 
-	public void setCountry(String country) {
-		this.country = country;
+	public void setCemeteryCountry(String cemeteryCountry) {
+		this.cemeteryCountry = cemeteryCountry;
 	}
 
 	public String getCemeteryName() {

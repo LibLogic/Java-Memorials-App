@@ -18,6 +18,7 @@ public class Sponsors {
 	
 	@Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)
+    @JsonIgnore
 	private Long id;
 	
 	private String sponsor;

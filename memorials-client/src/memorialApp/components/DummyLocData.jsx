@@ -33,31 +33,38 @@ class DummyLocData extends Component {
 
   getLocArea = (key) => {
     LocationService.getLocationInfo(
-      this.props.sites[key].graveInfo.latitude,
-      this.props.sites[key].graveInfo.longitude
+      this.props.sites[key].latitude,
+      this.props.sites[key].longitude
+
+      // this.props.sites[key].graveInfo.latitude,
+      // this.props.sites[key].graveInfo.longitude
     ).then((response) => {
-      let country =
+      let cemeteryCountry =
         response.data.countryName === "United States of America"
           ? "United States"
           : response.data.countryName;
 
-      let county = "";
-      if (response.data.localityInfo.informative[2]) {
-        county = response.data.localityInfo.informative[2].name;
+      let cemeteryCounty = "";
+      if (response.data.localityInfo.administrative[2].name) {
+        cemeteryCounty = response.data.localityInfo.administrative[2].name;
       }
 
       let dummyLocationResponse = {
-        latitude: this.props.sites[key].graveInfo.latitude,
-        longitude: this.props.sites[key].graveInfo.longitude,
-        firstName: this.props.sites[key].firstName,
-        middleName: this.props.sites[key].middleName,
-        lastName: this.props.sites[key].lastName,
-        birthYear: this.props.sites[key].birthYear,
-        deathYear: this.props.sites[key].deathYear,
-        city: response.data.city,
-        state: response.data.principalSubdivision,
-        county: county,
-        country: country,
+        latitude: this.props.sites[key].latitude,
+        longitude: this.props.sites[key].longitude,
+
+        // latitude: this.props.sites[key].graveInfo.latitude,
+        // longitude: this.props.sites[key].graveInfo.longitude,
+
+        firstName: this.props.sites[key].burials[0].firstName,
+        middleName: this.props.sites[key].burials[0].middleName,
+        lastName: this.props.sites[key].burials[0].lastName,
+        birthYear: this.props.sites[key].burials[0].birthYear,
+        deathYear: this.props.sites[key].burials[0].deathYear,
+        cemeteryCity: response.data.city,
+        cemeteryState: response.data.principalSubdivision,
+        cemeteryCounty: cemeteryCounty,
+        cemeteryCountry: cemeteryCountry,
       };
       this.props.setLocArea(dummyLocationResponse);
     });
@@ -82,10 +89,10 @@ const mapDispatchToProps = (dispatch) => {
         lastName: data.lastName,
         birthYear: data.birthYear,
         deathYear: data.deathYear,
-        city: data.city,
-        state: data.state,
-        county: data.county,
-        country: data.country,
+        cemeteryCity: data.cemeteryCity,
+        cemeteryState: data.cemeteryState,
+        cemeteryCounty: data.cemeteryCounty,
+        cemeteryCountry: data.cemeteryCountry,
       };
       dispatch(action);
     },

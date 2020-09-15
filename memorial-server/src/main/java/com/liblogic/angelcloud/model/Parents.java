@@ -1,7 +1,6 @@
 package com.liblogic.angelcloud.model;
 
 import java.util.List;
-
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -18,6 +17,7 @@ public class Parents {
 	
 	@Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)
+    @JsonIgnore
 	private Long id;
 	
 	private String mother;

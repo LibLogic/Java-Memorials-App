@@ -95,13 +95,10 @@ const mapStateToProps = (state) => {
     birthYear: state.subjectData.birthYear,
     deathYear: state.subjectData.deathYear,
     cemeteryName: state.subjectData.cemeteryName,
-    city: state.subjectData.city,
-    state: state.subjectData.state,
+    cemeteryCity: state.subjectData.cemeteryCity,
+    cemeteryState: state.subjectData.cemeteryState,
     showFBModal: state.showFBModal,
-    leftBy:
-      state.subjectData.flowers.details[
-        state.subjectData.flowers.details.length - 1
-      ],
+    leftBy: state.subjectData.flowers[state.subjectData.flowers.length - 1],
   };
 };
 

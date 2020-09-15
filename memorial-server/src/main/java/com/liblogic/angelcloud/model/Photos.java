@@ -9,6 +9,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
@@ -16,6 +17,7 @@ public class Photos {
 	
 	@Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)
+    @JsonIgnore
 	private Long id;
 	
 	private String photo;

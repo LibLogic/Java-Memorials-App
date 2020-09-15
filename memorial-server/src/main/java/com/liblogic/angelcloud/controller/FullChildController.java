@@ -4,6 +4,7 @@ import java.net.URI;
 import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -18,6 +19,7 @@ import com.liblogic.angelcloud.repository.BurialRepository;
 import com.liblogic.angelcloud.repository.FullChildRepository;
 import com.liblogic.angelcloud.repository.ParentRepository;
 
+@CrossOrigin(origins = "*", allowedHeaders = "*")
 @RestController
 public class FullChildController {
 	

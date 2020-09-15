@@ -137,7 +137,7 @@ by ${this.displayFlower9.leftBy} `}
             </tbody>
           </table>
         </div>
-        {this.props.individual.length > 0 && (
+        {this.props.donors.length > 0 && (
           <div className="donor-box">
             <b>
               {" "}
@@ -173,32 +173,35 @@ by ${this.displayFlower9.leftBy} `}
     let elem = 1;
     let animationEvent = whichAnimationEvent();
     let scroll = document.querySelector(".slide-up");
-    scroll && (scroll.innerText = this.props.individual[0]);
+    scroll && (scroll.innerText = this.props.donors[0].donor);
     scroll &&
       scroll.addEventListener(animationEvent, () => {
-        scroll.innerText = this.props.individual[
-          elem % this.props.individual.length
-        ];
+        scroll.innerText = this.props.donors[
+          elem % this.props.donors.length
+        ].donor;
         elem++;
       });
   };
 
   getFlowers = () => {
-    for (let i = 0; i < 15; i++) {
+    console.log(this.props.flowers);
+    console.log(this.props.donors);
+    console.log(this.props.donors[0]);
+    for (let i = 0; i < 12; i++) {
       let temp = "displayFlower" + i;
       this[temp] = false;
     }
-    for (let i = 0; i < this.props.details.length; i++) {
+    for (let i = 0; i < this.props.flowers.length; i++) {
       let temp = "displayFlower" + i;
-      this[temp] = this.props.details[i];
+      this[temp] = this.props.flowers[i];
     }
   };
 }
 
 const mapStateToProps = (state) => {
   return {
-    details: state.subjectData.flowers.details,
-    individual: state.subjectData.donors.individual,
+    flowers: state.subjectData.flowers,
+    donors: state.subjectData.sponsors.donors,
     lastName: state.subjectData.lastName,
     firstInitial: state.subjectData.firstName[0],
   };

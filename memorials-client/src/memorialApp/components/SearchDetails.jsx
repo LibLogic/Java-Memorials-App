@@ -98,10 +98,10 @@ const mapStateToProps = (state) => {
     ...state,
     deviceLocation: {
       ...state.deviceLocation,
-      city: state.deviceLocation.city,
-      state: state.deviceLocation.state,
-      county: state.deviceLocation.county,
-      country: state.deviceLocation.country,
+      cemeteryCity: state.deviceLocation.cemeteryCity,
+      cemeteryState: state.deviceLocation.cemeteryState,
+      cemeteryCounty: state.deviceLocation.cemeteryCounty,
+      cemeteryCountry: state.deviceLocation.cemeteryCountry,
     },
     speechData: {
       ...state.speechData,
@@ -118,15 +118,15 @@ const mapStateToProps = (state) => {
       lastName: state.subjectData.lastName,
       birthYear: state.subjectData.birthYear,
       deathYear: state.subjectData.deathYear,
-      city: state.subjectData.city,
-      state: state.subjectData.state,
-      county: state.subjectData.county,
-      country: state.subjectData.country,
-      graveInfo: {
-        ...state.subjectData.graveInfo,
-        latitude: state.subjectData.graveInfo.latitude,
-        longitiue: state.subjectData.graveInfo.longitude,
-      },
+      cemeteryCity: state.subjectData.cemeteryCity,
+      cemeteryState: state.subjectData.cemeteryState,
+      cemeteryCounty: state.subjectData.cemeteryCounty,
+      cemeteryCountry: state.subjectData.cemeteryCountry,
+      // graveInfo: {
+      //   ...state.subjectData.graveInfo,
+      // latitude: state.subjectData.latitude,
+      // longitiue: state.subjectData.longitude,
+      // },
     },
   };
 };

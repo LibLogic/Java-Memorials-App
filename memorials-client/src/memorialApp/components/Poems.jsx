@@ -18,7 +18,7 @@ const mapStateToProps = (state) => {
     title: state.poems[rand].title,
     poem: state.poems[rand].poem,
     author: state.poems[rand].author,
-    donor: state.subjectData.donors.individual[0],
+    // donor: state.subjectData.donors.individual[0],
   };
 };
 

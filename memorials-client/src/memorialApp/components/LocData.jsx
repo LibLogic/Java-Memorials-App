@@ -23,10 +23,10 @@ class LocData extends Component {
         </button>
         <p>{`Device Latitude: ${this.props.deviceLocation.latitude}`}</p>
         <p>{`Device Longitude: ${this.props.deviceLocation.longitude}`}</p>
-        <p>{`Country: ${this.props.deviceLocation.country}`}</p>
-        <p>{`State: ${this.props.deviceLocation.state}`}</p>
-        <p>{`City: ${this.props.deviceLocation.city}`}</p>
-        <p>{`County: ${this.props.deviceLocation.county}`}</p>
+        <p>{`Country: ${this.props.deviceLocation.cemeteryCountry}`}</p>
+        <p>{`State: ${this.props.deviceLocation.cemeteryState}`}</p>
+        <p>{`City: ${this.props.deviceLocation.cemeteryCity}`}</p>
+        <p>{`County: ${this.props.deviceLocation.cemeteryCounty}`}</p>
       </div>
     );
   }
@@ -42,17 +42,17 @@ class LocData extends Component {
       position.coords.latitude,
       position.coords.longitude
     ).then((response) => {
-      let country =
+      let cemeteryCountry =
         response.data.countryName === "United States of America"
           ? "United States"
           : response.data.countryName;
       let deviceLocationResponse = {
-        latitude: response.data.latitude.toFixed(7),
-        longitude: response.data.longitude.toFixed(7),
-        city: response.data.city,
-        state: response.data.principalSubdivision,
-        county: response.data.localityInfo.informative[2].name,
-        country: country,
+        latitude: response.data.latitude.toFixed(5),
+        longitude: response.data.longitude.toFixed(5),
+        cemeteryCity: response.data.city,
+        cemeteryState: response.data.principalSubdivision,
+        cemeteryCounty: response.data.localityInfo.administrative[2].name,
+        cemeteryCountry: cemeteryCountry,
       };
       this.props.setDeviceLocation(deviceLocationResponse);
     });
@@ -64,10 +64,10 @@ const mapStateToProps = (state) => {
     deviceLocation: {
       latitude: state.deviceLocation.latitude,
       longitude: state.deviceLocation.longitude,
-      country: state.deviceLocation.country,
-      state: state.deviceLocation.state,
-      city: state.deviceLocation.city,
-      county: state.deviceLocation.county,
+      cemeteryCountry: state.deviceLocation.cemeteryCountry,
+      cemeteryState: state.deviceLocation.cemeteryState,
+      cemeteryCity: state.deviceLocation.cemeteryCity,
+      cemeteryCounty: state.deviceLocation.cemeteryCounty,
     },
   };
 };
@@ -85,7 +85,7 @@ const mapDispatchToProps = (dispatch) => {
         birthYear: "",
         deathYear: "",
         cemeteryName: "",
-        stoneImg: "",
+        // stoneImg: "",
       };
       dispatch(action);
     },

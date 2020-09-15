@@ -5,6 +5,7 @@ import LocData from "./LocData";
 import DummyLocData from "./DummyLocData";
 import SearchDetails from "./SearchDetails";
 import billionGravesService from "../api/billionGraves/billionGravesService";
+import AngelCloudService from "../api/angelCloud/AngelCloudService";
 
 const SpeechRecognition =
   window.SpeechRecognition || window.webkitSpeechRecognition;
@@ -161,146 +162,169 @@ class Browse extends Component {
     });
   };
 
+  // first check to see if we have a site for this location
+
   doSearch = () => {
-    // let conductSearch = () => {
-    //   billionGravesService
-    //     .retreiveSubject()
-    //     .then((response) => {
-    //       // if (
-    //       //   store.getState().deviceLocation.latitude ===
-    //       //     response.data.items[0].lat.toFixed(7) &&
-    //       //   store.getState().deviceLocation.longitude ===
-    //       //     response.data.items[0].lon.toFixed(7)
-    //       // ) {
-    //       let firstName = response.data.items[0].given_names.split(" ")[0];
-    //       firstName =
-    //         (firstName &&
-    //           firstName[0][0].toUpperCase() +
-    //             firstName.substring(1).toLowerCase()) ||
-    //         "";
-
-    //       let middleName = response.data.items[0].given_names.split(" ")[1];
-    //       middleName =
-    //         (middleName &&
-    //           middleName[0][0].toUpperCase() +
-    //             middleName.substring(1).toLowerCase()) ||
-    //         "";
-
-    //       let lastName = response.data.items[0].family_names;
-    //       lastName =
-    //         (lastName &&
-    //           lastName[0][0].toUpperCase() +
-    //             lastName.substring(1).toLowerCase()) ||
-    //         "";
-
-    //       let maidenName = response.data.items[0].maiden_names;
-    //       maidenName =
-    //         (maidenName &&
-    //           maidenName[0][0].toUpperCase() +
-    //             maidenName.substring(1).toLowerCase()) ||
-    //         "";
-
-    //       const subjectResponse = {
-    //         firstName: firstName,
-    //         middleName: middleName,
-    //         lastName: lastName,
-    //         maidenName: maidenName,
-    //         birthYear: response.data.items[0].birth_year,
-    //         deathYear: response.data.items[0].death_year,
-    //         country: response.data.items[0].cemetery_country,
-    //         state: response.data.items[0].cemetery_state,
-    //         city: response.data.items[0].cemetery_city,
-    //         county: response.data.items[0].cemetery_county,
-    //         cemeteryName: response.data.items[0].cemetery_name,
-    //         graveInfo: {
-    //           stoneImg: response.data.items[0].thumbnail,
-    //           latitude: response.data.items[0].lat.toFixed(7),
-    //           longitude: response.data.items[0].lon.toFixed(7),
-    //         },
-    //         photos: {
-    //           main: "",
-    //           subject: [],
-    //           family: [],
-    //         },
-    //         flowers: {
-    //           details: [],
-    //         },
-    //         donors: {
-    //           restHome: "",
-    //           individual: [],
-    //         },
-    //       };
-    //       this.props.saveNewSiteInfo(subjectResponse);
-    //       this.props.setSubjectInfo(subjectResponse);
-    //       // }
-    //     })
-    //     .catch((response) => {
-    //       console.log(response);
-    //     });
-
-    //   this.props.history.push("/view/main");
-    // };
-
-    billionGravesService
-      .retreiveSubject()
-      .then((response) => {
-        let found = false;
-        for (let i = 0; i < store.getState().sites.length; i++) {
+    let conductSearch = () => {
+      billionGravesService
+        .retreiveSubject()
+        .then((response) => {
           if (
             store.getState().deviceLocation.latitude ===
-              store.getState().sites[i].graveInfo.latitude &&
+              response.data.items[0].lat.toFixed(7) &&
             store.getState().deviceLocation.longitude ===
-              store.getState().sites[i].graveInfo.longitude &&
-            store.getState().sites[i].lastName ===
-              store.getState().subjectData.lastName &&
-            store.getState().sites[i].firstName ===
-              store.getState().subjectData.firstName
+              response.data.items[0].lon.toFixed(7)
           ) {
-            found = true;
-            let siteIndex = i;
-            let image = store.getState().sites[i].graveInfo.stoneImg;
-            // || response.data.items[0].thumbnail;
-            let siteDataResponse = { ...store.getState().sites[i] };
-            this.props.setSubjectInfo(siteDataResponse, image, siteIndex);
-            this.props.history.push("/view/main");
+            let firstName = response.data.items[0].given_names.split(" ")[0];
+            firstName =
+              (firstName &&
+                firstName[0][0].toUpperCase() +
+                  firstName.substring(1).toLowerCase()) ||
+              "";
+
+            let middleName = response.data.items[0].given_names.split(" ")[1];
+            middleName =
+              (middleName &&
+                middleName[0][0].toUpperCase() +
+                  middleName.substring(1).toLowerCase()) ||
+              "";
+
+            let lastName = response.data.items[0].family_names;
+            lastName =
+              (lastName &&
+                lastName[0][0].toUpperCase() +
+                  lastName.substring(1).toLowerCase()) ||
+              "";
+
+            let maidenName = response.data.items[0].maiden_names;
+            maidenName =
+              (maidenName &&
+                maidenName[0][0].toUpperCase() +
+                  maidenName.substring(1).toLowerCase()) ||
+              "";
+
+            const subjectResponse = {
+              firstName: firstName,
+              middleName: middleName,
+              lastName: lastName,
+              maidenName: maidenName,
+              birthYear: response.data.items[0].birth_year,
+              deathYear: response.data.items[0].death_year,
+              country: response.data.items[0].cemetery_country,
+              state: response.data.items[0].cemetery_state,
+              city: response.data.items[0].cemetery_city,
+              county: response.data.items[0].cemetery_county,
+              cemeteryName: response.data.items[0].cemetery_name,
+              // graveInfo: {
+              //   stoneImg: response.data.items[0].thumbnail,
+              //   latitude: response.data.items[0].lat.toFixed(7),
+              //   longitude: response.data.items[0].lon.toFixed(7),
+              // },
+              // photos: {
+              //   main: "",
+              //   subject: [],
+              //   family: [],
+              // },
+              // flowers: {
+              //   details: [],
+              // },
+              // donors: {
+              //   restHome: "",
+              //   individual: [],
+              // },
+            };
+            this.props.saveNewSiteInfo(subjectResponse);
+            this.props.setSubjectInfo(subjectResponse);
           }
-        }
-        if (!found) {
-          // create subjectResponse
-          let subjectData = {
-            firstName: store.getState().subjectData.firstName,
-            middleName: store.getState().subjectData.middleName,
-            lastName: store.getState().subjectData.lastName,
-            maidenName: store.getState().subjectData.maidenName,
-            birthYear: store.getState().subjectData.birthYear,
-            deathYear: store.getState().subjectData.deathYear,
-            city: store.getState().deviceLocation.city,
-            state: store.getState().deviceLocation.state,
-            county: store.getState().deviceLocation.county,
-            country: store.getState().deviceLocation.country,
-            cemeteryName: "",
-            photos: {
-              mainPhoto: "",
-              subjectPhotos: [],
-              familyPhotos: [],
-            },
-            flowers: {
-              details: [],
-            },
-            donors: {
-              restHome: "",
-              individual: [],
-            },
-            graveInfo: {
-              stoneImg: "",
-              latitude: store.getState().deviceLocation.latitude,
-              longitude: store.getState().deviceLocation.longitude,
-            },
-          };
-          this.props.saveNewSiteInfo(subjectData);
-          // conductSearch(); // this will not be needed in the future
-          console.log(store.getState().sites);
-        }
+        })
+        .catch((response) => {
+          console.log(response);
+        });
+
+      this.props.history.push("/view/main");
+    };
+
+    // billionGravesService
+    //   .retreiveSubject()
+    AngelCloudService.findSiteByLocation(
+      store.getState().deviceLocation.latitude,
+      store.getState().deviceLocation.longitude
+    )
+      .then((response) => {
+        // console.log(response.data.burials[0]);
+        // let found = false;
+        // for (let i = 0; i < store.getState().sites.length; i++) {
+        // if (
+        //   store.getState().deviceLocation.latitude ===
+        //     store.getState().sites[i].latitude &&
+        //   store.getState().deviceLocation.longitude ===
+        //     store.getState().sites[i].longitude
+        // &&
+        // store.getState().sites[i].lastName ===
+        //   store.getState().subjectData.lastName &&
+        // store.getState().sites[i].firstName ===
+        //   store.getState().subjectData.firstName
+        // ) {
+        // found = true;
+        // console.log(store.getState().deviceLocation.latitude);
+        // console.log(store.getState().sites[i].latitude);
+        // console.log("Found in array");
+        // let siteIndex = i;
+
+        let siteIndex = response.data.id;
+
+        let image = response.data.stoneImg;
+
+        // let image = store.getState().sites[i].stoneImg;
+
+        // || response.data.items[0].thumbnail;
+        // let siteDataResponse = { ...store.getState().sites[i].burials[0] };
+
+        let siteDataResponse = response.data.burials[0];
+
+        this.props.setSubjectInfo(siteDataResponse, image, siteIndex);
+        console.log(siteDataResponse);
+        this.props.history.push("/view/main");
+        // }
+        // }
+        //   if (!found) {
+        //     console.log("not found in array");
+        //     // create subjectResponse
+        //     let subjectData = {
+        //       firstName: store.getState().subjectData.firstName,
+        //       middleName: store.getState().subjectData.middleName,
+        //       lastName: store.getState().subjectData.lastName,
+        //       maidenName: store.getState().subjectData.maidenName,
+        //       birthYear: store.getState().subjectData.birthYear,
+        //       deathYear: store.getState().subjectData.deathYear,
+        //       cemeteryCity: store.getState().deviceLocation.city,
+        //       cemeteryState: store.getState().deviceLocation.state,
+        //       cemeteryCounty: store.getState().deviceLocation.county,
+        //       cemeteryCountry: store.getState().deviceLocation.country,
+        //       cemeteryName: "",
+        //       // photos: {
+        //       //   mainPhoto: "",
+        //       //   subjectPhotos: [],
+        //       //   familyPhotos: [],
+        //       // },
+        //       // flowers: {
+        //       //   details: [],
+        //       // },
+        //       // donors: {
+        //       //   restHome: "",
+        //       //   individual: [],
+        //       // },
+        //       // graveInfo: {
+        //       //   stoneImg: "",
+        //       latitude: store.getState().deviceLocation.latitude,
+        //       longitude: store.getState().deviceLocation.longitude,
+        //       // },
+        //     };
+        //     this.props.saveNewSiteInfo(subjectData);
+        //     // conductSearch(); // this will not be needed in the future
+        //     // console.log(store.getState().sites);
+        //     console.log(subjectData);
+        //   }
       })
       .catch((response) => {
         console.log(response);
@@ -328,10 +352,10 @@ const mapStateToProps = (state) => {
       city: state.subjectData.city,
       county: state.subjectData.county,
       cemeteryName: state.subjectData.cemeteryName,
-      graveInfo: {
-        latitude: state.subjectData.graveInfo.latitude,
-        longitude: state.subjectData.graveInfo.longitude,
-      },
+      // graveInfo: {
+      //   latitude: state.subjectData.graveInfo.latitude,
+      //   longitude: state.subjectData.graveInfo.longitude,
+      // },
     },
   };
 };
@@ -352,30 +376,38 @@ const mapDispatchToProps = (dispatch) => {
       };
       dispatch(action);
     },
-    setSubjectInfo: (subjectResponse, image, currentIndex) => {
+    setSubjectInfo: (subjectDataResponse, image, currentIndex) => {
+      console.log(subjectDataResponse.flowers);
       const action = {
         type: "SET_SUBJECT_INFO",
         currentIndex: currentIndex,
+        headStonePhoto: image,
         subjectData: {
-          ...subjectResponse,
-          flowers: subjectResponse.flowers,
-          photos: {
-            ...subjectResponse.photos,
-            mainPhoto: subjectResponse.photos.mainPhoto,
-            subjectPhotos: [...subjectResponse.photos.subjectPhotos],
-            familyPhotos: [...subjectResponse.photos.familyPhotos],
+          ...subjectDataResponse,
+
+          flowers: [...subjectDataResponse.flowers],
+          sponsors: {
+            ...subjectDataResponse.sponsors,
+            donors: [...subjectDataResponse.sponsors.donors],
           },
-          donors: {
-            ...subjectResponse.donors,
-            restHome: subjectResponse.donors.restHome,
-            individual: [...subjectResponse.donors.individual],
-          },
-          graveInfo: {
-            ...subjectResponse.graveInfo,
-            stoneImg: image,
-            latitude: subjectResponse.graveInfo.latitude,
-            longitude: subjectResponse.graveInfo.longitude,
-          },
+
+          // photos: {
+          //   ...subjectResponse.photos,
+          //   mainPhoto: subjectResponse.photos.mainPhoto,
+          //   subjectPhotos: [...subjectResponse.photos.subjectPhotos],
+          //   familyPhotos: [...subjectResponse.photos.familyPhotos],
+          // },
+          // donors: {
+          //   ...subjectResponse.donors,
+          //   restHome: subjectResponse.donors.restHome,
+          //   individual: [...subjectResponse.donors.individual],
+          // },
+          // graveInfo: {
+          //   ...subjectResponse.graveInfo,
+          //   stoneImg: image,
+          //   latitude: subjectResponse.graveInfo.latitude,
+          //   longitude: subjectResponse.graveInfo.longitude,
+          // },
         },
       };
       dispatch(action);
