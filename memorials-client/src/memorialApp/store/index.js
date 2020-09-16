@@ -107,8 +107,8 @@ For the clock may then be still.`,
       author: "",
     },
   ],
-  headStonePhoto: "",
-  currentIndex: null,
+  // headStonePhoto: "",
+  // currentIndex: null,
   showModal: false,
   showFBModal: false,
   speechData: {
@@ -119,6 +119,10 @@ For the clock may then be still.`,
     deathYear: "",
   },
   subjectData: {
+    siteIndex: null,
+    burialId: null,
+    headStonePhoto: null,
+
     firstName: "",
     middleName: "",
     lastName: "",
@@ -474,8 +478,6 @@ const reducer = (state = initialState, action) => {
         showFBModal: action.showFBModal,
         subjectData: {
           ...state.subjectData,
-          // flowers: {
-          //   ...state.subjectData.flowers,
           flowers: [
             ...state.subjectData.flowers,
             {
@@ -483,22 +485,7 @@ const reducer = (state = initialState, action) => {
               date: action.date,
             },
           ],
-          // },
         },
-        // sites: [
-        //   ...state.sites.slice(0, action.currentIndex),
-        //   {
-        //     ...state.sites[action.currentIndex],
-        //     // flowers: {
-        //     //   ...state.sites[action.currentIndex].flowers,
-        //     flowers: [
-        //       ...state.sites[action.currentIndex].flowers,
-        //       { leftBy: action.leftBy, date: action.date },
-        //     ],
-        //     // },
-        //   },
-        //   ...state.sites.slice(action.currentIndex + 1),
-        // ],
       };
 
     case "SET_TO_DEVICE_LOCATION":
@@ -522,10 +509,6 @@ const reducer = (state = initialState, action) => {
           birthYear: action.birthYear,
           deathYear: action.deathYear,
           cemeteryName: action.cemeteryName,
-          // graveInfo: {
-          //   ...state.subjectData.graveInfo,
-          // stoneImg: action.stoneImg,
-          // },
         },
       };
 
@@ -551,10 +534,12 @@ const reducer = (state = initialState, action) => {
     case "SET_SUBJECT_INFO":
       return {
         ...state,
-        currentIndex: action.currentIndex,
+        // currentIndex: action.currentIndex,
         subjectData: {
           ...state.subjectData,
-
+          siteIndex: action.subjectData.siteIndex,
+          burialId: action.subjectData.burialId,
+          headStonePhoto: action.subjectData.headStonePhoto,
           firstName: action.subjectData.firstName,
           middleName: action.subjectData.middleName,
           lastName: action.subjectData.lastName,
@@ -569,14 +554,8 @@ const reducer = (state = initialState, action) => {
 
           flowers: action.subjectData.flowers,
           photos: action.subjectData.photos,
+          parents: action.subjectData.parents,
           sponsors: action.subjectData.sponsors,
-
-          // graveInfo: {
-          //   ...state.subjectData.graveInfo,
-          // stoneImg: action.subjectData.stoneImg,
-          // latitude: action.subjectData.latitude,
-          // longitude: action.subjectData.longitude,
-          // },
         },
       };
 
@@ -590,11 +569,6 @@ const reducer = (state = initialState, action) => {
           lastName: action.lastName,
           birthYear: action.birthYear,
           deathYear: action.deathYear,
-          // graveInfo: {
-          //   ...state.subjectData.graveInfo,
-          // latitude: action.latitude,
-          // longitude: action.longitude,
-          // },
         },
         deviceLocation: {
           ...state.deviceLocation,

@@ -184,9 +184,6 @@ by ${this.displayFlower9.leftBy} `}
   };
 
   getFlowers = () => {
-    console.log(this.props.flowers);
-    console.log(this.props.donors);
-    console.log(this.props.donors[0]);
     for (let i = 0; i < 12; i++) {
       let temp = "displayFlower" + i;
       this[temp] = false;

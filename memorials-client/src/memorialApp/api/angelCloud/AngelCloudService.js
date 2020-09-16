@@ -13,14 +13,6 @@ class AngelCloudService {
     this.setupAxiosInterceptors();
     return axios.get(
       `${API_URL_ROOT}/search?latitude=${latitude}&longitude=${longitude}`,
-      // {
-      //   firstName: store.getState().subjectData.firstName,
-      //   lastName: store.getState().subjectData.lastName,
-      //   cemeteryState: store.getState().deviceLocation.state,
-      //   cemeteryCity: store.getState().deviceLocation.city,
-      //   cemeteryCounty: store.getState().deviceLocation.county,
-      //   cemeteryCountry: store.getState().deviceLocation.country,
-      // },
       {
         headers: headers,
       }
@@ -56,6 +48,13 @@ class AngelCloudService {
         headers: headers,
       }
     );
+  }
+
+  addFlower(flower, burialId) {
+    this.setupAxiosInterceptors();
+    return axios.post(`${API_URL_ROOT}/burials/${burialId}/addFlower`, flower, {
+      headers: headers,
+    });
   }
 
   setupAxiosInterceptors() {

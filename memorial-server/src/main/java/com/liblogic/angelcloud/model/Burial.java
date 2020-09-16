@@ -19,7 +19,6 @@ public class Burial {
     @Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)
     @Column(name = "burial_id")
-    @JsonIgnore
     private Long id;
     
     private String firstName;

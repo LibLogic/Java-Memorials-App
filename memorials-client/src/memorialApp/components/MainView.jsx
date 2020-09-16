@@ -42,9 +42,6 @@ class MainView extends Component {
             <SubjectDetails store={store} />
 
             <div className="flower-container">
-              {/* <div> */}
-              {/* <div className="image-box"> */}
-
               {this.state.headstoneImage && (
                 <div>
                   {!this.state.zoom && (
@@ -60,8 +57,9 @@ class MainView extends Component {
                       this.state.zoom ? "image-zoom" : ""
                     }`}
                     src={
-                      process.env.PUBLIC_URL + this.props.headStonePhoto ||
-                      Headstone
+                      process.env.PUBLIC_URL +
+                        "/" +
+                        this.props.subjectData.headStonePhoto || Headstone
                     }
                     alt="Headstone"
                     onClick={this.zoomImage}
@@ -137,8 +135,6 @@ class MainView extends Component {
                 )}
               </div>
             </div>
-            {/* </div> */}
-            {/* </div> */}
           </div>
         </div>
       </div>
@@ -167,11 +163,7 @@ class MainView extends Component {
   };
 
   processFlower = (leftBy) => {
-    let currentIndex = this.props.currentIndex;
-
-    console.log(leftBy, currentIndex);
-
-    this.props.addFlower(leftBy, currentIndex);
+    this.props.addFlower(leftBy);
 
     this.setState({
       leftBy: "",
@@ -182,9 +174,7 @@ class MainView extends Component {
 const mapStateToProps = (state) => {
   return {
     ...state,
-    // individual: state.subjectData.donors.individual,
     headStonePhoto: state.headStonePhoto,
-    currentIndex: state.currentIndex,
     showModal: state.showModal,
     subjectData: {
       ...state.subjectData,
@@ -200,10 +190,6 @@ const mapStateToProps = (state) => {
         sponsor: state.subjectData.sponsors.sponsor,
         donors: [...state.subjectData.sponsors.donors],
       },
-      // graveInfo: {
-      //   ...state.subjectData.graveInfo,
-      //   stoneImg: state.subjectData.graveInfo.stoneImg,
-      // },
     },
   };
 };
@@ -217,10 +203,9 @@ const mapDispatchToProps = (dispatch) => {
       };
       dispatch(action);
     },
-    addFlower: (leftBy, currentIndex) => {
+    addFlower: (leftBy) => {
       const action = {
         type: "ADD_FLOWER",
-        currentIndex: currentIndex,
         showModal: false,
         leftBy: leftBy || "Anonymous",
         date: new Date().toLocaleDateString("en-US"),
