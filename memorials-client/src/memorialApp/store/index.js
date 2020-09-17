@@ -107,9 +107,8 @@ For the clock may then be still.`,
       author: "",
     },
   ],
-  // headStonePhoto: "",
-  // currentIndex: null,
-  showModal: false,
+  showFlowerModal: false,
+  showDonorModal: false,
   showFBModal: false,
   speechData: {
     firstName: "",
@@ -154,10 +153,10 @@ For the clock may then be still.`,
   deviceLocation: {
     latitude: 0,
     longitude: 0,
-    cemeteryCity: 0,
-    cemeteryState: 0,
-    cemeteryCounty: 0,
-    cemeteryCountry: 0,
+    cemeteryCity: "",
+    cemeteryState: "",
+    cemeteryCounty: "",
+    cemeteryCountry: "",
   },
   sites: [
     {
@@ -450,16 +449,28 @@ const reducer = (state = initialState, action) => {
         },
       };
 
-    case "OPEN_MODAL":
+    case "OPEN_FLOWER_MODAL":
       return {
         ...state,
-        showModal: action.showModal,
+        showFlowerModal: action.showFlowerModal,
       };
 
-    case "CLOSE_MODAL":
+    case "CLOSE_FLOWER_MODAL":
       return {
         ...state,
-        showModal: action.showModal,
+        showFlowerModal: action.showFlowerModal,
+      };
+
+    case "OPEN_DONOR_MODAL":
+      return {
+        ...state,
+        showDonorModal: action.showDonorModal,
+      };
+
+    case "CLOSE_DONOR_MODAL":
+      return {
+        ...state,
+        showDonorModal: action.showDonorModal,
       };
 
     case "CLOSE_FB_MODAL":
@@ -474,7 +485,7 @@ const reducer = (state = initialState, action) => {
     case "ADD_FLOWER":
       return {
         ...state,
-        showModal: action.showModal,
+        showFlowerModal: action.showFlowerModal,
         showFBModal: action.showFBModal,
         subjectData: {
           ...state.subjectData,
@@ -487,7 +498,24 @@ const reducer = (state = initialState, action) => {
           ],
         },
       };
-
+    case "ADD_DONOR":
+      return {
+        ...state,
+        showDonorModal: action.showDonorModal,
+        subjectData: {
+          ...state.subjectData,
+          sponsors: {
+            ...state.subjectData.sponsors,
+            sponsor: state.subjectData.sponsors.sponsor,
+            donors: [
+              ...state.subjectData.sponsors.donors,
+              {
+                donor: action.donor,
+              },
+            ],
+          },
+        },
+      };
     case "SET_TO_DEVICE_LOCATION":
       return {
         ...state,
@@ -534,7 +562,6 @@ const reducer = (state = initialState, action) => {
     case "SET_SUBJECT_INFO":
       return {
         ...state,
-        // currentIndex: action.currentIndex,
         subjectData: {
           ...state.subjectData,
           siteIndex: action.subjectData.siteIndex,

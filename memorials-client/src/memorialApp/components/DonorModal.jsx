@@ -1,31 +1,31 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 
-class FlowerModal extends Component {
+class DonorModal extends Component {
   render() {
     return (
-      this.props.showFlowerModal && (
-        <form id="flower-modal" className="input-group">
-          <div className="input-group-append flower-modal-content">
+      this.props.showDonorModal && (
+        <form id="donor-modal" className="input-group">
+          <div className="input-group-append donor-modal-content">
             <input
               style={{ fontSize: ".8em" }}
               className="form-control"
               type="text"
               placeholder="Your First & Last Name"
               onChange={this.props.handleChange}
-              value={this.props.leftBy}
+              value={this.props.donor}
             />
             <button
               className="btn btn-sm btn-ok"
               type="submit"
-              onClick={() => this.props.processFlower(this.props.leftBy)}
+              onClick={() => this.props.processDonor(this.props.donorName)}
             >
               OK
             </button>
             <button
               type="button"
               className="btn btn-sm btn-close"
-              onClick={this.props.hideFlowerModal}
+              onClick={this.props.hideDonorModal}
             >
               <span>X</span>
             </button>
@@ -38,20 +38,20 @@ class FlowerModal extends Component {
 
 const mapStateToProps = (state) => {
   return {
-    showFlowerModal: state.showFlowerModal,
+    showDonorModal: state.showDonorModal,
   };
 };
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    hideFlowerModal: () => {
+    hideDonorModal: () => {
       const action = {
-        type: "CLOSE_FLOWER_MODAL",
-        showFlowerModal: false,
+        type: "CLOSE_DONOR_MODAL",
+        showDonorModal: false,
       };
       dispatch(action);
     },
   };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(FlowerModal);
+export default connect(mapStateToProps, mapDispatchToProps)(DonorModal);

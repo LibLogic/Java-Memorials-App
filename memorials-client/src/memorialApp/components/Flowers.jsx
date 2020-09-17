@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import flower from "../images/flower.png";
+import flowerImage from "../images/flower.png";
 
 class Flowers extends Component {
   render() {
@@ -17,7 +17,7 @@ class Flowers extends Component {
                       title={`Left on ${this.displayFlower0.date} 
 by ${this.displayFlower0.leftBy} `}
                       alt={"Flower"}
-                      src={flower}
+                      src={flowerImage}
                     />
                   )}
                 </td>
@@ -27,7 +27,7 @@ by ${this.displayFlower0.leftBy} `}
                       title={`Left on ${this.displayFlower1.date} 
 by ${this.displayFlower1.leftBy} `}
                       alt={"Flower"}
-                      src={flower}
+                      src={flowerImage}
                     />
                   )}
                 </td>
@@ -37,7 +37,7 @@ by ${this.displayFlower1.leftBy} `}
                       title={`Left on ${this.displayFlower2.date} 
 by ${this.displayFlower2.leftBy} `}
                       alt={"Flower"}
-                      src={flower}
+                      src={flowerImage}
                     />
                   )}
                 </td>
@@ -47,7 +47,7 @@ by ${this.displayFlower2.leftBy} `}
                       title={`Left on ${this.displayFlower3.date} 
 by ${this.displayFlower3.leftBy} `}
                       alt={"Flower"}
-                      src={flower}
+                      src={flowerImage}
                     />
                   )}
                 </td>
@@ -57,7 +57,7 @@ by ${this.displayFlower3.leftBy} `}
                       title={`Left on ${this.displayFlower4.date} 
 by ${this.displayFlower4.leftBy} `}
                       alt={"Flower"}
-                      src={flower}
+                      src={flowerImage}
                     />
                   )}
                 </td>
@@ -67,7 +67,7 @@ by ${this.displayFlower4.leftBy} `}
                       title={`Left on ${this.displayFlower5.date} 
 by ${this.displayFlower5.leftBy} `}
                       alt={"Flower"}
-                      src={flower}
+                      src={flowerImage}
                     />
                   )}
                 </td>
@@ -79,7 +79,7 @@ by ${this.displayFlower5.leftBy} `}
                       title={`Left on ${this.displayFlower6.date} 
 by ${this.displayFlower6.leftBy} `}
                       alt={"Flower"}
-                      src={flower}
+                      src={flowerImage}
                     />
                   )}
                 </td>
@@ -89,7 +89,7 @@ by ${this.displayFlower6.leftBy} `}
                       title={`Left on ${this.displayFlower7.date} 
 by ${this.displayFlower7.leftBy} `}
                       alt={"Flower"}
-                      src={flower}
+                      src={flowerImage}
                     />
                   )}
                 </td>
@@ -99,7 +99,7 @@ by ${this.displayFlower7.leftBy} `}
                       title={`Left on ${this.displayFlower8.date} 
 by ${this.displayFlower8.leftBy} `}
                       alt={"Flower"}
-                      src={flower}
+                      src={flowerImage}
                     />
                   )}
                 </td>
@@ -109,7 +109,7 @@ by ${this.displayFlower8.leftBy} `}
                       title={`Left on ${this.displayFlower9.date} 
 by ${this.displayFlower9.leftBy} `}
                       alt={"Flower"}
-                      src={flower}
+                      src={flowerImage}
                     />
                   )}
                 </td>
@@ -119,7 +119,7 @@ by ${this.displayFlower9.leftBy} `}
                       title={`Left on ${this.displayFlower9.date} 
 by ${this.displayFlower9.leftBy} `}
                       alt={"Flower"}
-                      src={flower}
+                      src={flowerImage}
                     />
                   )}
                 </td>
@@ -129,25 +129,24 @@ by ${this.displayFlower9.leftBy} `}
                       title={`Left on ${this.displayFlower9.date} 
 by ${this.displayFlower9.leftBy} `}
                       alt={"Flower"}
-                      src={flower}
+                      src={flowerImage}
                     />
                   )}
-                </td>
+                </td>{" "}
               </tr>
             </tbody>
           </table>
         </div>
-        {this.props.donors.length > 0 && (
-          <div className="donor-box">
-            <b>
-              {" "}
-              <p className="slide-in donor-header">CONTRIBUTORS - THANK YOU!</p>
-              <ul className="donors">
-                <li className="slide-up"></li>
-              </ul>{" "}
-            </b>
-          </div>
-        )}
+
+        <div className="donor-box" onClick={() => this.props.showDonorModal()}>
+          <b>
+            {" "}
+            <p className="slide-in donor-header">DONATIONS — THANK YOU!</p>
+            <ul className="donors">
+              {this.props.donors.length > 0 && <li className="slide-up"></li>}
+            </ul>{" "}
+          </b>
+        </div>
       </>
     );
   }
@@ -205,3 +204,21 @@ const mapStateToProps = (state) => {
 };
 
 export default connect(mapStateToProps)(Flowers);
+
+{
+  /* <tr>
+                {this.props.flowers.map((flower, i) => {
+                  cellCount--;
+                  return (
+                    <td key={i}>
+                      <img
+                        title={`Left on ${flower.date}
+by ${flower.leftBy}`}
+                        alt={"Flower"}
+                        src={flowerImage}
+                      />
+                    </td>
+                  );
+                })}
+              </tr> */
+}

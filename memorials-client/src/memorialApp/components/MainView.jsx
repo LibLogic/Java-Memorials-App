@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { store } from "../store";
 import Coords from "./Coords";
+import DonorModal from "./DonorModal";
 import FlowerModal from "./FlowerModal";
 import FBModal from "./FBModal";
 import SubjectDetails from "./SubjectDetails";
@@ -12,6 +13,7 @@ import personIcon from "../images/personIcon.png";
 import Person from "../images/defaultPerson.png";
 import Headstone from "../images/defaultHeadstone.png";
 import headstoneIcon from "../images/headstoneIcon.png";
+import AngelCloudService from "../api/angelCloud/AngelCloudService";
 
 class MainView extends Component {
   constructor() {
@@ -19,6 +21,7 @@ class MainView extends Component {
 
     this.state = {
       leftBy: "",
+      donorName: "",
       zoom: false,
       personInfoBox: true,
       headstoneImage: true,
@@ -27,6 +30,7 @@ class MainView extends Component {
     };
   }
   render() {
+    console.log(process.env.PUBLIC_URL);
     return (
       <div>
         <Coords store={store} />
@@ -38,6 +42,14 @@ class MainView extends Component {
               store={store}
               handleChange={this.handleChange}
             />
+
+            <DonorModal
+              donorName={this.state.donorName}
+              processDonor={this.processDonor}
+              store={store}
+              handleChange={this.handleChange}
+            />
+
             <FBModal store={store} />
             <SubjectDetails store={store} />
 
@@ -47,7 +59,7 @@ class MainView extends Component {
                   {!this.state.zoom && (
                     <button
                       className="btn btn-sm btn-success flower-btn"
-                      onClick={this.props.showModal}
+                      onClick={this.props.showFlowerModal}
                     >
                       Leave a Virtual Flower
                     </button>
@@ -58,7 +70,6 @@ class MainView extends Component {
                     }`}
                     src={
                       process.env.PUBLIC_URL +
-                        "/" +
                         this.props.subjectData.headStonePhoto || Headstone
                     }
                     alt="Headstone"
@@ -71,7 +82,8 @@ class MainView extends Component {
                   </h6>
                   <Flowers
                     store={store}
-                    showModal={this.props.showModal}
+                    showDonorModal={this.props.showDonorModal}
+                    showFlowerModal={this.props.showFlowerModal}
                     zoom={this.state.zoom}
                   />
                 </div>
@@ -158,13 +170,27 @@ class MainView extends Component {
 
   handleChange = (e) => {
     this.setState({
+      donorName: e.target.value,
+    });
+    this.setState({
       leftBy: e.target.value,
+    });
+  };
+  processDonor = (donor) => {
+    this.props.addDonor(donor);
+    AngelCloudService.addDonor(donor, this.props.subjectData.burialId);
+    this.setState({
+      donorName: "",
     });
   };
 
   processFlower = (leftBy) => {
     this.props.addFlower(leftBy);
-
+    AngelCloudService.addFlower(
+      leftBy,
+      new Date().toLocaleDateString("en-US"),
+      this.props.subjectData.burialId
+    );
     this.setState({
       leftBy: "",
     });
@@ -175,7 +201,7 @@ const mapStateToProps = (state) => {
   return {
     ...state,
     headStonePhoto: state.headStonePhoto,
-    showModal: state.showModal,
+    showFlowerModal: state.showFlowerModal,
     subjectData: {
       ...state.subjectData,
       cemeteryName: state.subjectData.cemeteryName,
@@ -196,20 +222,35 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    showModal: () => {
+    showFlowerModal: () => {
       const action = {
-        type: "OPEN_MODAL",
-        showModal: true,
+        type: "OPEN_FLOWER_MODAL",
+        showFlowerModal: true,
       };
       dispatch(action);
     },
     addFlower: (leftBy) => {
       const action = {
         type: "ADD_FLOWER",
-        showModal: false,
+        showFlowerModal: false,
         leftBy: leftBy || "Anonymous",
         date: new Date().toLocaleDateString("en-US"),
         showFBModal: true,
+      };
+      dispatch(action);
+    },
+    showDonorModal: () => {
+      const action = {
+        type: "OPEN_DONOR_MODAL",
+        showDonorModal: true,
+      };
+      dispatch(action);
+    },
+    addDonor: (donor) => {
+      const action = {
+        type: "ADD_DONOR",
+        showDonorModal: false,
+        donor: donor || "Anonymous",
       };
       dispatch(action);
     },

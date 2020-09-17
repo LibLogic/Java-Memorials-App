@@ -247,7 +247,6 @@ class Browse extends Component {
       store.getState().deviceLocation.longitude
     )
       .then((response) => {
-        console.log(response);
         // console.log(response.data.burials[0]);
         // let found = false;
         // for (let i = 0; i < store.getState().sites.length; i++) {

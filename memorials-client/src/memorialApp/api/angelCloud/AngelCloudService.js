@@ -50,9 +50,25 @@ class AngelCloudService {
     );
   }
 
-  addFlower(flower, burialId) {
+  addFlower(leftBy, date, burialId) {
+    let flower = {
+      leftBy: leftBy || "Anonymous",
+      date: date,
+    };
+
     this.setupAxiosInterceptors();
     return axios.post(`${API_URL_ROOT}/burials/${burialId}/addFlower`, flower, {
+      headers: headers,
+    });
+  }
+
+  addDonor(donorName, burialId) {
+    let donor = {
+      donor: donorName || "Anonymous",
+    };
+
+    this.setupAxiosInterceptors();
+    return axios.post(`${API_URL_ROOT}/burials/${burialId}/addDonor`, donor, {
       headers: headers,
     });
   }
