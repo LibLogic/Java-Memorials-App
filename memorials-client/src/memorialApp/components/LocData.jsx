@@ -85,7 +85,6 @@ const mapDispatchToProps = (dispatch) => {
         birthYear: "",
         deathYear: "",
         cemeteryName: "",
-        // stoneImg: "",
       };
       dispatch(action);
     },
