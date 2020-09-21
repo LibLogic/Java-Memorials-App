@@ -132,7 +132,7 @@ by ${this.displayFlower9.leftBy} `}
                       src={flowerImage}
                     />
                   )}
-                </td>{" "}
+                </td>
               </tr>
             </tbody>
           </table>
@@ -204,21 +204,3 @@ const mapStateToProps = (state) => {
 };
 
 export default connect(mapStateToProps)(Flowers);
-
-{
-  /* <tr>
-                {this.props.flowers.map((flower, i) => {
-                  cellCount--;
-                  return (
-                    <td key={i}>
-                      <img
-                        title={`Left on ${flower.date}
-by ${flower.leftBy}`}
-                        alt={"Flower"}
-                        src={flowerImage}
-                      />
-                    </td>
-                  );
-                })}
-              </tr> */
-}

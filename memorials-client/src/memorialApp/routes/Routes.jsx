@@ -5,6 +5,7 @@ import AuthenticatedRoute from "./AuthenticatedRoute";
 import Header from "../components/Header";
 import MainView from "../components/MainView";
 import Browse from "../components/Browse";
+// import LocData from "../components/LocData";
 import FamilyView from "../components/FamilyView";
 // import Search from "../components/Search";
 import Login from "../components/Login";
@@ -39,6 +40,12 @@ class Routes extends Component {
             exact
             render={(props) => <Browse {...props} store={store} />}
           />
+
+          {/* <AuthenticatedRoute
+            path="/locData"
+            exact
+            render={(props) => <LocData {...props} store={store} />}
+          /> */}
 
           <AuthenticatedRoute
             path="/view/main"
