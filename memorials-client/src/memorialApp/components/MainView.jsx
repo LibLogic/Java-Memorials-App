@@ -30,7 +30,12 @@ class MainView extends Component {
     };
   }
   render() {
-    console.log(process.env.PUBLIC_URL);
+    let headStone = this.props.subjectData.headStonePhoto
+      ? "/" + this.props.subjectData.headStonePhoto
+      : Headstone;
+    let person = this.props.subjectData.photos.photo
+      ? "/" + this.props.subjectData.photos.photo
+      : Person;
     return (
       <div>
         <Coords store={store} />
@@ -68,10 +73,7 @@ class MainView extends Component {
                     className={`headstone-img ${
                       this.state.zoom ? "image-zoom" : ""
                     }`}
-                    src={
-                      process.env.PUBLIC_URL +
-                        this.props.subjectData.headStonePhoto || Headstone
-                    }
+                    src={headStone}
                     alt="Headstone"
                     onClick={this.zoomImage}
                   />
@@ -109,14 +111,7 @@ class MainView extends Component {
                             this.props.history.push("/view/family");
                           }}
                         />
-                        <img
-                          className="person-img"
-                          src={
-                            process.env.PUBLIC_URL +
-                              this.props.subjectData.photos.photo || Person
-                          }
-                          alt="person"
-                        />
+                        <img className="person-img" src={person} alt="person" />
                       </div>
 
                       <Poems store={store} />
